@@ -1,41 +1,46 @@
 module.exports = {
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  root: true,
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'prettier',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   env: {
     browser: true,
+    jest: true,
     node: true,
     es6: true,
   },
-  plugins: ["@typescript-eslint", "react"],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {jsx: true},
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
     },
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: "module", // Allows for the use of imports
   },
   rules: {
-    "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
-    "@typescript-eslint/explicit-function-return-type": "off",
+    '@typescript-eslint/dot-notation': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    'react/jsx-props-no-spreading': 0,
+    'no-plusplus': 0,
+    'react/prop-types': 0,
+    'import/extensions': 0,
+    'import/no-cycle': 0,
   },
-  overrides: [
-    // Override some TypeScript rules just for .js files
-    {
-      files: ["*.js"],
-      rules: {
-        "@typescript-eslint/no-var-requires": "off", //
-      },
-    },
-  ],
-}
+};
