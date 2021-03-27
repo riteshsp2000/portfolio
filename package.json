@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "ritesh-patil-portfolio-v1",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "A static portfolio web page created using Gatsby.",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
@@ -41,9 +41,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/riteshsp2000/portfolio-v1"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/riteshsp2000/portfolio-v1/issues"
   }
 }
