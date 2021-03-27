@@ -17,7 +17,11 @@
   },
   "dependencies": {
     "gatsby": "^3.1.1",
+    "gatsby-plugin-sharp": "^3.1.2",
     "gatsby-plugin-typescript": "^3.1.0",
+    "gatsby-remark-images": "^4.1.1",
+    "gatsby-source-filesystem": "^3.1.0",
+    "gatsby-transformer-sharp": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
