@@ -11,5 +11,6 @@
     "noUnusedLocals": false,
     "allowJs": true
   },
+  "include": ["src", "src/types/**/*.d.ts"],
   "exclude": ["node_modules", "public", ".cache"]
 }
