@@ -7,8 +7,6 @@ import {
   INITIAL_COLOR_MODE_CSS_PROP,
 } from './src/theming/constants';
 
-import App from './src/components/App';
-
 function setColorsByTheme() {
   const colors = '🌈';
   const colorModeKey = '🔑';
@@ -19,7 +17,6 @@ function setColorsByTheme() {
   const persistedPreference = localStorage.getItem(colorModeKey);
 
   let colorMode = 'light';
-
   const hasUsedToggle = typeof persistedPreference === 'string';
 
   if (hasUsedToggle) {
@@ -29,12 +26,10 @@ function setColorsByTheme() {
   }
 
   let root = document.documentElement;
-
   root.style.setProperty(colorModeCssProp, colorMode);
 
   Object.entries(colors).forEach(([name, colorByTheme]) => {
     const cssVarName = `--color-${name}`;
-
     root.style.setProperty(cssVarName, colorByTheme[colorMode]);
   });
 }
@@ -47,7 +42,7 @@ const MagicScriptTag = () => {
 
   let calledFunction = `(${boundFn})()`;
 
-  calledFunction = Terser.minify(calledFunction).code;
+  // calledFunction = Terser.minify(calledFunction).code;
 
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{__html: calledFunction}} />;
@@ -62,12 +57,6 @@ const MagicScriptTag = () => {
  * Only light mode will be available for users with JS disabled.
  */
 const FallbackStyles = () => {
-  // Create a string holding each CSS variable:
-  /*
-    `--color-text: black;
-    --color-background: white;`
-  */
-
   const cssVariableString = Object.entries(COLORS).reduce(
     (acc, [name, colorByTheme]) => {
       return `${acc}\n--color-${name}: ${colorByTheme.light};`;
@@ -75,16 +64,14 @@ const FallbackStyles = () => {
     '',
   );
 
-  const wrappedInSelector = `html { ${cssVariableString} }`;
+  const rootVariables =
+    '--font-weight-bold: 500; --font-weight-regular: 400; --font-weight-light: 300; --font-family: Wotfard; --reach-dialog: 1; --reach-tabs: 1;';
 
+  const wrappedInSelector = `html { ${cssVariableString} ${rootVariables}}`;
   return <style>{wrappedInSelector}</style>;
 };
 
 export const onRenderBody = ({setPreBodyComponents, setHeadComponents}) => {
   setHeadComponents(<FallbackStyles />);
   setPreBodyComponents(<MagicScriptTag />);
-};
-
-export const wrapPageElement = ({element}) => {
-  return <App>{element}</App>;
 };
