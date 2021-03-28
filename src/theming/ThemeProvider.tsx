@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React, {useState, useMemo, createContext, useContext} from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  createContext,
+  useContext,
+} from 'react';
 
 // Utils
 import {getInitialColorMode} from './utils';
+
+import {COLOR_MODE_KEY, COLORS, INITIAL_COLOR_MODE_CSS_PROP} from './constants';
 
 // ==================== Context Types ==================== //
 export enum Theme {
@@ -26,10 +34,30 @@ export function ThemeProvider(props: any): JSX.Element {
   const [colorMode, rawSetColorMode] = useState<string | null>(
     getInitialColorMode,
   );
-  const setColorMode = (value: string): void => {
-    rawSetColorMode(value);
-    // Persist state in local storage after update
-    window.localStorage.setItem('color-mode', value);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    // Because colors matter so much for the initial page view, we're
+    // doing a lot of the work in gatsby-ssr. That way it can happen before
+    // the React component tree mounts.
+    const initialColorValue = root.style.getPropertyValue(
+      INITIAL_COLOR_MODE_CSS_PROP,
+    );
+
+    rawSetColorMode(initialColorValue);
+  }, []);
+
+  const setColorMode = (newValue: string): void => {
+    const root = window.document.documentElement;
+
+    localStorage.setItem(COLOR_MODE_KEY, newValue);
+    Object.entries(COLORS).forEach(([name, colorByTheme]) => {
+      const cssVarName = `--color-${name}`;
+      // @ts-ignore
+      root.style.setProperty(cssVarName, colorByTheme[newValue]);
+    });
+
+    rawSetColorMode(newValue);
   };
   const value = useMemo(() => [colorMode, setColorMode], [colorMode]);
   return <ThemeContext.Provider value={value} {...props} />;
