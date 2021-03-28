@@ -16,14 +16,18 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.12.0",
     "gatsby": "^3.1.1",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-sharp": "^3.1.2",
+    "gatsby-plugin-styled-components": "^4.1.0",
     "gatsby-plugin-typescript": "^3.1.0",
     "gatsby-remark-images": "^4.1.1",
     "gatsby-source-filesystem": "^3.1.0",
     "gatsby-transformer-sharp": "^3.1.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.19.0",
