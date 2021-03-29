@@ -64,10 +64,10 @@ const FallbackStyles = () => {
     '',
   );
 
-  const rootVariables =
-    '--font-weight-bold: 500; --font-weight-regular: 400; --font-weight-light: 300; --font-family: Wotfard; --reach-dialog: 1; --reach-tabs: 1;';
+  // const rootVariables =
+  //   '--font-weight-bold: 500; --font-weight-regular: 400; --font-weight-light: 300; --font-family: "Wotfard", "Poppins", -apple-system, sans-serif; --reach-dialog: 1; --reach-tabs: 1;';
 
-  const wrappedInSelector = `html { ${cssVariableString} ${rootVariables}}`;
+  const wrappedInSelector = `html { ${cssVariableString} }`;
   return <style>{wrappedInSelector}</style>;
 };
 
