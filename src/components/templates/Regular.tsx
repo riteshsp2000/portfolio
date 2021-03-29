@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 
 // Libraries
@@ -14,14 +15,14 @@ export function LayoutFirstRow({
   children,
   showVector = true,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   // eslint-disable-next-line react/require-default-props
   showVector?: boolean;
 }): JSX.Element {
   return (
     <FirstRow>
       <Header />
-      <FirstRowContainer>{children}</FirstRowContainer>
+      {children && <FirstRowContainer>{children}</FirstRowContainer>}
 
       {showVector && (
         <>
