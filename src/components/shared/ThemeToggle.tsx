@@ -4,7 +4,7 @@ import React from 'react';
 import {useSpring, animated} from 'react-spring';
 
 // State Handlers
-import {useTheme, Theme} from '../theming';
+import {useTheme, Theme} from '../../theming';
 
 const ThemeToggle: React.FC = () => {
   const [colorMode, setColorMode] = useTheme();
