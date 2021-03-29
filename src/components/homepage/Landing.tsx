@@ -24,6 +24,11 @@ const Container = styled.div`
   width: 100%;
   height: 350px;
 
+  @media (max-width: 1100px) and (min-width: 800px) {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+
   @media ${BREAKPOINTS.md} {
     margin-top: 50px;
   }

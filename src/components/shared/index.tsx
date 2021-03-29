@@ -5,3 +5,4 @@ export {default as PrimaryHeading} from './PrimaryHeading';
 export {default as SecondaryHeading} from './SecondaryHeading';
 export {default as TertiaryHeading} from './TertiaryHeading';
 export {default as Para} from './Para';
+export * from './Links';

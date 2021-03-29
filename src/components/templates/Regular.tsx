@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 // Components
 import {Header} from '../marginals';
-import {Vector} from '../shared';
+import {Vector, Links, Email} from '../shared';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -44,7 +44,13 @@ export function LayoutSecondRow({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  return <SecondRow>{children}</SecondRow>;
+  return (
+    <>
+      <Links />
+      <SecondRow>{children}</SecondRow>
+      <Email />
+    </>
+  );
 }
 
 export function RegularTemplate({
