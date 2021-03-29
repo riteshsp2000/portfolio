@@ -4,7 +4,7 @@ import React from 'react';
 import {useSpring, animated} from 'react-spring';
 
 // State Handlers
-import {useTheme} from '../theming';
+import {useTheme, Theme} from '../theming';
 
 const ThemeToggle: React.FC = () => {
   const [colorMode, setColorMode] = useTheme();
@@ -57,7 +57,9 @@ const ThemeToggle: React.FC = () => {
       stroke-linecap="round"
       stroke-linejoin="round"
       onClick={() =>
-        colorMode === 'dark' ? setColorMode('light') : setColorMode('dark')
+        colorMode === 'dark'
+          ? setColorMode(Theme.light)
+          : setColorMode(Theme.dark)
       }
       style={{cursor: 'pointer', ...svgContainerProps}}
     >

@@ -1,0 +1,44 @@
+name: Netlify PR Preview Deploy
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  netlify-pr-preview:
+    name: Netlify Development Deploy
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'create-live-preview')
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Setup Node v14
+        uses: actions/setup-node@master
+        with:
+          node-version: '14.x'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build React WebApp
+        run: yarn run build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Preview Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: removelabel
+        uses: buildsville/add-remove-label@v1
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          label: create-live-preview
+          type: remove

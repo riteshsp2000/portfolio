@@ -26,12 +26,12 @@ const StartDiv = styled.div`
   height: 400px;
   margin: 0px;
   background: linear-gradient(
-    359deg,
+    0deg,
     var(--color-gradient-background-one),
     var(--color-gradient-background-two)
   );
-  /* transition: var(--color-gradient-background-one) 350ms linear 0s,
-    var(--color-gradient-background-two) 350ms linear 0s; */
+  transition: var(--color-gradient-background-one) 350ms linear 0s,
+    var(--color-gradient-background-two) 350ms linear 0s;
 
   @media ${BREAKPOINTS.md} {
     height: 200px;

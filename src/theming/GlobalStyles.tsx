@@ -101,7 +101,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     background: var(--color-background);
-    transition: background 350ms linear 0s;
+    transition: color 350ms ease 0s, background 350ms ease 0s; 
   }
 `;
 
