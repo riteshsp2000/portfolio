@@ -59,18 +59,18 @@ export function ThemeProvider(props: any): JSX.Element {
 
     rawSetColorMode(newValue);
   };
-  const value = useMemo(() => [colorMode, setColorMode], [colorMode]);
+  const value = useMemo(() => ({colorMode, setColorMode}), [colorMode]);
   return <ThemeContext.Provider value={value} {...props} />;
 }
 
 // ==================== Context Usage Hook ==================== //
 export function useTheme(): [
   colorMode: string,
-  setColorMode: (value: string) => void,
+  setColorMode: (theme: Theme) => void,
 ] {
   const context = useContext(ThemeContext);
   if (!context) throw new Error('useTheme must be used within Theme Provider');
-  // @ts-ignore
-  const [colorMode, setColorMode] = context;
+
+  const {colorMode, setColorMode} = context;
   return [colorMode, setColorMode];
 }
