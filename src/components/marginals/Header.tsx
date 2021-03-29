@@ -7,6 +7,9 @@ import {Link} from 'gatsby';
 // Components
 import {ThemeToggle} from '../shared';
 
+// Constants
+import {BREAKPOINTS} from '../../theming';
+
 const NAV = [
   {
     name: 'About',
@@ -62,6 +65,10 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media ${BREAKPOINTS.md} {
+    display: none;
+  }
 `;
 
 const StyledH3 = styled.h3`

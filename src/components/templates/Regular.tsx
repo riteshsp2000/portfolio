@@ -24,9 +24,15 @@ export function LayoutFirstRow({
       <FirstRowContainer>{children}</FirstRowContainer>
 
       {showVector && (
-        <StyledVector viewBox="0 0 719 40" fill="none">
-          <path d="M205.5 1.48071C132.7 -0.514533 38.1667 10.8103 0 16.7222V40H719V1.48071C708.5 1.48071 670.5 -1.01335 624.5 5.36035C563.005 13.881 503 26.6984 392.5 19.2162C282 11.734 296.5 3.97477 205.5 1.48071Z" />
-        </StyledVector>
+        <>
+          <ProfileImg
+            src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_copy-removebg-preview_newzpm.png"
+            alt="Ritesh Profile"
+          />
+          <StyledVector viewBox="0 0 719 40" fill="none">
+            <path d="M205.5 1.48071C132.7 -0.514533 38.1667 10.8103 0 16.7222V40H719V1.48071C708.5 1.48071 670.5 -1.01335 624.5 5.36035C563.005 13.881 503 26.6984 392.5 19.2162C282 11.734 296.5 3.97477 205.5 1.48071Z" />
+          </StyledVector>
+        </>
       )}
     </FirstRow>
   );
@@ -92,6 +98,9 @@ const FirstRowContainer = styled.div`
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+  @media ${BREAKPOINTS.md} {
+    display: none;
+  }
 `;
 
 const SecondRow = styled.div`
@@ -101,4 +110,16 @@ const SecondRow = styled.div`
   padding: 50px 32px;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const ProfileImg = styled.img`
+  width: 230px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 20%;
+  opacity: var(--color-profile-opacity);
+  @media ${BREAKPOINTS.md} {
+    display: none;
+  }
 `;
