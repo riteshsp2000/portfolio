@@ -73,7 +73,6 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color: var(--color-background)
   }
   ol, ul {
     list-style: none;
@@ -98,6 +97,11 @@ const GlobalStyles = createGlobalStyle`
     --font-family: "Wotfard", "Poppins", -apple-system, sans-serif;
     --reach-dialog: 1;
     --reach-tabs: 1;
+  }
+
+  body {
+    background: var(--color-background);
+    transition: background 350ms linear 0s;
   }
 `;
 

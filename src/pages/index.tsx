@@ -3,14 +3,21 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 
+// Components
+import {ThemeToggle} from '../components';
+
 // Constants
 import {BREAKPOINTS} from '../theming';
 
 export default function Home(): JSX.Element {
   return (
-    <StartDiv>
-      <Heading>Hello is this working</Heading>
-    </StartDiv>
+    <>
+      <StartDiv>
+        <Heading>Hello is this working</Heading>
+        <ThemeToggle />
+      </StartDiv>
+      <ThemeToggle />
+    </>
   );
 }
 
@@ -23,6 +30,8 @@ const StartDiv = styled.div`
     var(--color-gradient-background-one),
     var(--color-gradient-background-two)
   );
+  /* transition: var(--color-gradient-background-one) 350ms linear 0s,
+    var(--color-gradient-background-two) 350ms linear 0s; */
 
   @media ${BREAKPOINTS.md} {
     height: 200px;
