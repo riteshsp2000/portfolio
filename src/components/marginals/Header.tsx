@@ -6,6 +6,7 @@ import {Link} from 'gatsby';
 
 // Components
 import {ThemeToggle} from '../shared';
+import HamburgerMenu from './HamburgerMenu';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -34,22 +35,30 @@ const NAV = [
 ];
 
 function Header(): JSX.Element {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   return (
-    <StyledHeader>
-      <StyledH3>Ritesh Patil</StyledH3>
+    <>
+      <StyledHeader>
+        <StyledH3>Ritesh Patil</StyledH3>
 
-      <NavContainer>
-        {NAV.map(({name, link}) => (
-          <NavOptionContainer key={link}>
-            <Link to={link} style={{textDecoration: 'none'}}>
-              <NavOptionH4>{name}</NavOptionH4>
-            </Link>
-          </NavOptionContainer>
-        ))}
-      </NavContainer>
+        <NavContainer>
+          {NAV.map(({name, link}) => (
+            <NavOptionContainer key={link}>
+              <Link to={link} style={{textDecoration: 'none'}}>
+                <NavOptionH4>{name}</NavOptionH4>
+              </Link>
+            </NavOptionContainer>
+          ))}
+        </NavContainer>
 
-      <ThemeToggle />
-    </StyledHeader>
+        <ThemeToggle />
+      </StyledHeader>
+
+      <HamburgerMenu
+        open={menuOpen}
+        onClick={() => setMenuOpen(current => !current)}
+      />
+    </>
   );
 }
 
