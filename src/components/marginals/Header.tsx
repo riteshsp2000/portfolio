@@ -7,6 +7,7 @@ import {Link} from 'gatsby';
 // Components
 import {ThemeToggle} from '../shared';
 import HamburgerMenu from './HamburgerMenu';
+import MobileNavContainer from './MobileNavContainer';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -38,7 +39,7 @@ function Header(): JSX.Element {
   const [menuOpen, setMenuOpen] = React.useState(false);
   return (
     <>
-      <StyledHeader>
+      <DesktopHeaderContainer>
         <StyledH3>Ritesh Patil</StyledH3>
 
         <NavContainer>
@@ -52,19 +53,24 @@ function Header(): JSX.Element {
         </NavContainer>
 
         <ThemeToggle />
-      </StyledHeader>
+      </DesktopHeaderContainer>
 
-      <HamburgerMenu
-        open={menuOpen}
-        onClick={() => setMenuOpen(current => !current)}
-      />
+      <MobileHeaderContainer>
+        <StyledH3>Ritesh Patil</StyledH3>
+        <HamburgerMenu
+          open={menuOpen}
+          onClick={() => setMenuOpen(current => !current)}
+        />
+      </MobileHeaderContainer>
+
+      <MobileNavContainer open={menuOpen} />
     </>
   );
 }
 
 export default Header;
 
-const StyledHeader = styled.header`
+const DesktopHeaderContainer = styled.header`
   width: 100%;
   max-width: 1100px;
   margin-left: auto;
@@ -85,6 +91,7 @@ const StyledH3 = styled.h3`
   color: var(--color-primary);
   font-weight: var(--font-weight-bold);
   font-size: 24px;
+  cursor: pointer;
 `;
 
 const NavContainer = styled.ul`
@@ -107,4 +114,19 @@ const NavOptionH4 = styled.h4`
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   padding: 10px;
+`;
+
+const MobileHeaderContainer = styled.header`
+  width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+  position: relative;
+
+  @media ${BREAKPOINTS.md} {
+    display: block;
+  }
 `;

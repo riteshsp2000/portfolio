@@ -30,13 +30,14 @@ const MenuContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 25px;
-  height: 30px;
+  height: 25px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 
   position: absolute;
-  top: 30px;
-  right: 30px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 20px;
   z-index: 10001;
   display: none;
 
@@ -52,6 +53,7 @@ const Menu = styled.div<StyledProps>`
   background: ${({open}) => (open ? 'transparent' : 'var(--color-text)')};
   transform: ${({open}) => (open ? 'translateX(-50px)' : '')};
   transition: all 0.5s ease-in-out;
+  margin-top: 11px;
 
   &::before,
   &::after {

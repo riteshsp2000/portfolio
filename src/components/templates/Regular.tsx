@@ -87,6 +87,7 @@ const FirstRow = styled.div`
 
   @media ${BREAKPOINTS.md} {
     height: 200px;
+    padding: 30px 0px;
   }
 `;
 
@@ -110,6 +111,10 @@ const SecondRow = styled.div`
   padding: 50px 32px;
   margin-left: auto;
   margin-right: auto;
+
+  @media ${BREAKPOINTS.sm} {
+    padding: 50px 16px;
+  }
 `;
 
 const ProfileImg = styled.img`
