@@ -9,8 +9,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noUnusedLocals": false,
-    "allowJs": true,
-    "no-use-before-declare": false
+    "allowJs": true
   },
   "include": ["src", "src/types/**/*.d.ts"],
   "exclude": ["node_modules", "public", ".cache"]
