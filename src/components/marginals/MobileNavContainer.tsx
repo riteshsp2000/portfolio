@@ -54,7 +54,7 @@ const NavContainer = styled.div<{open: boolean}>`
   z-index: 1;
   background-color: var(--color-background);
   transition: opacity 500ms ease 0s;
-  opacity: ${({open}) => (open ? '0.9' : '0')};
+  opacity: ${({open}) => (open ? '0.99' : '0')};
   display: none;
 
   @media ${BREAKPOINTS.md} {

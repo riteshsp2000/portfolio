@@ -108,7 +108,7 @@ const FirstRowContainer = styled.div`
 const SecondRow = styled.div`
   width: 100%;
   max-width: 1100px;
-  height: 400px;
+  min-height: 400px;
   padding: 50px 32px;
   margin-left: auto;
   margin-right: auto;
