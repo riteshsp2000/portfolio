@@ -10,29 +10,9 @@ import MobileNavContainer from './MobileNavContainer';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
-const NAV = [
-  {
-    name: 'About',
-    link: '/about',
-  },
-  {
-    name: 'Projects',
-    link: '/projects',
-  },
-  {
-    name: 'Photography',
-    link: '/photography',
-  },
-  {
-    name: 'Blog',
-    link: '/blog',
-  },
-  {
-    name: 'Contact',
-    link: '/contact',
-  },
-];
+const NAV = config.navLinks;
 
 function Header(): JSX.Element {
   return (

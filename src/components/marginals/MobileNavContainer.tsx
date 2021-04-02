@@ -10,30 +10,10 @@ import HamburgerMenu from './HamburgerMenu';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
-const NAV = [
-  {
-    name: 'About',
-    link: '/about',
-  },
-  {
-    name: 'Projects',
-    link: '/projects',
-  },
-  {
-    name: 'Photography',
-    link: '/photography',
-  },
-  {
-    name: 'Blog',
-    link: '/blog',
-  },
-  {
-    name: 'Contact',
-    link: '/contact',
-  },
-];
-// {open}: {open: boolean}
+const NAV = config.navLinks;
+
 function MobileNavContainer(): JSX.Element {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
@@ -65,7 +45,12 @@ function MobileNavContainer(): JSX.Element {
       <NavContainer open={menuOpen}>
         <ul>
           {NAV.map(({name, link}) => (
-            <Link key={link} to={link} style={{textDecoration: 'none'}}>
+            <Link
+              onClick={() => setMenuOpen(false)}
+              key={link}
+              to={link}
+              style={{textDecoration: 'none'}}
+            >
               <NavOptionH4 open={menuOpen}>{name}</NavOptionH4>
             </Link>
           ))}
