@@ -11,6 +11,7 @@ import {Vector, Links, Email} from '../shared';
 // Constants
 import {BREAKPOINTS} from '../../theming';
 
+// ======================= First Row ======================= //
 export function LayoutFirstRow({
   children,
   showVector = true,
@@ -39,6 +40,7 @@ export function LayoutFirstRow({
   );
 }
 
+// ======================= Second Row ======================= //
 export function LayoutSecondRow({
   children,
 }: {
@@ -53,6 +55,7 @@ export function LayoutSecondRow({
   );
 }
 
+// ======================= Container ======================= //
 export function RegularTemplate({
   children,
 }: {
@@ -61,12 +64,15 @@ export function RegularTemplate({
   return <Container>{children}</Container>;
 }
 
+// ======================= Styles ======================= //
 const Container = styled.div`
   width: 100%;
   max-width: 100vw;
   height: auto;
   min-height: ${window.innerHeight};
   overflow-x: hidden;
+  background: var(--color-background);
+  transition: color 350ms ease 0s, background 350ms ease 0s;
 `;
 
 const StyledVector = styled(Vector)`

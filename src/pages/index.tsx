@@ -6,8 +6,8 @@ import {
   RegularTemplate,
   LayoutFirstRow,
   LayoutSecondRow,
-  Landing,
-} from '../components';
+} from '../components/templates';
+import {Landing} from '../components';
 
 const Home: React.FC = () => {
   return (
@@ -15,6 +15,12 @@ const Home: React.FC = () => {
       <LayoutFirstRow />
 
       <LayoutSecondRow>
+        <Landing />
+        <Landing />
+        <Landing />
+        <Landing />
+        <Landing />
+        <Landing />
         <Landing />
       </LayoutSecondRow>
     </RegularTemplate>
