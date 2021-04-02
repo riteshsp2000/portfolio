@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 // Components
 import {ThemeToggle} from '../shared';
+import HamburgerMenu from './HamburgerMenu';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -32,29 +33,87 @@ const NAV = [
     link: '/contact',
   },
 ];
+// {open}: {open: boolean}
+function MobileNavContainer(): JSX.Element {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
 
-function MobileNavContainer({open}: {open: boolean}): JSX.Element {
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 200) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+  }, []);
+
   return (
-    <NavContainer open={open}>
-      <ul>
-        {NAV.map(({name, link}) => (
-          <Link key={link} to={link} style={{textDecoration: 'none'}}>
-            <NavOptionH4 open={open}>{name}</NavOptionH4>
-          </Link>
-        ))}
+    <>
+      <MobileHeaderContainer isVisible={isVisible}>
+        <Link to="/" style={{textDecoration: 'none', zIndex: 10001}}>
+          <StyledH3>Ritesh Patil</StyledH3>
+        </Link>
+        <HamburgerMenu
+          open={menuOpen}
+          onClick={() => setMenuOpen(current => !current)}
+        />
+      </MobileHeaderContainer>
 
-        <PositionalSpan>
-          <ThemeToggle />
-        </PositionalSpan>
-      </ul>
-    </NavContainer>
+      <NavContainer open={menuOpen}>
+        <ul>
+          {NAV.map(({name, link}) => (
+            <Link key={link} to={link} style={{textDecoration: 'none'}}>
+              <NavOptionH4 open={menuOpen}>{name}</NavOptionH4>
+            </Link>
+          ))}
+
+          <PositionalSpan>
+            <ThemeToggle />
+          </PositionalSpan>
+        </ul>
+      </NavContainer>
+    </>
   );
 }
 
 export default MobileNavContainer;
 
+const MobileHeaderContainer = styled.header<{isVisible: boolean}>`
+  width: 100%;
+  padding: 20px 32px;
+
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  background-color: ${({isVisible}) =>
+    isVisible ? 'var(--color-background)' : 'transparent'};
+
+  @media ${BREAKPOINTS.md} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const StyledH3 = styled.h3`
+  font-family: var(--font-family);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 24px;
+  cursor: pointer;
+
+  @media ${BREAKPOINTS.md} {
+    position: relative;
+    z-index: 10001;
+  }
+`;
+
 const NavContainer = styled.div<{open: boolean}>`
-  position: absolute;
+  position: fixed;
   inset: 0px;
   width: 100vw;
   height: 100vh;
@@ -64,12 +123,13 @@ const NavContainer = styled.div<{open: boolean}>`
   opacity: ${({open}) => (open ? '0.99' : '0')};
   transition: opacity 500ms ease 0s, background-color 500ms ease 0s;
 
-  pointer-events: none;
+  display: none;
+  pointer-events: ${({open}) => (open ? 'auto' : 'none')};
+  touch-action: none;
   overflow-x: hidden;
   overflow-y: hidden;
 
   @media ${BREAKPOINTS.md} {
-    pointer-events: auto;
     background-color: var(--color-background);
     padding-right: 30px;
 

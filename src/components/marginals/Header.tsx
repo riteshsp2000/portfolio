@@ -6,7 +6,6 @@ import {Link} from 'gatsby';
 
 // Components
 import {ThemeToggle} from '../shared';
-import HamburgerMenu from './HamburgerMenu';
 import MobileNavContainer from './MobileNavContainer';
 
 // Constants
@@ -36,7 +35,6 @@ const NAV = [
 ];
 
 function Header(): JSX.Element {
-  const [menuOpen, setMenuOpen] = React.useState(false);
   return (
     <>
       <DesktopHeaderContainer>
@@ -57,17 +55,7 @@ function Header(): JSX.Element {
         <ThemeToggle />
       </DesktopHeaderContainer>
 
-      <MobileHeaderContainer>
-        <Link to="/" style={{textDecoration: 'none', zIndex: 10001}}>
-          <StyledH3>Ritesh Patil</StyledH3>
-        </Link>
-        <HamburgerMenu
-          open={menuOpen}
-          onClick={() => setMenuOpen(current => !current)}
-        />
-      </MobileHeaderContainer>
-
-      <MobileNavContainer open={menuOpen} />
+      <MobileNavContainer />
     </>
   );
 }
@@ -123,19 +111,4 @@ const NavOptionH4 = styled.h4`
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   padding: 10px;
-`;
-
-const MobileHeaderContainer = styled.header`
-  width: 100%;
-  padding-left: 32px;
-  padding-right: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  display: none;
-  position: relative;
-
-  @media ${BREAKPOINTS.md} {
-    display: block;
-  }
 `;

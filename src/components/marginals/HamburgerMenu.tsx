@@ -26,23 +26,19 @@ function HamburgerMenu({open, onClick}: Props): JSX.Element {
 export default HamburgerMenu;
 
 const MenuContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 25px;
   height: 25px;
   cursor: pointer;
 
-  position: absolute;
-  top: 50%;
-  right: 20px;
   z-index: 10001;
+
   display: none;
-  transform: translate(-50%, -50%);
   transition: display 500ms ease-in-out 0s;
 
   @media ${BREAKPOINTS.md} {
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -53,7 +49,6 @@ const Menu = styled.div<StyledProps>`
   background: ${({open}) => (open ? 'transparent' : 'var(--color-text)')};
   transform: ${({open}) => (open ? 'translateX(-50px)' : '')};
   transition: all 0.5s ease-in-out;
-  margin-top: 11px;
 
   &::before,
   &::after {

@@ -71,6 +71,7 @@ const Container = styled.div`
   height: auto;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
   background: var(--color-background);
   transition: color 350ms ease 0s, background 350ms ease 0s;
 `;
@@ -122,14 +123,16 @@ const FirstRowContainer = styled.div`
 
 const SecondRow = styled.div`
   width: 100%;
+  height: 100%;
   max-width: 1100px;
-  min-height: 400px;
+  min-height: calc(100vh - 400px);
   padding: 50px 32px;
   margin-left: auto;
   margin-right: auto;
 
   @media ${BREAKPOINTS.sm} {
     padding: 50px 16px;
+    min-height: calc(100vh - 200px);
   }
 `;
 
