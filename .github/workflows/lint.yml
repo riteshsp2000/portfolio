@@ -19,7 +19,7 @@ jobs:
           node-version: '14'
 
       - name: Install Dependencies
-        run: cp ./package.json ./ && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Run ESLint
         uses: reviewdog/action-eslint@v1
@@ -41,7 +41,7 @@ jobs:
           node-version: '14'
 
       - name: Install Dependencies
-        run: cp ./package.json ./ && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Run Prettier
         id: prettier_run
