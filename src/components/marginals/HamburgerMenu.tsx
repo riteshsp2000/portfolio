@@ -32,14 +32,14 @@ const MenuContainer = styled.div`
   width: 25px;
   height: 25px;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
 
   position: absolute;
-  transform: translate(-50%, -50%);
   top: 50%;
   right: 20px;
   z-index: 10001;
   display: none;
+  transform: translate(-50%, -50%);
+  transition: display 500ms ease-in-out 0s;
 
   @media ${BREAKPOINTS.md} {
     display: inline;

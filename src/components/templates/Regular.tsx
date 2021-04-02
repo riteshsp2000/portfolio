@@ -64,16 +64,19 @@ export function RegularTemplate({
 const Container = styled.div`
   width: 100%;
   max-width: 100vw;
-  height: 100%;
+  height: auto;
   min-height: ${window.innerHeight};
+  overflow-x: hidden;
 `;
 
 const StyledVector = styled(Vector)`
   width: 100%;
   height: auto;
+
   position: absolute;
   bottom: 0;
   left: 0;
+
   fill: var(--color-background);
   transition: fill 350ms ease 0s;
 `;
@@ -81,8 +84,10 @@ const StyledVector = styled(Vector)`
 const FirstRow = styled.div`
   width: 100%;
   height: 400px;
+
   margin: 0px;
   padding: 50px 0px;
+
   position: relative;
   background: linear-gradient(
     0deg,
@@ -101,11 +106,13 @@ const FirstRow = styled.div`
 const FirstRowContainer = styled.div`
   width: 100%;
   max-width: 1100px;
+
   padding-left: 32px;
   padding-right: 32px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+
   @media ${BREAKPOINTS.md} {
     display: none;
   }

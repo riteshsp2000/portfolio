@@ -4,6 +4,9 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 
+// Components
+import {ThemeToggle} from '../shared';
+
 // Constants
 import {BREAKPOINTS} from '../../theming';
 
@@ -39,6 +42,10 @@ function MobileNavContainer({open}: {open: boolean}): JSX.Element {
             <NavOptionH4 open={open}>{name}</NavOptionH4>
           </Link>
         ))}
+
+        <PositionalSpan>
+          <ThemeToggle />
+        </PositionalSpan>
       </ul>
     </NavContainer>
   );
@@ -52,16 +59,23 @@ const NavContainer = styled.div<{open: boolean}>`
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background-color: var(--color-background);
-  transition: opacity 500ms ease 0s;
+
+  background-color: transparent;
   opacity: ${({open}) => (open ? '0.99' : '0')};
-  display: none;
+  transition: opacity 500ms ease 0s, background-color 500ms ease 0s;
+
+  pointer-events: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   @media ${BREAKPOINTS.md} {
-    display: ${({open}) => (open ? 'flex' : 'none')};
+    pointer-events: auto;
+    background-color: var(--color-background);
+    padding-right: 30px;
+
+    display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 30px;
   }
 `;
 
@@ -70,8 +84,21 @@ const NavOptionH4 = styled.h4<{open: boolean}>`
   font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
   font-size: 32px;
-  padding: 10px;
   text-align: right;
+
+  padding: 10px;
   transform: ${({open}) => (open ? 'translateX(0%)' : 'translateX(100%)')};
   transition: transform 500ms ease 0s;
+`;
+
+const PositionalSpan = styled.span`
+  width: 100%;
+  height: 50px;
+
+  margin-top: 30px;
+  padding: 10px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
