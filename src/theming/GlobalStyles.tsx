@@ -44,6 +44,7 @@ const GlobalStyles = createGlobalStyle`
 
   html, body {
     max-width: 100vw;
+    min-height: 100vh;
   }
 
   html, body, div, span, applet, object, iframe,
@@ -73,6 +74,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     line-height: 1;
+    background: var(--color-background);
   }
   ol, ul {
     list-style: none;
@@ -99,9 +101,19 @@ const GlobalStyles = createGlobalStyle`
     --reach-tabs: 1;
   }
 
-  body {
-    background: var(--color-background);
-    transition: color 350ms ease 0s, background 350ms ease 0s; 
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #0E151C; 
+    height: 100px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #5f676e; 
+    border-radius: 5px;
   }
 `;
 

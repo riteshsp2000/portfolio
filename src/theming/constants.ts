@@ -46,6 +46,10 @@ export const COLORS = {
     light: '#21232C',
     dark: '#F2F5F7',
   },
+  'profile-opacity': {
+    light: 1,
+    dark: 0.75,
+  },
 };
 
 export const UNIT = 8;

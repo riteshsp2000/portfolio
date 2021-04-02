@@ -4,7 +4,7 @@ import React from 'react';
 import {useSpring, animated} from 'react-spring';
 
 // State Handlers
-import {useTheme, Theme} from '../theming';
+import {useTheme, Theme} from '../../theming';
 
 const ThemeToggle: React.FC = () => {
   const [colorMode, setColorMode] = useTheme();
@@ -53,15 +53,19 @@ const ThemeToggle: React.FC = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="transparent"
       onClick={() =>
         colorMode === 'dark'
           ? setColorMode(Theme.light)
           : setColorMode(Theme.dark)
       }
-      style={{cursor: 'pointer', ...svgContainerProps}}
+      style={{
+        cursor: 'pointer',
+        ...svgContainerProps,
+      }}
     >
       <mask id="myMask2">
         <rect x="0" y="0" width="100%" height="100%" fill="white" />
