@@ -1,3 +1,10 @@
+import {
+  faGithub,
+  faInstagram,
+  faTwitter,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
+
 export default {
   name: 'Ritesh Patil',
   description: 'I build things for the web.',
@@ -9,18 +16,22 @@ export default {
     {
       name: 'GitHub',
       url: 'https://github.com/riteshsp2000',
+      icon: faGithub,
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/riteshsp2000',
+      icon: faInstagram,
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/riteshsp2000',
+      icon: faTwitter,
     },
     {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/riteshsp2000',
+      icon: faLinkedin,
     },
   ],
 

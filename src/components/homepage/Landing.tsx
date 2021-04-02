@@ -1,19 +1,19 @@
 import React from 'react';
 
+// Libraries
 import styled from 'styled-components';
 
+// Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
 function Landing(): JSX.Element {
   return (
     <Container>
       <Intro>Hi! my name is</Intro>
-      <Name>Ritesh Patil</Name>
-      <Description>I build things for the web.</Description>
-      <SubDescription>
-        I&apos;m a student software engineer currently studying at NIT Rourkela.
-        I specialize in building modern and performant softwares.
-      </SubDescription>
+      <Name>{config.name}</Name>
+      <Description>{config.description}</Description>
+      <SubDescription>{config.subDescription}</SubDescription>
     </Container>
   );
 }

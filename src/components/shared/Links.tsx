@@ -1,31 +1,23 @@
 import React from 'react';
 
+// Libraries
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faInstagram,
-  faTwitter,
-  faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
 
+// Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
 export function Links(): JSX.Element {
   return (
     <LinksContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faGithub} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faInstagram} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faTwitter} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faLinkedin} />
-      </IconContainer>
+      {config.socialMedia.map(({url, icon}) => (
+        <IconContainer key={url}>
+          <a href={url} target="_blank" rel="noreferrer">
+            <Icon size="lg" icon={icon} />
+          </a>
+        </IconContainer>
+      ))}
       <VerticalLine />
     </LinksContainer>
   );
@@ -34,13 +26,18 @@ export function Links(): JSX.Element {
 export function Email(): JSX.Element {
   return (
     <EmailContainer>
-      <EmailText>riteshsp2000@gmail.com</EmailText>
+      <a
+        href={`mailto:${config.email}`}
+        target="_blank"
+        rel="noreferrer"
+        style={{textDecoration: 'none'}}
+      >
+        <EmailText>{config.email}</EmailText>
+      </a>
       <HorizontalLine />
     </EmailContainer>
   );
 }
-
-// export function Email(): JSX.Element {}
 
 const LinksContainer = styled.div`
   width: 50px;
