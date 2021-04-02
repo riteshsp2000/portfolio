@@ -58,7 +58,7 @@ function Header(): JSX.Element {
       </DesktopHeaderContainer>
 
       <MobileHeaderContainer>
-        <Link to="/" style={{textDecoration: 'none'}}>
+        <Link to="/" style={{textDecoration: 'none', zIndex: 10001}}>
           <StyledH3>Ritesh Patil</StyledH3>
         </Link>
         <HamburgerMenu
@@ -96,6 +96,11 @@ const StyledH3 = styled.h3`
   font-weight: var(--font-weight-bold);
   font-size: 24px;
   cursor: pointer;
+
+  @media ${BREAKPOINTS.md} {
+    position: relative;
+    z-index: 10001;
+  }
 `;
 
 const NavContainer = styled.ul`
