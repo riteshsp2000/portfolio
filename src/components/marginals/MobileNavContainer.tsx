@@ -64,12 +64,12 @@ const NavContainer = styled.div<{open: boolean}>`
   opacity: ${({open}) => (open ? '0.99' : '0')};
   transition: opacity 500ms ease 0s, background-color 500ms ease 0s;
 
-  pointer-events: none;
+  pointer-events: auto;
   overflow-x: hidden;
   overflow-y: hidden;
 
   @media ${BREAKPOINTS.md} {
-    pointer-events: auto;
+    pointer-events: none;
     background-color: var(--color-background);
     padding-right: 30px;
 

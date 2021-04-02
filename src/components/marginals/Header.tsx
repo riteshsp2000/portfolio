@@ -40,7 +40,9 @@ function Header(): JSX.Element {
   return (
     <>
       <DesktopHeaderContainer>
-        <StyledH3>Ritesh Patil</StyledH3>
+        <Link to="/" style={{textDecoration: 'none'}}>
+          <StyledH3>Ritesh Patil</StyledH3>
+        </Link>
 
         <NavContainer>
           {NAV.map(({name, link}) => (
@@ -56,7 +58,9 @@ function Header(): JSX.Element {
       </DesktopHeaderContainer>
 
       <MobileHeaderContainer>
-        <StyledH3>Ritesh Patil</StyledH3>
+        <Link to="/" style={{textDecoration: 'none'}}>
+          <StyledH3>Ritesh Patil</StyledH3>
+        </Link>
         <HamburgerMenu
           open={menuOpen}
           onClick={() => setMenuOpen(current => !current)}

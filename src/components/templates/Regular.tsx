@@ -118,10 +118,6 @@ const FirstRowContainer = styled.div`
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-
-  @media ${BREAKPOINTS.md} {
-    display: none;
-  }
 `;
 
 const SecondRow = styled.div`

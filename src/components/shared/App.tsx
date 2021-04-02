@@ -12,7 +12,7 @@ function App({children}: {children: React.ReactNode}): JSX.Element {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Ritesh Patil</title>
-        <link rel="canonical" href="http://riteshpatil.com" />
+        <link rel="canonical" href="http://ritesh-patil.com" />
       </Helmet>
 
       <ThemeProvider>
