@@ -1,8 +1,9 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {PageRendererProps} from 'gatsby';
 
 // Components
 import {Header} from '../marginals';
@@ -56,13 +57,33 @@ export function LayoutSecondRow({
 }
 
 // ======================= Container ======================= //
-export function RegularTemplate({
+export const RegularTemplate: React.FC<PageRendererProps> = ({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+  location,
+}) => {
+  const isHome = location.pathname === '/';
+  const [isLoading, setIsLoading] = useState(isHome);
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    if (location.hash) {
+      const id = location.hash.substring(1); // location.hash without the '#'
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({behavior: 'smooth', block: 'center'});
+          el.focus();
+          setIsLoading(false);
+        }
+      }, 0);
+    }
+  }, [isLoading, location.hash]);
+
   return <Container>{children}</Container>;
-}
+};
 
 // ======================= Styles ======================= //
 const Container = styled.div`

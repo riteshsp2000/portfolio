@@ -1,22 +1,25 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 
+// Libraries
+import {PageProps} from 'gatsby';
+
 // Components
 import {
   RegularTemplate,
   LayoutFirstRow,
   LayoutSecondRow,
 } from '../components/templates';
-import {Landing} from '../components';
+import {Landing, About} from '../components';
 
-const Home: React.FC = () => {
+const Home: React.FC<PageProps> = ({location}) => {
   return (
-    <RegularTemplate>
+    <RegularTemplate location={location}>
       <LayoutFirstRow />
 
       <LayoutSecondRow>
         <Landing />
-        <Landing />
+        <About />
         <Landing />
         <Landing />
         <Landing />
