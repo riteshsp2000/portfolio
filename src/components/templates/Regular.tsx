@@ -69,7 +69,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 100vw;
   height: auto;
-  min-height: ${window.innerHeight};
+  min-height: 100vh;
   overflow-x: hidden;
   background: var(--color-background);
   transition: color 350ms ease 0s, background 350ms ease 0s;
