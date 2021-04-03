@@ -29,7 +29,7 @@ export function LayoutFirstRow({
       {showVector && (
         <>
           <ProfileImg
-            src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_copy-removebg-preview_newzpm.png"
+            src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_copy-removebg-preview_newzpm.webp"
             alt="Ritesh Profile"
           />
           <StyledVector viewBox="0 0 719 40" fill="none">

@@ -139,7 +139,7 @@ const NavOptionH4 = styled.li<{open: boolean}>`
   transition: transform 500ms ease 0s;
 `;
 
-const PositionalSpan = styled.span`
+const PositionalSpan = styled.li`
   width: 100%;
   height: 50px;
 
