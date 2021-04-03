@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 
 // Libraries
 import styled, {keyframes} from 'styled-components';
-// import {animated} from 'react-spring';
 
 const lineAnim = keyframes`
   to {

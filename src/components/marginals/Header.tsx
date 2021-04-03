@@ -3,7 +3,7 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 import {Link} from 'gatsby';
-import SmoothScroll from 'smooth-scroll';
+// import SmoothScroll from 'smooth-scroll';
 
 // Components
 import {ThemeToggle} from '../shared';
@@ -16,8 +16,30 @@ import config from '../../config';
 const NAV = config.navLinks;
 
 function Header(): JSX.Element {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const toggleVisibility = () => {
+    if (typeof window !== 'undefined') {
+      const scrollHeight = window.innerWidth > 800 ? 400 : 200;
+
+      if (window.pageYOffset > scrollHeight) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', toggleVisibility);
+    }
+  }, []);
+
   const handleScroll = (id: string | null) => {
     if (typeof window !== 'undefined' && id) {
+      // eslint-disable-next-line
+      const SmoothScroll = require('smooth-scroll');
       const scroll = new SmoothScroll();
       const anchor = document.getElementById(id);
       scroll.animateScroll(anchor);
@@ -26,7 +48,7 @@ function Header(): JSX.Element {
 
   return (
     <>
-      <DesktopHeaderContainer>
+      <DesktopHeaderContainer isVisible={isVisible}>
         <Link to="/" style={{textDecoration: 'none'}}>
           <StyledH3>Ritesh Patil</StyledH3>
         </Link>
@@ -48,20 +70,30 @@ function Header(): JSX.Element {
         <ThemeToggle />
       </DesktopHeaderContainer>
 
-      <MobileNavContainer />
+      <MobileNavContainer isVisible={isVisible} />
     </>
   );
 }
 
 export default Header;
 
-const DesktopHeaderContainer = styled.header`
+const DesktopHeaderContainer = styled.header<{isVisible: boolean}>`
   width: 100%;
   max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 32px;
   padding-right: 32px;
+  padding-top: 32px;
+
+  position: fixed;
+  transform: translate(-50%, 0%);
+  top: 0px;
+  left: 50%;
+  z-index: 10000;
+
+  background: ${({isVisible}) =>
+    isVisible ? 'var(--color-background)' : 'transparent'};
+  transition: background 350ms ease 0s;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

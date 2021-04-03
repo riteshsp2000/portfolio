@@ -1,2 +1,2 @@
-/* eslint-disable import/prefer-default-export */
-export {default as scrollReveal} from './scrollReveal';
+// /* eslint-disable import/prefer-default-export */
+// export {default as scrollReveal} from './scrollReveal';

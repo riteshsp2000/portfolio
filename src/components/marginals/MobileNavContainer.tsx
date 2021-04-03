@@ -14,23 +14,23 @@ import config from '../../config';
 
 const NAV = config.navLinks;
 
-function MobileNavContainer(): JSX.Element {
+function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const [isVisible, setIsVisible] = React.useState(false);
+  // const [isVisible, setIsVisible] = React.useState(false);
 
-  const toggleVisibility = () => {
-    if (window && window.pageYOffset > 200) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
+  // const toggleVisibility = () => {
+  //   if (window && window.pageYOffset > 200) {
+  //     setIsVisible(true);
+  //   } else {
+  //     setIsVisible(false);
+  //   }
+  // };
 
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', toggleVisibility);
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('scroll', toggleVisibility);
+  //   }
+  // }, []);
 
   return (
     <>

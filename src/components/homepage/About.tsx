@@ -8,7 +8,7 @@ import {Container} from '../shared';
 
 // Utils + Constants
 import config from '../../config';
-import {scrollReveal} from '../../utils';
+// import {scrollReveal} from '../../utils';
 
 interface Props {
   isLoading?: boolean;
@@ -19,7 +19,7 @@ const About: React.FC<Props> = () => {
 
   useEffect(() => {
     // @ts-ignore
-    scrollReveal?.reveal(revealContainer?.current, config.srConfig(0));
+    // scrollReveal?.reveal(revealContainer?.current, config.srConfig(0));
   }, []);
 
   return (
