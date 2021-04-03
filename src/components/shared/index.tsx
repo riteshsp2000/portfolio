@@ -7,4 +7,6 @@ export {default as TertiaryHeading} from './TertiaryHeading';
 export {default as Para} from './Para';
 export {default as PageTitle} from './PageTitle';
 export {default as Container} from './Container';
+export {default as Loader} from './Loader';
+export {default as Loader2} from './Loader2';
 export * from './Links';
