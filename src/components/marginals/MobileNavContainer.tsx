@@ -19,7 +19,7 @@ function MobileNavContainer(): JSX.Element {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 200) {
+    if (window && window.pageYOffset > 200) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -27,7 +27,9 @@ function MobileNavContainer(): JSX.Element {
   };
 
   React.useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', toggleVisibility);
+    }
   }, []);
 
   return (

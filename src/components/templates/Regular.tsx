@@ -8,7 +8,7 @@ import {PageRendererProps} from 'gatsby';
 // Components
 import {Header} from '../marginals';
 import {Vector, Links, Email} from '../shared';
-import Loader from '../shared/Loader';
+// import Loader from '../shared/Loader';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -94,7 +94,7 @@ export const RegularTemplate: React.FC<PageRendererProps> = ({
 
   return (
     <Container>
-      {isLoading && isHome && <Loader setLoading={setIsLoading} />}
+      {/* {isLoading && isHome && <Loader setLoading={setIsLoading} />} */}
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, {isLoading});

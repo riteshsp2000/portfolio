@@ -8,7 +8,7 @@ import {Container} from '../shared';
 
 // Utils + Constants
 import config from '../../config';
-import scrollReveal from '../../utils/scrollReveal';
+import {scrollReveal} from '../../utils';
 
 interface Props {
   isLoading?: boolean;
