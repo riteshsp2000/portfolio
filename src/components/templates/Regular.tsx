@@ -1,12 +1,13 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {PageRendererProps} from 'gatsby';
 
 // Components
 import {Header} from '../marginals';
-import {Vector, Links, Email} from '../shared';
+import {Vector, Links, Email, Loader2} from '../shared';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
@@ -28,7 +29,7 @@ export function LayoutFirstRow({
       {showVector && (
         <>
           <ProfileImg
-            src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_copy-removebg-preview_newzpm.png"
+            src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_copy-removebg-preview_newzpm.webp"
             alt="Ritesh Profile"
           />
           <StyledVector viewBox="0 0 719 40" fill="none">
@@ -43,26 +44,65 @@ export function LayoutFirstRow({
 // ======================= Second Row ======================= //
 export function LayoutSecondRow({
   children,
+  isLoading,
 }: {
   children: React.ReactNode;
+  isLoading?: boolean;
 }): JSX.Element {
   return (
     <>
       <Links />
-      <SecondRow>{children}</SecondRow>
+      <SecondRow>
+        {React.Children.map(children, child => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {isLoading});
+          }
+          return child;
+        })}
+      </SecondRow>
       <Email />
     </>
   );
 }
 
 // ======================= Container ======================= //
-export function RegularTemplate({
+export const RegularTemplate: React.FC<PageRendererProps> = ({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
-  return <Container>{children}</Container>;
-}
+  location,
+}) => {
+  const isHome = location?.pathname === '/';
+  const [isLoading, setIsLoading] = useState(isHome);
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    if (location.hash) {
+      const id = location.hash.substring(1); // location.hash without the '#'
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView();
+          el.focus();
+          setTimeout(() => setIsLoading(false), 5000);
+        }
+      }, 0);
+    }
+  }, [isLoading, location.hash]);
+
+  return (
+    <Container>
+      {isLoading && isHome && <Loader2 setLoading={setIsLoading} />}
+      {React.Children.map(children, child => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {isLoading});
+        }
+        return child;
+      })}
+    </Container>
+  );
+};
 
 // ======================= Styles ======================= //
 const Container = styled.div`

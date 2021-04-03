@@ -4,9 +4,9 @@ module.exports = {
   siteMetadata: {
     title: 'Ritesh Patil',
     description:
-      'Ritesh Patil is a software engineer who specializes in building (and occasionally designing) exceptional digital experiences.',
-    siteUrl: 'https://riteshpatil.com',
-    // image: '/og.png', // Path to your image you placed in the 'static' folder
+      'Ritesh Patil is student software engineer currently studying at NIT Rourkela. He specializes in building modern and performant softwares.',
+    siteUrl: 'https://ritesh-patil.com',
+    image: '/ritesh.png',
     twitterUsername: '@riteshp2000',
   },
   plugins: [
@@ -14,6 +14,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -22,7 +23,7 @@ module.exports = {
         start_url: '/',
         background_color: '#0E151C',
         theme_color: '#FF0A78',
-        display: 'standalone',
+        display: 'minimal-ui',
         icon: 'src/images/icon.png',
         crossOrigin: `use-credentials`,
       },

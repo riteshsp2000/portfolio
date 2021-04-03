@@ -10,45 +10,12 @@ import HamburgerMenu from './HamburgerMenu';
 
 // Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
-const NAV = [
-  {
-    name: 'About',
-    link: '/about',
-  },
-  {
-    name: 'Projects',
-    link: '/projects',
-  },
-  {
-    name: 'Photography',
-    link: '/photography',
-  },
-  {
-    name: 'Blog',
-    link: '/blog',
-  },
-  {
-    name: 'Contact',
-    link: '/contact',
-  },
-];
-// {open}: {open: boolean}
-function MobileNavContainer(): JSX.Element {
+const NAV = config.navLinks;
+
+function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 200) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-  }, []);
 
   return (
     <>
@@ -65,9 +32,15 @@ function MobileNavContainer(): JSX.Element {
       <NavContainer open={menuOpen}>
         <ul>
           {NAV.map(({name, link}) => (
-            <Link key={link} to={link} style={{textDecoration: 'none'}}>
-              <NavOptionH4 open={menuOpen}>{name}</NavOptionH4>
-            </Link>
+            <NavOptionH4 key={link} open={menuOpen}>
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to={link}
+                style={{textDecoration: 'none', color: 'var(--color-text)'}}
+              >
+                {name}
+              </Link>
+            </NavOptionH4>
           ))}
 
           <PositionalSpan>
@@ -139,7 +112,7 @@ const NavContainer = styled.div<{open: boolean}>`
   }
 `;
 
-const NavOptionH4 = styled.h4<{open: boolean}>`
+const NavOptionH4 = styled.li<{open: boolean}>`
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
@@ -151,7 +124,7 @@ const NavOptionH4 = styled.h4<{open: boolean}>`
   transition: transform 500ms ease 0s;
 `;
 
-const PositionalSpan = styled.span`
+const PositionalSpan = styled.li`
   width: 100%;
   height: 50px;
 

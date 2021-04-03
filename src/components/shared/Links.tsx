@@ -1,31 +1,21 @@
 import React from 'react';
 
+// Libraries
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faInstagram,
-  faTwitter,
-  faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
 
+// Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
 export function Links(): JSX.Element {
   return (
     <LinksContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faGithub} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faInstagram} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faTwitter} />
-      </IconContainer>
-      <IconContainer>
-        <Icon size="lg" icon={faLinkedin} />
-      </IconContainer>
+      {config.socialMedia.map(({url, icon}) => (
+        <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
+          <Icon size="lg" icon={icon} />
+        </IconContainer>
+      ))}
       <VerticalLine />
     </LinksContainer>
   );
@@ -34,13 +24,17 @@ export function Links(): JSX.Element {
 export function Email(): JSX.Element {
   return (
     <EmailContainer>
-      <EmailText>riteshsp2000@gmail.com</EmailText>
+      <EmailText
+        href={`mailto:${config.email}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {config.email}
+      </EmailText>
       <HorizontalLine />
     </EmailContainer>
   );
 }
-
-// export function Email(): JSX.Element {}
 
 const LinksContainer = styled.div`
   width: 50px;
@@ -84,9 +78,9 @@ const EmailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 50px;
-  height: auto;
+  height: 330px;
 
   @media ${BREAKPOINTS.md} {
     display: none;
@@ -99,11 +93,14 @@ const HorizontalLine = styled.div`
   background-color: var(--color-secondary-heading);
 `;
 
-const EmailText = styled.h3`
+const EmailText = styled.a`
   color: var(--color-secondary-heading);
   font-size: 16px;
   font-family: var(--font-family);
   font-weight: var(--font-weight-light);
   transform: rotate(90deg);
+  width: 202px;
+  line-height: 1;
   margin-bottom: 110px;
+  text-decoration: none;
 `;

@@ -1,19 +1,21 @@
 import React from 'react';
 
+// Libraries
 import styled from 'styled-components';
 
+// Constants
 import {BREAKPOINTS} from '../../theming';
+import config from '../../config';
 
 function Landing(): JSX.Element {
   return (
     <Container>
       <Intro>Hi! my name is</Intro>
-      <Name>Ritesh Patil</Name>
-      <Description>I build things for the web.</Description>
-      <SubDescription>
-        I&apos;m a student software engineer currently studying at NIT Rourkela.
-        I specialize in building modern and performant softwares.
-      </SubDescription>
+      <section>
+        <Name>{config.name}</Name>
+        <Description>{config.description}</Description>
+        <SubDescription>{config.subDescription}</SubDescription>
+      </section>
     </Container>
   );
 }
@@ -34,7 +36,7 @@ const Container = styled.div`
   }
 `;
 
-const Intro = styled.h3`
+const Intro = styled.span`
   color: var(--color-secondary);
   font-weight: var(--font-weight-regular);
   font-family: var(--font-family);
@@ -52,7 +54,7 @@ const Name = styled.h1`
     font-size: 35px;
   }
 `;
-const Description = styled.h1`
+const Description = styled.h2`
   color: var(--color-secondary-heading);
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);
