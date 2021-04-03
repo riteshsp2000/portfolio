@@ -19,7 +19,7 @@ const About: React.FC<Props> = () => {
 
   useEffect(() => {
     // @ts-ignore
-    scrollReveal?.reveal(revealContainer?.current, config.srConfig());
+    scrollReveal?.reveal(revealContainer?.current, config.srConfig(0));
   }, []);
 
   return (
