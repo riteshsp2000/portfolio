@@ -24,14 +24,13 @@ export function Links(): JSX.Element {
 export function Email(): JSX.Element {
   return (
     <EmailContainer>
-      <a
+      <EmailText
         href={`mailto:${config.email}`}
         target="_blank"
         rel="noreferrer"
-        style={{textDecoration: 'none'}}
       >
-        <EmailText>{config.email}</EmailText>
-      </a>
+        {config.email}
+      </EmailText>
       <HorizontalLine />
     </EmailContainer>
   );
@@ -79,9 +78,9 @@ const EmailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 50px;
-  height: auto;
+  height: 330px;
 
   @media ${BREAKPOINTS.md} {
     display: none;
@@ -94,11 +93,14 @@ const HorizontalLine = styled.div`
   background-color: var(--color-secondary-heading);
 `;
 
-const EmailText = styled.h3`
+const EmailText = styled.a`
   color: var(--color-secondary-heading);
   font-size: 16px;
   font-family: var(--font-family);
   font-weight: var(--font-weight-light);
   transform: rotate(90deg);
+  width: 202px;
+  line-height: 1;
   margin-bottom: 110px;
+  text-decoration: none;
 `;

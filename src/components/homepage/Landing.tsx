@@ -11,9 +11,11 @@ function Landing(): JSX.Element {
   return (
     <Container>
       <Intro>Hi! my name is</Intro>
-      <Name>{config.name}</Name>
-      <Description>{config.description}</Description>
-      <SubDescription>{config.subDescription}</SubDescription>
+      <section>
+        <Name>{config.name}</Name>
+        <Description>{config.description}</Description>
+        <SubDescription>{config.subDescription}</SubDescription>
+      </section>
     </Container>
   );
 }
@@ -34,7 +36,7 @@ const Container = styled.div`
   }
 `;
 
-const Intro = styled.h3`
+const Intro = styled.span`
   color: var(--color-secondary);
   font-weight: var(--font-weight-regular);
   font-family: var(--font-family);
@@ -52,7 +54,7 @@ const Name = styled.h1`
     font-size: 35px;
   }
 `;
-const Description = styled.h1`
+const Description = styled.h2`
   color: var(--color-secondary-heading);
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);

@@ -47,14 +47,15 @@ function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
       <NavContainer open={menuOpen}>
         <ul>
           {NAV.map(({name, link}) => (
-            <Link
-              onClick={() => setMenuOpen(false)}
-              key={link}
-              to={link}
-              style={{textDecoration: 'none'}}
-            >
-              <NavOptionH4 open={menuOpen}>{name}</NavOptionH4>
-            </Link>
+            <NavOptionH4 key={link} open={menuOpen}>
+              <Link
+                onClick={() => setMenuOpen(false)}
+                to={link}
+                style={{textDecoration: 'none', color: 'var(--color-text)'}}
+              >
+                {name}
+              </Link>
+            </NavOptionH4>
           ))}
 
           <PositionalSpan>
@@ -126,7 +127,7 @@ const NavContainer = styled.div<{open: boolean}>`
   }
 `;
 
-const NavOptionH4 = styled.h4<{open: boolean}>`
+const NavOptionH4 = styled.li<{open: boolean}>`
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
