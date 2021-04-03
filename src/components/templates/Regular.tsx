@@ -44,13 +44,22 @@ export function LayoutFirstRow({
 // ======================= Second Row ======================= //
 export function LayoutSecondRow({
   children,
+  isLoading,
 }: {
   children: React.ReactNode;
+  isLoading?: boolean;
 }): JSX.Element {
   return (
     <>
       <Links />
-      <SecondRow>{children}</SecondRow>
+      <SecondRow>
+        {React.Children.map(children, child => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {isLoading});
+          }
+          return child;
+        })}
+      </SecondRow>
       <Email />
     </>
   );
@@ -61,7 +70,7 @@ export const RegularTemplate: React.FC<PageRendererProps> = ({
   children,
   location,
 }) => {
-  const isHome = location.pathname === '/';
+  const isHome = location?.pathname === '/';
   const [isLoading, setIsLoading] = useState(isHome);
 
   useEffect(() => {
@@ -74,7 +83,7 @@ export const RegularTemplate: React.FC<PageRendererProps> = ({
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({behavior: 'smooth', block: 'center'});
+          el.scrollIntoView();
           el.focus();
           setIsLoading(false);
         }
@@ -82,7 +91,16 @@ export const RegularTemplate: React.FC<PageRendererProps> = ({
     }
   }, [isLoading, location.hash]);
 
-  return <Container>{children}</Container>;
+  return (
+    <Container>
+      {React.Children.map(children, child => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {isLoading});
+        }
+        return child;
+      })}
+    </Container>
+  );
 };
 
 // ======================= Styles ======================= //

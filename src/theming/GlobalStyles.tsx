@@ -75,6 +75,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     line-height: 1;
     background: var(--color-background);
+    scroll-behavior: smooth;
   }
   ol, ul {
     list-style: none;

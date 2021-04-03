@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Libraries
-import {Link} from 'gatsby';
+import {Link, PageProps} from 'gatsby';
 import styled from 'styled-components';
 
 // Components
@@ -16,9 +16,9 @@ import {PageTitle, TertiaryHeading} from '../components';
 // Assets
 import ErrorImage from '../images/404.gif';
 
-const ErrorPage: React.FC = () => {
+const ErrorPage: React.FC<PageProps> = ({location}) => {
   return (
-    <RegularTemplate>
+    <RegularTemplate location={location}>
       <LayoutFirstRow showVector={false}>
         <PageTitle>Error 404: Page Not Found</PageTitle>
       </LayoutFirstRow>

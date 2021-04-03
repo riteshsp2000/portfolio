@@ -3,6 +3,7 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 import {Link} from 'gatsby';
+import SmoothScroll from 'smooth-scroll';
 
 // Components
 import {ThemeToggle} from '../shared';
@@ -15,6 +16,14 @@ import config from '../../config';
 const NAV = config.navLinks;
 
 function Header(): JSX.Element {
+  const handleScroll = (id: string | null) => {
+    if (typeof window !== 'undefined' && id) {
+      const scroll = new SmoothScroll();
+      const anchor = document.getElementById(id);
+      scroll.animateScroll(anchor);
+    }
+  };
+
   return (
     <>
       <DesktopHeaderContainer>
@@ -23,9 +32,13 @@ function Header(): JSX.Element {
         </Link>
 
         <NavContainer>
-          {NAV.map(({name, link}) => (
+          {NAV.map(({name, link, id}) => (
             <NavOptionContainer key={link}>
-              <Link to={link} style={{textDecoration: 'none'}}>
+              <Link
+                onClick={() => handleScroll(id)}
+                to={link}
+                style={{textDecoration: 'none'}}
+              >
                 <NavOptionH4>{name}</NavOptionH4>
               </Link>
             </NavOptionContainer>

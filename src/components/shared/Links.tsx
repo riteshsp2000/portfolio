@@ -12,10 +12,8 @@ export function Links(): JSX.Element {
   return (
     <LinksContainer>
       {config.socialMedia.map(({url, icon}) => (
-        <IconContainer key={url}>
-          <a href={url} target="_blank" rel="noreferrer">
-            <Icon size="lg" icon={icon} />
-          </a>
+        <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
+          <Icon size="lg" icon={icon} />
         </IconContainer>
       ))}
       <VerticalLine />
