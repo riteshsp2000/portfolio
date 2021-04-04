@@ -22,9 +22,10 @@ function Landing(): JSX.Element {
 
 export default Landing;
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100%;
-  height: 350px;
+  height: calc(100vh - 400px);
+  padding-top: 50px;
 
   @media (max-width: 1100px) and (min-width: 800px) {
     padding-right: 60px;
@@ -32,19 +33,23 @@ const Container = styled.div`
   }
 
   @media ${BREAKPOINTS.md} {
-    margin-top: 50px;
+    height: calc(100vh - 200px);
   }
 `;
 
 const Intro = styled.span`
   color: var(--color-secondary);
+  transition: color 350ms ease 0s;
   font-weight: var(--font-weight-regular);
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.4;
 `;
+
 const Name = styled.h1`
   color: var(--color-primary-heading);
+  transition: color 350ms ease 0s;
+  transition: color 350ms ease 0s;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);
   font-size: 50px;
@@ -54,8 +59,10 @@ const Name = styled.h1`
     font-size: 35px;
   }
 `;
+
 const Description = styled.h2`
   color: var(--color-secondary-heading);
+  transition: color 350ms ease 0s;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);
   font-size: 50px;
@@ -68,6 +75,7 @@ const Description = styled.h2`
 
 const SubDescription = styled.p`
   color: var(--color-secondary-heading);
+  transition: color 350ms ease 0s;
   font-weight: var(--font-weight-regular);
   font-family: var(--font-family);
   font-size: 16px;

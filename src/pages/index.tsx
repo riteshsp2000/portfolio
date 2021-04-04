@@ -7,17 +7,17 @@ import {PageProps} from 'gatsby';
 // Components
 import {
   RegularTemplate,
-  LayoutFirstRow,
-  LayoutSecondRow,
+  RegularRowOne,
+  RegularRowTwo,
 } from '../components/templates';
 import {Landing, About} from '../components';
 
 const Home: React.FC<PageProps> = ({location}) => {
   return (
     <RegularTemplate location={location}>
-      <LayoutFirstRow />
+      <RegularRowOne />
 
-      <LayoutSecondRow>
+      <RegularRowTwo>
         <Landing />
         <About />
         <Landing />
@@ -25,7 +25,7 @@ const Home: React.FC<PageProps> = ({location}) => {
         <Landing />
         <Landing />
         <Landing />
-      </LayoutSecondRow>
+      </RegularRowTwo>
     </RegularTemplate>
   );
 };

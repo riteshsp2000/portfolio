@@ -101,6 +101,9 @@ const GlobalStyles = createGlobalStyle`
     --reach-dialog: 1;
     --reach-tabs: 1;
   }
+  [tabindex] {
+   outline: none !important;
+  }
 
   /* Scrollbar Styling */
   ::-webkit-scrollbar {

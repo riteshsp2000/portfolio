@@ -8,18 +8,18 @@ import styled from 'styled-components';
 // Components
 import {
   RegularTemplate,
-  LayoutFirstRow,
-  LayoutSecondRow,
+  RegularRowOne,
+  RegularRowTwo,
 } from '../components/templates';
 
 const Blog: React.FC<PageProps> = ({location}) => {
   return (
     <RegularTemplate location={location}>
-      <LayoutFirstRow />
+      <RegularRowOne />
 
-      <LayoutSecondRow>
+      <RegularRowTwo>
         <Styledh1>Blog</Styledh1>
-      </LayoutSecondRow>
+      </RegularRowTwo>
     </RegularTemplate>
   );
 };

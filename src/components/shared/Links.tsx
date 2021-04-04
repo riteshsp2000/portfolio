@@ -8,35 +8,28 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {BREAKPOINTS} from '../../theming';
 import config from '../../config';
 
-export function Links(): JSX.Element {
-  return (
-    <LinksContainer>
-      {config.socialMedia.map(({url, icon}) => (
-        <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
-          <Icon size="lg" icon={icon} />
-        </IconContainer>
-      ))}
-      <VerticalLine />
-    </LinksContainer>
-  );
-}
+export const Links: React.FC = () => (
+  <LinksContainer>
+    {config.socialMedia.map(({url, icon}) => (
+      <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
+        <Icon size="lg" icon={icon} />
+      </IconContainer>
+    ))}
+    <VerticalLine />
+  </LinksContainer>
+);
 
-export function Email(): JSX.Element {
-  return (
-    <EmailContainer>
-      <EmailText
-        href={`mailto:${config.email}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {config.email}
-      </EmailText>
-      <HorizontalLine />
-    </EmailContainer>
-  );
-}
+export const Email: React.FC = () => (
+  <EmailContainer>
+    <EmailText href={`mailto:${config.email}`} target="_blank" rel="noreferrer">
+      {config.email}
+    </EmailText>
+    <HorizontalLine />
+  </EmailContainer>
+);
 
-const LinksContainer = styled.div`
+// ================== Links Styles ================== //
+const LinksContainer = styled.aside`
   width: 50px;
   height: auto;
   display: flex;
@@ -70,7 +63,8 @@ const VerticalLine = styled.div`
   margin-top: 20px;
 `;
 
-const EmailContainer = styled.div`
+// ================== Emails Styles ================== //
+const EmailContainer = styled.aside`
   position: fixed;
   bottom: 0;
   right: 50px;
