@@ -43,7 +43,6 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-spring": "^9.0.0",
-    "scrollreveal": "^4.0.9",
     "smooth-scroll": "16.1.0",
     "styled-components": "^5.2.1",
     "terser": "^5.6.1"

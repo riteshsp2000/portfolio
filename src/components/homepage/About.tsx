@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 
 // Libraries
 import styled from 'styled-components';
@@ -6,21 +6,12 @@ import styled from 'styled-components';
 // Components
 import {Container} from '../shared';
 
-// Utils + Constants
-// import config from '../../config';
-// import {scrollReveal} from '../../utils';
-
 interface Props {
   isLoading?: boolean;
 }
 
 const About: React.FC<Props> = () => {
   const revealContainer = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // @ts-ignore
-    // scrollReveal?.reveal(revealContainer?.current, config.srConfig(0));
-  }, []);
 
   return (
     <Container id="about">

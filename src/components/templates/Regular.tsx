@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {PageRendererProps} from 'gatsby';
 
 // Components
-import {Header} from '../marginals';
+import {Navbar} from '../marginals';
 import {Vector, Links, Email, Loader2} from '../shared';
 
 // Constants
@@ -23,7 +23,7 @@ export function LayoutFirstRow({
 }): JSX.Element {
   return (
     <FirstRow>
-      <Header />
+      <Navbar />
       {children && <FirstRowContainer>{children}</FirstRowContainer>}
 
       {showVector && (

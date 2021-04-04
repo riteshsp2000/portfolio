@@ -57,6 +57,7 @@ const ThemeToggle: React.FC = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="transparent"
+      tabIndex={0}
       onClick={() =>
         colorMode === 'dark'
           ? setColorMode(Theme.light)
