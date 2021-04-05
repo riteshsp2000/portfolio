@@ -29,9 +29,12 @@ const Header: React.FC = () => {
 
   const handleScroll = (id: string | null) => {
     if (typeof window !== 'undefined' && id) {
-      const scroll = newScrollObject();
-      const anchor = document.getElementById(id);
-      scroll.animateScroll(anchor);
+      const isHome = window.location.pathname === '/';
+      if (isHome) {
+        const scroll = newScrollObject();
+        const anchor = document.getElementById(id);
+        scroll.animateScroll(anchor);
+      }
     }
   };
 
