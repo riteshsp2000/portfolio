@@ -8,9 +8,30 @@ import {
 export default {
   name: 'Ritesh Patil',
   description: 'I build things for the web.',
+  email: 'riteshsp2000@gmail.com',
+  image:
+    'https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_rqu4mr.webp',
   subDescription:
     "I'm a student software engineer currently studying at NIT Rourkela. I specialize in building modern and performant softwares.",
-  email: 'riteshsp2000@gmail.com',
+  tech: [
+    'Javascript',
+    'Typescript',
+    'React',
+    'React Native',
+    'Gatsby',
+    'Next.js',
+    'Redux',
+    'Node.js',
+    'Express.js',
+    'GraphQL',
+    'Apollo Server',
+    'MongoDB',
+    'Mongoose',
+    'Firebase',
+    'Netlify',
+    'GitHub',
+    'Webpack',
+  ],
 
   socialMedia: [
     {

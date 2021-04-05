@@ -17,7 +17,7 @@ function Landing(): JSX.Element {
         <SubDescription>{config.subDescription}</SubDescription>
       </section>
       <Gif
-        src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/animation_500_kn4oe8qs_no12vz.gif"
+        src="https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/scroll_rq1esk.gif"
         alt="Scroll Down"
       />
     </Container>
