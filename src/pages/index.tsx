@@ -10,7 +10,7 @@ import {
   RegularRowOne,
   RegularRowTwo,
 } from '../components/templates';
-import {Landing, About} from '../components';
+import {Landing, About, Projects} from '../components';
 
 const Home: React.FC<PageProps> = ({location}) => {
   return (
@@ -20,11 +20,7 @@ const Home: React.FC<PageProps> = ({location}) => {
       <RegularRowTwo>
         <Landing />
         <About />
-        <Landing />
-        <Landing />
-        <Landing />
-        <Landing />
-        <Landing />
+        <Projects />
       </RegularRowTwo>
     </RegularTemplate>
   );

@@ -30,6 +30,14 @@ export const COLORS = {
     light: '#2C0B8E',
     dark: '#FFE100',
   },
+  'primary-alpha': {
+    light: 'rgba(68, 51, 255, 0.2)',
+    dark: 'rgba(87, 115, 255, 0.3)',
+  },
+  'secondary-alpha': {
+    light: 'rgba(230, 0, 103, 0.2)',
+    dark: 'rgba(255, 10, 120, 0.3)',
+  },
   'gradient-background-one': {
     light: '#D3EAF8',
     dark: 'rgba(179, 229, 255, 0.1)',

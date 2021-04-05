@@ -44,6 +44,7 @@ const SecondRow = styled.div`
   margin-right: auto;
 
   @media ${BREAKPOINTS.sm} {
+    width: 100%;
     padding: 0px 16px;
     min-height: calc(100vh - 200px);
   }
