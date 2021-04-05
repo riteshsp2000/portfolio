@@ -15,13 +15,11 @@ interface StyledProps {
   open: boolean;
 }
 
-function HamburgerMenu({open, onClick}: Props): JSX.Element {
-  return (
-    <MenuContainer onClick={onClick}>
-      <Menu open={open} />
-    </MenuContainer>
-  );
-}
+const HamburgerMenu: React.FC<Props> = ({onClick, open}) => (
+  <MenuContainer tabIndex={0} onClick={onClick}>
+    <Menu open={open} />
+  </MenuContainer>
+);
 
 export default HamburgerMenu;
 

@@ -8,8 +8,8 @@ import styled from 'styled-components';
 // Components
 import {
   RegularTemplate,
-  LayoutFirstRow,
-  LayoutSecondRow,
+  RegularRowOne,
+  RegularRowTwo,
 } from '../components/templates';
 import {PageTitle, TertiaryHeading} from '../components';
 
@@ -19,11 +19,11 @@ import ErrorImage from '../images/404.gif';
 const ErrorPage: React.FC<PageProps> = ({location}) => {
   return (
     <RegularTemplate location={location}>
-      <LayoutFirstRow showVector={false}>
+      <RegularRowOne showVector={false}>
         <PageTitle>Error 404: Page Not Found</PageTitle>
-      </LayoutFirstRow>
+      </RegularRowOne>
 
-      <LayoutSecondRow>
+      <RegularRowTwo>
         <Link to="/" style={{textDecoration: 'none'}}>
           <TertiaryHeading>Go Back Home</TertiaryHeading>
         </Link>
@@ -31,7 +31,7 @@ const ErrorPage: React.FC<PageProps> = ({location}) => {
         <CenteredDiv>
           <Image src={ErrorImage} alt="Error 404" />
         </CenteredDiv>
-      </LayoutSecondRow>
+      </RegularRowTwo>
     </RegularTemplate>
   );
 };

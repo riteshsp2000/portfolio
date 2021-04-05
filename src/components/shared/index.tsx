@@ -1,10 +1,10 @@
 export {default as App} from './App';
 export {default as ThemeToggle} from './ThemeToggle';
 export {default as Vector} from './Vector';
-export {default as PrimaryHeading} from './PrimaryHeading';
-export {default as SecondaryHeading} from './SecondaryHeading';
-export {default as TertiaryHeading} from './TertiaryHeading';
-export {default as Para} from './Para';
+export {default as PrimaryHeading} from './Typography/PrimaryHeading';
+export {default as SecondaryHeading} from './Typography/SecondaryHeading';
+export {default as TertiaryHeading} from './Typography/TertiaryHeading';
+export {default as Para} from './Typography/Para';
 export {default as PageTitle} from './PageTitle';
 export {default as Container} from './Container';
 export {default as Loader} from './Loader';

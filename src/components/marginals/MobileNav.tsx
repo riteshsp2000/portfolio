@@ -14,14 +14,24 @@ import config from '../../config';
 
 const NAV = config.navLinks;
 
-function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
+interface Props {
+  isVisible: boolean;
+  handleScrollToTop: () => void;
+}
+
+const MobileNav: React.FC<Props> = ({isVisible, handleScrollToTop}) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   return (
     <>
       <MobileHeaderContainer isVisible={isVisible}>
-        <Link to="/" style={{textDecoration: 'none', zIndex: 10001}}>
-          <StyledH3>Ritesh Patil</StyledH3>
+        <Link
+          to="/"
+          onClick={handleScrollToTop}
+          style={{textDecoration: 'none', zIndex: 10001}}
+          tabIndex={0}
+        >
+          <StyledH3>{config.name}</StyledH3>
         </Link>
         <HamburgerMenu
           open={menuOpen}
@@ -32,7 +42,7 @@ function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
       <NavContainer open={menuOpen}>
         <ul>
           {NAV.map(({name, link}) => (
-            <NavOptionH4 key={link} open={menuOpen}>
+            <NavOptionLi key={link} open={menuOpen}>
               <Link
                 onClick={() => setMenuOpen(false)}
                 to={link}
@@ -40,19 +50,19 @@ function MobileNavContainer({isVisible}: {isVisible: boolean}): JSX.Element {
               >
                 {name}
               </Link>
-            </NavOptionH4>
+            </NavOptionLi>
           ))}
 
-          <PositionalSpan>
+          <NavOptionIconLi>
             <ThemeToggle />
-          </PositionalSpan>
+          </NavOptionIconLi>
         </ul>
       </NavContainer>
     </>
   );
-}
+};
 
-export default MobileNavContainer;
+export default MobileNav;
 
 const MobileHeaderContainer = styled.header<{isVisible: boolean}>`
   width: 100%;
@@ -64,6 +74,7 @@ const MobileHeaderContainer = styled.header<{isVisible: boolean}>`
   z-index: 10000;
   background-color: ${({isVisible}) =>
     isVisible ? 'var(--color-background)' : 'transparent'};
+  transition: background-color 500ms ease 0s;
 
   @media ${BREAKPOINTS.md} {
     display: flex;
@@ -85,12 +96,12 @@ const StyledH3 = styled.h3`
   }
 `;
 
-const NavContainer = styled.div<{open: boolean}>`
+const NavContainer = styled.nav<{open: boolean}>`
   position: fixed;
   inset: 0px;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 9999;
 
   background-color: transparent;
   opacity: ${({open}) => (open ? '0.99' : '0')};
@@ -112,7 +123,7 @@ const NavContainer = styled.div<{open: boolean}>`
   }
 `;
 
-const NavOptionH4 = styled.li<{open: boolean}>`
+const NavOptionLi = styled.li<{open: boolean}>`
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
@@ -124,7 +135,7 @@ const NavOptionH4 = styled.li<{open: boolean}>`
   transition: transform 500ms ease 0s;
 `;
 
-const PositionalSpan = styled.li`
+const NavOptionIconLi = styled.li`
   width: 100%;
   height: 50px;
 

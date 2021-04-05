@@ -7,11 +7,10 @@ interface Props {
   ref?: React.Ref<HTMLDivElement>;
   children: React.ReactNode;
   id?: string;
-  style?: any;
 }
 
-const About: React.FC<Props> = ({children, ref, id, style}) => (
-  <Container style={style} id={id} ref={ref}>
+const About: React.FC<Props> = ({children, ref, id}) => (
+  <Container id={id} ref={ref}>
     {children}
   </Container>
 );
