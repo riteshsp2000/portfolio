@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 module.exports = {
   /* Your site config here */
   siteMetadata: {
