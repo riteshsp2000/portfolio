@@ -41,8 +41,8 @@ const Project: React.FC<Props> = ({heading, excerpt, tech, links}) => {
         </Excerpt>
 
         <TechContainer>
-          {tech.map(number => (
-            <Tag key={number}>React</Tag>
+          {tech.map((technology: string) => (
+            <Tag key={technology}>{technology}</Tag>
           ))}
         </TechContainer>
 
@@ -79,6 +79,7 @@ const Li = styled.li`
   margin-bottom: 100px;
   width: 100%;
   height: 350px;
+  overflow: hidden;
 
   @media ${BREAKPOINTS.md} {
     position: relative;

@@ -2,6 +2,7 @@ import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {graphql, useStaticQuery} from 'gatsby';
 
 // Components
 import Project from './Project';
@@ -9,21 +10,48 @@ import Project from './Project';
 // Constants
 import {BREAKPOINTS} from '../../theming';
 
-const Projects: React.FC = () => (
-  <Container id="projects">
-    <Ul>
-      {[1, 2, 3].map(number => (
-        <Project
-          key={number}
-          heading="Primary Heading"
-          excerpt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ab ipsam tempora quas placeat esse accusantium? Distinctio vero eaque eos provident"
-          tech={['1', '2', '3', '4', '6']}
-          links={{github: '', live: ''}}
-        />
-      ))}
-    </Ul>
-  </Container>
-);
+const Projects: React.FC = () => {
+  const {
+    projects: {edges: projects},
+  } = useStaticQuery(graphql`
+    query MyQuery {
+      projects: allMdx(
+        sort: {fields: frontmatter___date, order: DESC}
+        filter: {fileAbsolutePath: {regex: "/content/projects/"}}
+      ) {
+        edges {
+          node {
+            frontmatter {
+              date
+              excerpt
+              title
+              tech
+              github
+              live
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <Container id="projects">
+      <Ul>
+        {projects.map(({node: {// @ts-ignore
+            frontmatter: {date, excerpt, title, tech, github, live}}}) => (
+          <Project
+            key={date}
+            heading={title}
+            excerpt={excerpt}
+            tech={tech}
+            links={{github, live}}
+          />
+        ))}
+      </Ul>
+    </Container>
+  );
+};
 
 export default Projects;
 
