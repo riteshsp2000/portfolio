@@ -12,59 +12,81 @@ import {PrimaryHeading, TertiaryHeading, Para} from '../shared';
 // Constants
 import {BREAKPOINTS, useTheme} from '../../theming';
 
-const image =
-  'https://res.cloudinary.com/riteshsp2000/image/upload/Screenshot_2021-04-05_at_1.06.41_PM_uw0g8b.png';
-
 interface Props {
   heading: string;
   excerpt: string;
   tech: string[];
+  featureImage: string;
   links: {
     github?: string;
     live?: string;
   };
+  opposite: boolean;
 }
 
-const Project: React.FC<Props> = ({heading, excerpt, tech, links}) => {
+const Project: React.FC<Props> = ({
+  heading,
+  excerpt,
+  featureImage,
+  tech,
+  links,
+  opposite,
+}) => {
   const [colorMode] = useTheme();
+
+  const ColumnOne = (
+    <FirstColumn opposite={opposite}>
+      <div>
+        <TertiaryHeading>Project</TertiaryHeading>
+        <PrimaryHeading>{heading}</PrimaryHeading>
+      </div>
+
+      <Excerpt>
+        <Para>{excerpt}</Para>
+      </Excerpt>
+
+      <TechContainer opposite={opposite}>
+        {tech.map((technology: string) => (
+          <Tag key={technology}>{technology}</Tag>
+        ))}
+      </TechContainer>
+
+      <IconsContainer opposite={opposite}>
+        <a href={links.github} target="_blank" rel="noreferrer">
+          <Icon size="lg" icon={faExternalLinkSquareAlt} />
+        </a>
+        <a href={links.live} target="_blank" rel="noreferrer">
+          <Icon size="lg" icon={faGithub} />
+        </a>
+      </IconsContainer>
+    </FirstColumn>
+  );
+
+  const ColumnTwo = (
+    <SecondColumn>
+      <Image src={featureImage} alt={heading} />
+      <ImageLink
+        href={links.live}
+        target="_blank"
+        rel="noreferrer"
+        isLight={colorMode === 'light'}
+      />
+    </SecondColumn>
+  );
 
   return (
     <Li>
-      <FirstColumn>
-        <div>
-          <TertiaryHeading>Project</TertiaryHeading>
-          <PrimaryHeading>{heading}</PrimaryHeading>
-        </div>
-
-        <Excerpt>
-          <Para>{excerpt}</Para>
-        </Excerpt>
-
-        <TechContainer>
-          {tech.map((technology: string) => (
-            <Tag key={technology}>{technology}</Tag>
-          ))}
-        </TechContainer>
-
-        <IconsContainer>
-          <a href={links.github} target="_blank" rel="noreferrer">
-            <Icon size="lg" icon={faExternalLinkSquareAlt} />
-          </a>
-          <a href={links.live} target="_blank" rel="noreferrer">
-            <Icon size="lg" icon={faGithub} />
-          </a>
-        </IconsContainer>
-      </FirstColumn>
-
-      <SecondColumn>
-        <Image src={image} alt="Trial" />
-        <ImageLink
-          href="https://tedxnitrourkela.com"
-          target="_blank"
-          rel="noreferrer"
-          isLight={colorMode === 'light'}
-        />
-      </SecondColumn>
+      {opposite ? (
+        <>
+          {ColumnTwo}
+          {ColumnOne}
+        </>
+      ) : (
+        <>
+          {ColumnOne}
+          {ColumnTwo}
+        </>
+      )}
     </Li>
   );
 };
@@ -88,11 +110,11 @@ const Li = styled.li`
   }
 `;
 
-const FirstColumn = styled.div`
+const FirstColumn = styled.div<{opposite: boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
 
   width: 40%;
   height: 100%;
@@ -129,14 +151,14 @@ const Excerpt = styled.div`
   }
 `;
 
-const TechContainer = styled.div`
+const TechContainer = styled.div<{opposite: boolean}>`
   width: 80%;
   height: auto;
   margin-top: 20px;
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
 `;
 
 const Tag = styled.span`
@@ -149,10 +171,10 @@ const Tag = styled.span`
   height: auto;
 `;
 
-const IconsContainer = styled.div`
+const IconsContainer = styled.div<{opposite: boolean}>`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
   align-items: center;
 `;
 

@@ -28,6 +28,7 @@ const Projects: React.FC = () => {
               tech
               github
               live
+              featureImage
             }
           }
         }
@@ -39,13 +40,15 @@ const Projects: React.FC = () => {
     <Container id="projects">
       <Ul>
         {projects.map(({node: {// @ts-ignore
-            frontmatter: {date, excerpt, title, tech, github, live}}}) => (
+            frontmatter: {date, excerpt, title, tech, github, live, featureImage}}}, index) => (
           <Project
             key={date}
             heading={title}
             excerpt={excerpt}
             tech={tech}
             links={{github, live}}
+            featureImage={featureImage}
+            opposite={index % 2 === 0}
           />
         ))}
       </Ul>
