@@ -74,6 +74,7 @@ const MobileHeaderContainer = styled.header<{isVisible: boolean}>`
   z-index: 10000;
   background-color: ${({isVisible}) =>
     isVisible ? 'var(--color-background)' : 'transparent'};
+  transition: background-color 500ms ease 0s;
 
   @media ${BREAKPOINTS.md} {
     display: flex;
@@ -100,7 +101,7 @@ const NavContainer = styled.nav<{open: boolean}>`
   inset: 0px;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 9999;
 
   background-color: transparent;
   opacity: ${({open}) => (open ? '0.99' : '0')};
