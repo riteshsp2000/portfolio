@@ -36,12 +36,12 @@ const Project: React.FC<Props> = ({
 
   const ColumnOne = (
     <FirstColumn opposite={opposite}>
-      <div>
-        <TertiaryHeading>Project</TertiaryHeading>
+      <TitleContainer opposite={opposite}>
+        <TertiaryHeading>Featured Project</TertiaryHeading>
         <PrimaryHeading>{heading}</PrimaryHeading>
-      </div>
+      </TitleContainer>
 
-      <Excerpt>
+      <Excerpt isLight={colorMode === 'light'}>
         <Para>{excerpt}</Para>
       </Excerpt>
 
@@ -52,10 +52,10 @@ const Project: React.FC<Props> = ({
       </TechContainer>
 
       <IconsContainer opposite={opposite}>
-        <a href={links.github} target="_blank" rel="noreferrer">
+        <a href={links.live} target="_blank" rel="noreferrer">
           <Icon size="lg" icon={faExternalLinkSquareAlt} />
         </a>
-        <a href={links.live} target="_blank" rel="noreferrer">
+        <a href={links.github} target="_blank" rel="noreferrer">
           <Icon size="lg" icon={faGithub} />
         </a>
       </IconsContainer>
@@ -108,6 +108,10 @@ const Li = styled.li`
     z-index: 1;
     display: block;
   }
+
+  @media ${BREAKPOINTS.sm} {
+    height: 500px;
+  }
 `;
 
 const FirstColumn = styled.div<{opposite: boolean}>`
@@ -130,14 +134,29 @@ const FirstColumn = styled.div<{opposite: boolean}>`
 
     padding: 20px 40px;
   }
+
+  @media ${BREAKPOINTS.sm} {
+    align-items: flex-start;
+    padding: 20px 20px;
+  }
 `;
 
-const Excerpt = styled.div`
+const TitleContainer = styled.div<{opposite: boolean}>`
+  display: flex;
+  flex-direction: column;
+  align-items: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
+
+  @media ${BREAKPOINTS.sm} {
+    align-items: flex-start;
+  }
+`;
+
+const Excerpt = styled.div<{isLight: boolean}>`
   width: 140%;
   height: auto;
   min-height: 100px;
 
-  background-color: var(--color-gradient-background-one);
+  background-color: ${({isLight}) => (isLight ? '#d3e9f7' : '#1d2b33')};
   border-radius: 5px;
 
   position: relative;
@@ -159,6 +178,10 @@ const TechContainer = styled.div<{opposite: boolean}>`
   display: flex;
   flex-wrap: wrap;
   justify-content: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
+
+  @media ${BREAKPOINTS.sm} {
+    justify-content: flex-start;
+  }
 `;
 
 const Tag = styled.span`
@@ -176,6 +199,10 @@ const IconsContainer = styled.div<{opposite: boolean}>`
   display: flex;
   justify-content: ${({opposite}) => (opposite ? 'flex-end' : 'flex-start')};
   align-items: center;
+
+  @media ${BREAKPOINTS.sm} {
+    justify-content: flex-start;
+  }
 `;
 
 const Icon = styled(FontAwesomeIcon)`
@@ -219,7 +246,8 @@ const Image = styled.img`
 
 const ImageLink = styled.a<{isLight: boolean}>`
   text-decoration: none;
-  background-color: var(--color-secondary-alpha);
+  background-color: ${({isLight}) =>
+    isLight ? 'rgba(172, 220, 252, 0.685)' : 'rgba(0, 0, 0, 0.5)'};
   transition: background-color 350ms ease 0s;
 
   position: absolute;
@@ -237,6 +265,6 @@ const ImageLink = styled.a<{isLight: boolean}>`
 
   @media ${BREAKPOINTS.md} {
     background-color: ${({isLight}) =>
-      isLight ? 'rgba(120, 196, 247, 0.685)' : 'rgba(0, 0, 0, 0.5)'};
+      isLight ? 'rgba(120, 196, 247, 0.685)' : 'rgba(0, 0, 0, 0.8)'};
   }
 `;
