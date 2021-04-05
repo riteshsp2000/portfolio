@@ -3,6 +3,7 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 import config from '../../config';
+import {BREAKPOINTS} from '../../theming';
 
 interface Props {
   isLoading?: boolean;
@@ -51,6 +52,14 @@ const Container = styled.section`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media ${BREAKPOINTS.md} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 70px;
+  }
 `;
 
 const ColumnOne = styled.div`
@@ -62,6 +71,14 @@ const ColumnOne = styled.div`
   justify-content: center;
 
   padding-top: 20px;
+
+  @media ${BREAKPOINTS.md} {
+    width: 70%;
+  }
+
+  @media ${BREAKPOINTS.sm} {
+    width: 80%;
+  }
 `;
 
 const Image = styled.img`
@@ -82,6 +99,14 @@ const ColumnTwo = styled.div`
 
   padding: 20px;
   padding-left: 50px;
+
+  @media ${BREAKPOINTS.md} {
+    width: 100%;
+    padding: 0px;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const NewPara = styled.p`
@@ -91,6 +116,10 @@ const NewPara = styled.p`
   font-size: 16px;
   line-height: 1.6;
   text-align: right;
+
+  @media ${BREAKPOINTS.md} {
+    text-align: center;
+  }
 `;
 
 const TagContainer = styled.div`
@@ -99,6 +128,10 @@ const TagContainer = styled.div`
   justify-content: flex-end;
   margin-top: 20px;
   width: 100%;
+
+  @media ${BREAKPOINTS.md} {
+    justify-content: center;
+  }
 `;
 
 const Tag = styled.span`
