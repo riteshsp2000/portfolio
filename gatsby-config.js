@@ -4,7 +4,7 @@ module.exports = {
     description:
       'Ritesh Patil is student software engineer currently studying at NIT Rourkela. He specializes in building modern and performant softwares.',
     siteUrl: 'https://riteshpatil.dev',
-    image: '/ritesh.png',
+    image: '/logo.png',
     twitterUsername: '@riteshp2000',
     author: 'Ritesh Patil',
   },

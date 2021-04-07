@@ -64,6 +64,7 @@ const App: React.FC = ({children}) => {
         <meta property="og:image" content={seo.image} />
         <meta property="og:url" content={seo.url} />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={seo.title} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content={twitterUsername} />
