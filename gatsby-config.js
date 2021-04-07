@@ -1,12 +1,12 @@
 module.exports = {
-  /* Your site config here */
   siteMetadata: {
     title: 'Ritesh Patil',
     description:
       'Ritesh Patil is student software engineer currently studying at NIT Rourkela. He specializes in building modern and performant softwares.',
-    siteUrl: 'https://ritesh-patil.com',
+    siteUrl: 'https://riteshpatil.dev',
     image: '/ritesh.png',
     twitterUsername: '@riteshp2000',
+    author: 'Ritesh Patil',
   },
   plugins: [
     `gatsby-plugin-sharp`,
@@ -14,6 +14,8 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
