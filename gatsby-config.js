@@ -1,13 +1,12 @@
-const config = require('./src/config');
-
 module.exports = {
   siteMetadata: {
-    title: config.name,
-    description: config.description,
+    title: 'Ritesh Patil',
+    description:
+      "I'm a student developer currently studying at National Institute of Technology Rourkela. I specialize in building modern and performant web and mobile applications.",
     siteUrl: 'https://riteshpatil.dev',
     image: '/logo.png',
     twitterUsername: '@riteshp2000',
-    author: config.name,
+    author: 'Ritesh Patil',
   },
   plugins: [
     `gatsby-plugin-sharp`,
