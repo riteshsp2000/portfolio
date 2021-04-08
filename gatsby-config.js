@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Ritesh Patil',
     description:
-      'Ritesh Patil is student software engineer currently studying at NIT Rourkela. He specializes in building modern and performant softwares.',
+      "I'm a student developer currently studying at National Institute of Technology Rourkela. I specialize in building modern and performant web and mobile applications.",
     siteUrl: 'https://riteshpatil.dev',
     image: '/logo.png',
     twitterUsername: '@riteshp2000',
