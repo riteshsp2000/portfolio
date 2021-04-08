@@ -12,7 +12,7 @@ export default {
   image:
     'https://res.cloudinary.com/riteshsp2000/image/upload/portfolio/Ritesh_rqu4mr.webp',
   subDescription:
-    "I'm a student software engineer currently studying at NIT Rourkela. I specialize in building modern and performant softwares.",
+    "I'm a student developer currently studying at National Institute of Technology Rourkela. I specialize in building modern and performant web and mobile applications.",
   tech: [
     'Javascript',
     'Typescript',
@@ -83,20 +83,4 @@ export default {
       id: 'contact',
     },
   ],
-
-  srConfig: (delay = 200, viewFactor = 0.25): any => ({
-    origin: 'bottom',
-    distance: '20px',
-    duration: 500,
-    delay,
-    rotate: {x: 0, y: 0, z: 0},
-    opacity: 0,
-    scale: 1,
-    easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-    mobile: true,
-    reset: false,
-    useDelay: 'always',
-    viewFactor,
-    viewOffset: {top: 0, right: 0, bottom: 0, left: 0},
-  }),
 };
