@@ -88,8 +88,9 @@ export const onRenderBody = (
   setBodyAttributes(helmet.bodyAttributes.toComponent());
   setHeadComponents([
     helmet.title.toComponent(),
-    helmet.link.toComponent(),
+    helmet.base.toComponent(),
     helmet.meta.toComponent(),
+    helmet.link.toComponent(),
     helmet.noscript.toComponent(),
     helmet.script.toComponent(),
     helmet.style.toComponent(),
@@ -101,13 +102,22 @@ export const onRenderBody = (
 
 export const onPreRenderHTML = ({getHeadComponents, replaceHeadComponents}) => {
   const headComponents = getHeadComponents();
-  headComponents.sort((x, y) => {
-    if (x.props && x.props['data-react-helmet']) {
-      return -1;
-    } else if (y.props && y.props['data-react-helmet']) {
-      return 1;
-    }
-    return 0;
-  });
-  replaceHeadComponents(headComponents);
+  const order = [
+    'title',
+    'base',
+    'meta',
+    'link',
+    'noscript',
+    'script',
+    'style',
+  ];
+
+  const sortedHeadComponents = headComponents
+    .slice(0)
+    .flat()
+    .sort((x, y) => {
+      return order.indexOf(x.type) - order.indexOf(y.type);
+    });
+
+  replaceHeadComponents(sortedHeadComponents);
 };
