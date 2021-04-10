@@ -2,7 +2,6 @@ import React from 'react';
 
 // Libraries
 import {Helmet} from 'react-helmet';
-import Terser from 'terser';
 
 // Components
 import App from './src/components/shared/App';
@@ -48,8 +47,6 @@ const MagicScriptTag = () => {
 
   let calledFunction = `(${boundFn})()`;
 
-  // calledFunction = Terser.minify(calledFunction).code;
-
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{__html: calledFunction}} />;
 };
@@ -78,46 +75,12 @@ const FallbackStyles = () => {
 };
 
 export const onRenderBody = (
-  {
-    setPreBodyComponents,
-    setHeadComponents,
-    setHtmlAttributes,
-    setBodyAttributes,
-  },
+  {setPreBodyComponents, setHeadComponents},
   pluginOptions,
 ) => {
-  // const helmet = Helmet.renderStatic();
-  // console.log(helmet);
-  // setHtmlAttributes(helmet.htmlAttributes.toComponent());
-  // setBodyAttributes(helmet.bodyAttributes.toComponent());
-  // setHeadComponents([
-  //   helmet.title.toComponent(),
-  //   helmet.base.toComponent(),
-  //   helmet.meta.toComponent(),
-  //   helmet.link.toComponent(),
-  //   helmet.noscript.toComponent(),
-  //   helmet.script.toComponent(),
-  //   helmet.style.toComponent(),
-  // ]);
-
   setHeadComponents(<FallbackStyles />);
   setPreBodyComponents(<MagicScriptTag />);
 };
-
-// export const onPreRenderHTML = ({getHeadComponents, replaceHeadComponents}) => {
-//   const headComponents = getHeadComponents();
-
-//   headComponents.sort((x, y) => {
-//     if (x.props && x.props['data-react-helmet']) {
-//       return -1;
-//     } else if (y.props && y.props['data-react-helmet']) {
-//       return 1;
-//     }
-//     return 0;
-//   });
-
-//   replaceHeadComponents(headComponents);
-// };
 
 export const wrapPageElement = ({element}) => {
   return <App>{element}</App>;
