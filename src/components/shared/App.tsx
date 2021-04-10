@@ -72,7 +72,7 @@ const App: React.FC = ({children}) => {
         <meta property="og:image:type" content="image/png" />
 
         {/* ================ Twitter ================  */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta property="twitter:url" content={seo.url} />
         <meta name="twitter:creator" content={twitterUsername} />
         <meta name="twitter:title" content={seo.title} />
