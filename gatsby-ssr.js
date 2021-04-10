@@ -1,5 +1,10 @@
 import React from 'react';
-import Terser from 'terser';
+
+// Libraries
+import {Helmet} from 'react-helmet';
+
+// Components
+import App from './src/components/shared/App';
 
 import {
   COLOR_MODE_KEY,
@@ -42,8 +47,6 @@ const MagicScriptTag = () => {
 
   let calledFunction = `(${boundFn})()`;
 
-  // calledFunction = Terser.minify(calledFunction).code;
-
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{__html: calledFunction}} />;
 };
@@ -71,7 +74,14 @@ const FallbackStyles = () => {
   return <style>{wrappedInSelector}</style>;
 };
 
-export const onRenderBody = ({setPreBodyComponents, setHeadComponents}) => {
+export const onRenderBody = (
+  {setPreBodyComponents, setHeadComponents},
+  pluginOptions,
+) => {
   setHeadComponents(<FallbackStyles />);
   setPreBodyComponents(<MagicScriptTag />);
+};
+
+export const wrapPageElement = ({element}) => {
+  return <App>{element}</App>;
 };

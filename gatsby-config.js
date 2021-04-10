@@ -5,7 +5,7 @@ module.exports = {
       "I'm a student developer currently studying at National Institute of Technology Rourkela. I specialize in building modern and performant web and mobile applications.",
     siteUrl: 'https://riteshpatil.dev',
     image: '/logo.png',
-    twitterUsername: '@riteshp2000',
+    twitterUsername: '@riteshsp2000',
     author: 'Ritesh Patil',
   },
   plugins: [
