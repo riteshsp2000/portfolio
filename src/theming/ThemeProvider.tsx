@@ -31,7 +31,7 @@ const ThemeContext = createContext<ThemeContextType>({
 
 // ==================== Context Provider ==================== //
 export function ThemeProvider(props: any): JSX.Element {
-  const [colorMode, rawSetColorMode] = useState<string | null>(
+  const [colorMode, rawSetColorMode] = useState<string | null | undefined>(
     getInitialColorMode,
   );
 

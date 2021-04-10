@@ -4,6 +4,9 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import Terser from 'terser';
 
+// Components
+import App from './src/components/shared/App';
+
 import {
   COLOR_MODE_KEY,
   COLORS,
@@ -83,41 +86,39 @@ export const onRenderBody = (
   },
   pluginOptions,
 ) => {
-  const helmet = Helmet.renderStatic();
-  setHtmlAttributes(helmet.htmlAttributes.toComponent());
-  setBodyAttributes(helmet.bodyAttributes.toComponent());
-  setHeadComponents([
-    helmet.title.toComponent(),
-    helmet.base.toComponent(),
-    helmet.meta.toComponent(),
-    helmet.link.toComponent(),
-    helmet.noscript.toComponent(),
-    helmet.script.toComponent(),
-    helmet.style.toComponent(),
-  ]);
+  // const helmet = Helmet.renderStatic();
+  // console.log(helmet);
+  // setHtmlAttributes(helmet.htmlAttributes.toComponent());
+  // setBodyAttributes(helmet.bodyAttributes.toComponent());
+  // setHeadComponents([
+  //   helmet.title.toComponent(),
+  //   helmet.base.toComponent(),
+  //   helmet.meta.toComponent(),
+  //   helmet.link.toComponent(),
+  //   helmet.noscript.toComponent(),
+  //   helmet.script.toComponent(),
+  //   helmet.style.toComponent(),
+  // ]);
 
   setHeadComponents(<FallbackStyles />);
   setPreBodyComponents(<MagicScriptTag />);
 };
 
-export const onPreRenderHTML = ({getHeadComponents, replaceHeadComponents}) => {
-  const headComponents = getHeadComponents();
-  const order = [
-    'title',
-    'base',
-    'meta',
-    'link',
-    'noscript',
-    'script',
-    'style',
-  ];
+// export const onPreRenderHTML = ({getHeadComponents, replaceHeadComponents}) => {
+//   const headComponents = getHeadComponents();
 
-  const sortedHeadComponents = headComponents
-    .slice(0)
-    .flat()
-    .sort((x, y) => {
-      return order.indexOf(x.type) - order.indexOf(y.type);
-    });
+//   headComponents.sort((x, y) => {
+//     if (x.props && x.props['data-react-helmet']) {
+//       return -1;
+//     } else if (y.props && y.props['data-react-helmet']) {
+//       return 1;
+//     }
+//     return 0;
+//   });
 
-  replaceHeadComponents(sortedHeadComponents);
+//   replaceHeadComponents(headComponents);
+// };
+
+export const wrapPageElement = ({element}) => {
+  return <App>{element}</App>;
 };
