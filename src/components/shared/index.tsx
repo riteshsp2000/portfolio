@@ -8,4 +8,5 @@ export {default as PageTitle} from './PageTitle';
 export {default as Container} from './Container';
 export {default as Loader} from './Loaders/Loader';
 export {default as Loader2} from './Loaders/Loader2';
+export {default as UnderDevelopment} from './UnderDevelopment';
 export * from './Links';

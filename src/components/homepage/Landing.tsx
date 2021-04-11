@@ -10,8 +10,8 @@ import config from '../../config';
 function Landing(): JSX.Element {
   return (
     <Container>
-      <Intro>Hi! my name is</Intro>
       <section>
+        <Intro>Hi! my name is</Intro>
         <Name>{config.name}</Name>
         <Description>{config.description}</Description>
         <SubDescription>{config.subDescription}</SubDescription>
@@ -29,8 +29,12 @@ export default Landing;
 const Container = styled.section`
   width: 100%;
   height: calc(100vh - 400px);
-  padding-top: 50px;
+  /* padding-top: 50px; */
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   @media (max-width: 1100px) and (min-width: 800px) {
     padding-right: 60px;
