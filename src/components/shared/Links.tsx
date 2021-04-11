@@ -10,8 +10,14 @@ import config from '../../config';
 
 export const Links: React.FC = () => (
   <LinksContainer>
-    {config.socialMedia.map(({url, icon}) => (
-      <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
+    {config.socialMedia.map(({url, icon, name}) => (
+      <IconContainer
+        aria-label={`${name} Profile Link of Ritesh Patil`}
+        key={url}
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+      >
         <Icon size="lg" icon={icon} />
       </IconContainer>
     ))}
@@ -21,7 +27,12 @@ export const Links: React.FC = () => (
 
 export const Email: React.FC = () => (
   <EmailContainer>
-    <EmailText href={`mailto:${config.email}`} target="_blank" rel="noreferrer">
+    <EmailText
+      aria-label="Email Link of Ritesh Patil"
+      href={`mailto:${config.email}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       {config.email}
     </EmailText>
     <HorizontalLine />

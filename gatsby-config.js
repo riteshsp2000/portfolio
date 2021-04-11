@@ -72,16 +72,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `poppins\:300,400,500,600,700`,
-          `muli\:400,400i,500,500i,600,600i,700,700i`,
-        ],
-        display: 'swap',
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-193854636-1',

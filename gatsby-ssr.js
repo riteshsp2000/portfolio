@@ -4,7 +4,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 
 // Components
-import App from './src/components/shared/App';
+import {App} from './src/components';
 
 import {
   COLOR_MODE_KEY,

@@ -4,7 +4,7 @@ import React, {useEffect} from 'react';
 import styled, {keyframes} from 'styled-components';
 
 // Constants
-import {BREAKPOINTS} from '../../theming';
+import {BREAKPOINTS} from '../../../theming';
 
 const lineAnim = keyframes`
   to {

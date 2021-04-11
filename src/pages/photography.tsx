@@ -3,7 +3,6 @@ import React from 'react';
 
 // Libraries
 import {PageProps} from 'gatsby';
-import styled from 'styled-components';
 
 // Components
 import {
@@ -11,6 +10,7 @@ import {
   RegularRowOne,
   RegularRowTwo,
 } from '../components/templates';
+import {UnderDevelopment} from '../components';
 
 const Photography: React.FC<PageProps> = ({location}) => {
   return (
@@ -18,21 +18,10 @@ const Photography: React.FC<PageProps> = ({location}) => {
       <RegularRowOne />
 
       <RegularRowTwo>
-        <Styledh1>Photography</Styledh1>
+        <UnderDevelopment />
       </RegularRowTwo>
     </RegularTemplate>
   );
 };
 
 export default Photography;
-
-const Styledh1 = styled.h1`
-  width: 80%;
-  line-height: 3;
-  color: var(--color-tertiary);
-  text-align: center;
-  font-size: 70px;
-  font-family: var(--font-family);
-  background-color: var(--color-secondary);
-  border-radius: 5px;
-`;

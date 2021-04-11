@@ -52,10 +52,20 @@ const Project: React.FC<Props> = ({
       </TechContainer>
 
       <IconsContainer opposite={opposite}>
-        <a href={links.live} target="_blank" rel="noreferrer">
+        <a
+          href={links.live}
+          aria-label={`${heading} GitHub Link`}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Icon size="lg" icon={faExternalLinkSquareAlt} />
         </a>
-        <a href={links.github} target="_blank" rel="noreferrer">
+        <a
+          href={links.github}
+          aria-label={`${heading} Live Link`}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Icon size="lg" icon={faGithub} />
         </a>
       </IconsContainer>
@@ -64,7 +74,7 @@ const Project: React.FC<Props> = ({
 
   const ColumnTwo = (
     <SecondColumn>
-      <Image src={featureImage} alt={heading} />
+      <Image width={960} height={525} src={featureImage} alt={heading} />
       <ImageLink
         href={links.live}
         target="_blank"
@@ -240,14 +250,15 @@ const SecondColumn = styled.div`
 `;
 
 const Image = styled.img`
-  height: 100%;
   width: auto;
+  height: 100%;
+  aspect-ratio: attr(width) / attr(height);
 `;
 
 const ImageLink = styled.a<{isLight: boolean}>`
   text-decoration: none;
   background-color: ${({isLight}) =>
-    isLight ? 'rgba(172, 220, 252, 0.685)' : 'rgba(0, 0, 0, 0.5)'};
+    isLight ? 'rgba(172, 220, 252, 0.685)' : 'rgba(0, 0, 0, 0.2)'};
   transition: background-color 350ms ease 0s;
 
   position: absolute;

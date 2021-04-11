@@ -12,7 +12,7 @@ interface Props {
 const About: React.FC<Props> = () => (
   <Container id="about">
     <ColumnOne>
-      <Image src={config.image} alt={config.name} />
+      <Image width={500} height={500} src={config.image} alt={config.name} />
     </ColumnOne>
 
     <ColumnTwo>
@@ -82,10 +82,15 @@ const ColumnOne = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: calc(auto - 50px);
+  /* width: 100%; */
+  /* height: calc(auto - 50px); */
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+
   background-color: var(--color-gradient-background-one);
   border-radius: 7px;
+  object-fit: contain;
 `;
 
 const ColumnTwo = styled.div`
