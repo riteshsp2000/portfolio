@@ -2,28 +2,31 @@
 import {createGlobalStyle} from 'styled-components';
 
 // Fonts
-import wotfardLight from '../fonts/Wotfard-Light.ttf';
-import wotfardMedium from '../fonts/Wotfard-Medium.ttf';
-import wotfardRegular from '../fonts/Wotfard-Regular.ttf';
+import wotfardLight from '../fonts/wotfard-light-webfont.woff';
+import wotfardMedium from '../fonts/wotfard-medium-webfont.woff';
+import wotfardRegular from '../fonts/wotfard-regular-webfont.woff';
+import wotfardLight2 from '../fonts/wotfard-light-webfont.woff2';
+import wotfardMedium2 from '../fonts/wotfard-medium-webfont.woff2';
+import wotfardRegular2 from '../fonts/wotfard-regular-webfont.woff2';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardLight}) format('ttf');
+    src: url(${wotfardLight}) format('woff'), url(${wotfardLight2}) format('woff2');
     font-weight: 300;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardRegular}) format('ttf');
+    src: url(${wotfardRegular}) format('woff'), url(${wotfardRegular2}) format('woff2');
     font-weight: 400;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardMedium}) format('ttf');
+    src: url(${wotfardMedium}) format('woff'), url(${wotfardMedium2}) format('woff2');
     font-weight: 500;
     font-style: normal;
   }
