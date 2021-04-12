@@ -80,6 +80,7 @@ const Project: React.FC<Props> = ({
         target="_blank"
         rel="noreferrer"
         isLight={colorMode === 'light'}
+        aria-label={`${heading} Live Link`}
       />
     </SecondColumn>
   );

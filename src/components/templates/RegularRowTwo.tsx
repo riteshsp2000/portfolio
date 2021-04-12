@@ -28,8 +28,14 @@ const RegularRowTwo: React.FC<Props> = ({isLoading, children}) => (
       })}
 
       <Footer id="contact">
-        {config.socialMedia.map(({url, icon}) => (
-          <IconContainer key={url} href={url} target="_blank" rel="noreferrer">
+        {config.socialMedia.map(({url, icon, name}) => (
+          <IconContainer
+            key={url}
+            aria-label={`${name} Profile Link of Ritesh Patil`}
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Icon size="lg" icon={icon} />
           </IconContainer>
         ))}
@@ -38,6 +44,7 @@ const RegularRowTwo: React.FC<Props> = ({isLoading, children}) => (
         href={`mailto:${config.email}`}
         target="_blank"
         rel="noreferrer"
+        aria-label="Email Link of Ritesh Patil"
       >
         {config.email}
       </EmailText>

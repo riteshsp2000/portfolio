@@ -12,23 +12,26 @@ import wotfardRegular2 from '../fonts/wotfard-regular-webfont.woff2';
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardLight}) format('woff'), url(${wotfardLight2}) format('woff2');
+    src: local('Wotfard Light'), local('Wotfard-Light'), url(${wotfardLight}) format('woff'), url(${wotfardLight2}) format('woff2');
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardRegular}) format('woff'), url(${wotfardRegular2}) format('woff2');
+    src: local('Wotfard Regular'), local('Wotfard-Regular'), url(${wotfardRegular}) format('woff'), url(${wotfardRegular2}) format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'Wotfard';
-    src: url(${wotfardMedium}) format('woff'), url(${wotfardMedium2}) format('woff2');
+    src: local('Wotfard Bold'), local('Wotfard-Bold'), url(${wotfardMedium}) format('woff'), url(${wotfardMedium2}) format('woff2');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
   }
 
   *,
