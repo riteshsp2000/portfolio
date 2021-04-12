@@ -9,6 +9,7 @@ module.exports = {
     author: 'Ritesh Patil',
   },
   plugins: [
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
@@ -58,6 +59,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `project-images`,
+        path: `${__dirname}/content/projects/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
@@ -69,6 +77,25 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        headers: {
+          // Cache fonts forever
+          '/fonts/*': [
+            'Cache-Control: public',
+            'Cache-Control: max-age=31536000',
+            'Cache-Control: immutable',
+          ],
+          // Cache images for a week
+          '/static/*': [
+            'Cache-Control: public',
+            'Cache-Control: max-age=31536000',
+            'Cache-Control: immutable',
+          ],
+        },
       },
     },
     {

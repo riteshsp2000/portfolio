@@ -28,7 +28,11 @@ const Projects: React.FC = () => {
               tech
               github
               live
-              featureImage
+              featureImage {
+                childImageSharp {
+                  gatsbyImageData(layout: CONSTRAINED)
+                }
+              }
             }
           }
         }
@@ -47,7 +51,7 @@ const Projects: React.FC = () => {
             excerpt={excerpt}
             tech={tech}
             links={{github, live}}
-            featureImage={featureImage}
+            featureImage={featureImage.childImageSharp.gatsbyImageData}
             opposite={index % 2 === 0}
           />
         ))}
