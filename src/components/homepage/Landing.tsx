@@ -43,7 +43,7 @@ const Container = styled.section`
 
   @media ${BREAKPOINTS.md} {
     height: calc(100vh - 200px);
-    padding-top: 100px;
+    /* padding-top: 100px; */
   }
 `;
 
