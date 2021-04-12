@@ -2,6 +2,10 @@ import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {GatsbyImage} from 'gatsby-plugin-image';
+import {graphql, useStaticQuery} from 'gatsby';
+
+// Config
 import config from '../../config';
 import {BREAKPOINTS} from '../../theming';
 
@@ -9,36 +13,62 @@ interface Props {
   isLoading?: boolean;
 }
 
-const About: React.FC<Props> = () => (
-  <Container id="about">
-    <ColumnOne>
-      <Image width={500} height={500} src={config.image} alt={config.name} />
-    </ColumnOne>
+const About: React.FC<Props> = () => {
+  const {
+    profileImageArray: {nodes},
+  } = useStaticQuery(graphql`
+    query ImageQuery {
+      profileImageArray: allFile(filter: {name: {regex: "/Ritesh/"}}) {
+        nodes {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED)
+          }
+        }
+      }
+    }
+  `);
 
-    <ColumnTwo>
-      <NewPara>
-        Hey! I am Ritesh Patil, a Student Passionate about Computer Science. I
-        enjoy creating web applications that live on the internet and can be
-        accessed by everyone. I have been developing software for the past 2
-        years and it has been awesome so far!
-      </NewPara>
-      <NewPara style={{marginTop: '10px'}}>
-        Fast Forward to today, I am a undergrad at National Institute of
-        Technology Rourkela, India in the field of Industrial Design. My main
-        focus these days is to write performant and industry standard code
-        mainly using React and Node.js. I pay close attention to details, and
-        have a great understanding of what it takes to build great user-centric
-        experiences.
-      </NewPara>
+  const profileImage = nodes[0];
 
-      <TagContainer>
-        {config.tech.map(tech => (
-          <Tag key={tech}>{tech}</Tag>
-        ))}
-      </TagContainer>
-    </ColumnTwo>
-  </Container>
-);
+  return (
+    <Container id="about">
+      <ColumnOne>
+        <GatsbyImage
+          image={profileImage.childImageSharp.gatsbyImageData}
+          imgStyle={{
+            backgroundColor: 'var(--color-gradient-background-one)',
+            borderRadius: '5px',
+            transition: 'background-color 350ms ease 0s',
+          }}
+          alt="Ritesh Patil Profile Picture"
+        />
+      </ColumnOne>
+
+      <ColumnTwo>
+        <NewPara>
+          Hey! I am Ritesh Patil, a Student Passionate about Computer Science. I
+          enjoy creating web applications that live on the internet and can be
+          accessed by everyone. I have been developing software for the past 2
+          years and it has been awesome so far!
+        </NewPara>
+        <NewPara style={{marginTop: '10px'}}>
+          Fast Forward to today, I am a undergrad at National Institute of
+          Technology Rourkela, India in the field of Industrial Design. My main
+          focus these days is to write performant and industry standard code
+          mainly using React and Node.js. I pay close attention to details, and
+          have a great understanding of what it takes to build great
+          user-centric experiences.
+        </NewPara>
+
+        <TagContainer>
+          {config.tech.map(tech => (
+            <Tag key={tech}>{tech}</Tag>
+          ))}
+        </TagContainer>
+      </ColumnTwo>
+    </Container>
+  );
+};
 
 export default About;
 
@@ -79,18 +109,6 @@ const ColumnOne = styled.div`
   @media ${BREAKPOINTS.sm} {
     width: 80%;
   }
-`;
-
-const Image = styled.img`
-  /* width: 100%; */
-  /* height: calc(auto - 50px); */
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: attr(width) / attr(height);
-
-  background-color: var(--color-gradient-background-one);
-  border-radius: 7px;
-  object-fit: contain;
 `;
 
 const ColumnTwo = styled.div`

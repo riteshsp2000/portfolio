@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExternalLinkSquareAlt} from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
+import {GatsbyImage, IGatsbyImageData} from 'gatsby-plugin-image';
 
 // Components
 import {PrimaryHeading, TertiaryHeading, Para} from '../shared';
@@ -16,21 +17,21 @@ interface Props {
   heading: string;
   excerpt: string;
   tech: string[];
-  featureImage: string;
   links: {
     github?: string;
     live?: string;
   };
   opposite: boolean;
+  featureImage: IGatsbyImageData;
 }
 
 const Project: React.FC<Props> = ({
   heading,
   excerpt,
-  featureImage,
   tech,
   links,
   opposite,
+  featureImage,
 }) => {
   const [colorMode] = useTheme();
 
@@ -74,12 +75,18 @@ const Project: React.FC<Props> = ({
 
   const ColumnTwo = (
     <SecondColumn>
-      <Image width={960} height={525} src={featureImage} alt={heading} />
+      <GatsbyImage
+        style={{borderRadius: '5px', overflow: 'hidden', height: '100%'}}
+        objectFit="cover"
+        image={featureImage}
+        alt={heading}
+      />
       <ImageLink
         href={links.live}
         target="_blank"
         rel="noreferrer"
         isLight={colorMode === 'light'}
+        aria-label={`${heading} Live Link`}
       />
     </SecondColumn>
   );
@@ -249,11 +256,11 @@ const SecondColumn = styled.div`
   }
 `;
 
-const Image = styled.img`
-  width: auto;
-  height: 100%;
-  aspect-ratio: attr(width) / attr(height);
-`;
+// const Image = styled.img`
+//   width: auto;
+//   height: 100%;
+//   aspect-ratio: attr(width) / attr(height);
+// `;
 
 const ImageLink = styled.a<{isLight: boolean}>`
   text-decoration: none;

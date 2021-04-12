@@ -84,7 +84,7 @@ const Loader: React.FC<{setLoading?: (param: boolean) => void}> = ({
       setTimeout(() => {
         setMounted(false);
         setTimeout(() => setLoading(false), 200);
-      }, 2000);
+      }, 1800);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
