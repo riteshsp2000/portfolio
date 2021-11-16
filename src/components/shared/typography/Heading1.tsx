@@ -8,4 +8,5 @@ export default styled.h1`
   font-style: normal;
   font-size: 3rem;
   line-height: 1.6;
+  transition: var(--transition);
 `;

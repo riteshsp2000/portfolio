@@ -1,10 +1,22 @@
 import React from 'react';
 
 // Components
-import {H1, H2, H3, H4, P1, P2, P3, FancyText} from '../components';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  P1,
+  P2,
+  P3,
+  FancyText,
+  ThemeToggle,
+} from '../components';
 
 const Playground: React.FC = () => (
   <div style={{background: 'var(--color-background-primary)'}}>
+    <ThemeToggle />
+
     <H1>Heading 1</H1>
     <H2>Heading 2</H2>
     <H3>Heading 3</H3>

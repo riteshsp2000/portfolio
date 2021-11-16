@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // Libraries
 import {createGlobalStyle} from 'styled-components';
 
@@ -106,6 +107,11 @@ const GlobalStyles = createGlobalStyle`
     --font-family: "Wotfard", "Poppins", -apple-system, sans-serif;
     --reach-dialog: 1;
     --reach-tabs: 1;
+
+    --transition-time: 350ms;
+    --transition-type: ease;
+    --transition-delay: 0s;
+    --transition: all 350ms ease 0s;
   }
   [tabindex] {
    outline: none !important;

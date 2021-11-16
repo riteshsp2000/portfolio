@@ -10,3 +10,6 @@ export {default as P1} from './shared/typography/Para1';
 export {default as P2} from './shared/typography/Para2';
 export {default as P3} from './shared/typography/Para3';
 export {default as FancyText} from './shared/typography/FancyText';
+
+// Marginals
+export {default as ThemeToggle} from './marginals/ThemeToggle';

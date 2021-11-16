@@ -8,4 +8,5 @@ export default styled.p`
   font-style: normal;
   font-size: 1rem;
   line-height: 1.6;
+  transition: var(--transition);
 `;
