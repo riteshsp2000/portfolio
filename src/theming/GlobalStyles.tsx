@@ -100,7 +100,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    --font-weight-bold: 500;
+    --font-weight-bold: 600;
     --font-weight-regular: 400;
     --font-weight-light: 300;
     --font-family: "Wotfard", "Poppins", -apple-system, sans-serif;
