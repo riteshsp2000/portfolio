@@ -4,7 +4,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 
 // Components
-import {App} from './src/components';
+// import {App} from './src/components';
 
 import {
   COLOR_MODE_KEY,
@@ -82,6 +82,6 @@ export const onRenderBody = (
   setPreBodyComponents(<MagicScriptTag />);
 };
 
-export const wrapPageElement = ({element}) => {
-  return <App>{element}</App>;
-};
+// export const wrapPageElement = ({element}) => {
+//   return <App>{element}</App>;
+// };

@@ -98,11 +98,11 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-193854636-1',
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: 'UA-193854636-1',
+    //   },
+    // },
   ],
 };

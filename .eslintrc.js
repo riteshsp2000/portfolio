@@ -1,46 +1,49 @@
-module.exports = {
-  root: true,
-  extends: [
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'prettier',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+{
+  "root": true,
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
-  plugins: ['react', '@typescript-eslint', 'prettier'],
-  env: {
-    browser: true,
-    jest: true,
-    node: true,
-    es6: true,
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true,
+    "es6": true
   },
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+  "globals": {
+    "Atomics": "readonly",
+    "SharedBufferArray": "readonly"
   },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {jsx: true},
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.eslint.json',
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true },
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.eslint.json"
   },
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect',
-    },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
   },
-  rules: {
-    '@typescript-eslint/dot-notation': 0,
-    '@typescript-eslint/ban-ts-comment': 0,
-    '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/no-use-before-define': 0,
-    'react/jsx-props-no-spreading': 0,
-    'no-plusplus': 0,
-    'react/prop-types': 0,
-    'import/extensions': 0,
-    'import/no-cycle': 0,
-  },
-};
+  "rules": {
+    "max-len": ["error", { "code": 100 }],
+    "prefer-promise-reject-errors": ["off"],
+    "react/jsx-filename-extension": ["off"],
+    "no-return-assign": ["off"],
+    "react/prop-types": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "click-events-have-key-events": 0,
+    "no-static-element-interactions": 0,
+    "prefer-destructuring": 1,
+    "react/display-name": 0,
+    "func-names": 0
+  }
+}
