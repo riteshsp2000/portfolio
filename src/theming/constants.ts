@@ -2,61 +2,37 @@ export const COLOR_MODE_KEY = 'color-mode';
 export const INITIAL_COLOR_MODE_CSS_PROP = '--initial-color-mode';
 
 export const COLORS = {
-  text: {
-    light: '#0A0C10',
-    dark: '#FFFFFF',
-  },
-  'primary-heading': {
-    light: '#21232C',
-    dark: '#F2F5F7',
-  },
-  'secondary-heading': {
-    light: '#6C7693',
-    dark: '#7E8C9A',
-  },
-  background: {
-    light: '#FFFFFF',
-    dark: '#0E151C',
-  },
   primary: {
-    light: '#4433FF',
-    dark: '#5773FF',
+    light: '#FDA265',
+    dark: '#FDA265',
   },
   secondary: {
-    light: '#E60067',
-    dark: '#FF0A78',
+    light: '#B8427D',
+    dark: '#B8427D',
   },
   tertiary: {
-    light: '#2C0B8E',
-    dark: '#FFE100',
+    light: '#0C62A8',
+    dark: '#0C62A8',
   },
-  'primary-alpha': {
-    light: 'rgba(68, 51, 255, 0.2)',
-    dark: 'rgba(87, 115, 255, 0.3)',
+  'background-primary': {
+    light: '',
+    dark: '#0A0A0A',
   },
-  'secondary-alpha': {
-    light: 'rgba(230, 0, 103, 0.2)',
-    dark: 'rgba(255, 10, 120, 0.3)',
+  'background-secondary': {
+    light: '',
+    dark: '#181818',
   },
-  'gradient-background-one': {
-    light: '#D3EAF8',
-    dark: 'rgba(179, 229, 255, 0.1)',
-  },
-  'gradient-background-two': {
-    light: '#BFDEF2',
-    dark: 'rgba(179, 229, 255, 0)',
-  },
-  decorative: {
-    light: '#63BCE9',
-    dark: '#66AACC',
-  },
-  'decorative-background': {
-    light: '#21232C',
+  'text-primary': {
+    light: '#293592',
     dark: '#F2F5F7',
   },
-  'profile-opacity': {
-    light: 1,
-    dark: 0.75,
+  'text-secondary': {
+    light: '#FDA265',
+    dark: '#FDA265',
+  },
+  'text-tertiary': {
+    light: '',
+    dark: '#7E8C9A',
   },
 };
 

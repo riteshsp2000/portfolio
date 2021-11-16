@@ -117,12 +117,12 @@ const GlobalStyles = createGlobalStyle`
   }
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #0E151C; 
+    background: var(--color-background-primary);
     height: 100px;
   }
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #5f676e; 
+    background: var(--color-background-secondary);
     border-radius: 5px;
   }
 `;
