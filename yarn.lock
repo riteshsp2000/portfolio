@@ -11263,7 +11263,7 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.1.tgz#66c5701c3e7560ab4822a4ee2742dee215d72eb3"
   integrity sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==
 
-react-spring@^9.0.0:
+react-spring@^9.3.0:
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-9.3.0.tgz#4d71eecbfd4f0823bf67e5943d2b0fb77f3e26ad"
   integrity sha512-zxhMUCM4ha22724q1CshmbzKUfqdUp2HyA4P72+A0xVF/9bgaFuMukI8C8/Rjfdqw6sGg3hZNvmY9Z8n4cqWmg==
