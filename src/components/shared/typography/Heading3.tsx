@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Libraries
 import styled from 'styled-components';
 

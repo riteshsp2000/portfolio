@@ -7,7 +7,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
   "env": {
     "browser": true,
     "jest": true,
@@ -22,7 +22,7 @@
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
-    "ecmaFeatures": { "jsx": true },
+    "ecmaFeatures": {"jsx": true},
     "tsconfigRootDir": "./",
     "project": "./tsconfig.eslint.json"
   },
@@ -33,7 +33,7 @@
     }
   },
   "rules": {
-    "max-len": ["error", { "code": 100 }],
+    "max-len": ["error", {"code": 100}],
     "prefer-promise-reject-errors": ["off"],
     "react/jsx-filename-extension": ["off"],
     "no-return-assign": ["off"],
