@@ -1,12 +1,36 @@
+const config = require('./content/website');
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
+
 module.exports = {
+  pathPrefix: config.pathPrefix,
   siteMetadata: {
-    title: 'Ritesh Patil',
-    description:
-      "I'm a student developer currently studying at National Institute of Technology Rourkela. I specialize in building modern and performant web and mobile applications.",
-    siteUrl: 'https://riteshpatil.dev',
-    image: '/logo.png',
-    twitterUsername: '@riteshsp2000',
-    author: 'Ritesh Patil',
+    siteUrl: config.siteUrl + pathPrefix,
+    title: config.siteTitle,
+    twitterHandle: config.twitterHandle,
+    description: config.siteDescription,
+    keywords: [
+      'Developer',
+      'SDE',
+      'Frontend Engineer',
+      'Engineer',
+      'NIT Rourkela',
+      'CS',
+      'Computer Science',
+    ],
+    canonicalUrl: config.siteUrl,
+    image: config.siteLogo,
+    author: {
+      name: config.author,
+      minibio: config.siteDescription,
+    },
+    social: {
+      twitter: config.twitterHandle,
+    },
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -20,35 +44,25 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Ritesh Patil: Portfolio',
-        short_name: 'Ritesh patil',
-        start_url: '/',
-        background_color: '#0E151C',
-        theme_color: '#FF0A78',
-        display: 'minimal-ui',
-        icon: 'src/images/icon.png',
-        crossOrigin: `use-credentials`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'content',
-        path: `${__dirname}/content/`,
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'standalone',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
       },
     },
     {
@@ -98,11 +112,14 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: 'UA-193854636-1',
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [config.googleAnalyticsID],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
   ],
 };
