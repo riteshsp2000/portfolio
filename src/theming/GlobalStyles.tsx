@@ -101,7 +101,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    --font-weight-bold: 600;
+    --font-weight-bold: 500;
     --font-weight-regular: 400;
     --font-weight-light: 300;
     --font-family: "Wotfard", "Poppins", -apple-system, sans-serif;
@@ -112,6 +112,10 @@ const GlobalStyles = createGlobalStyle`
     --transition-type: ease;
     --transition-delay: 0s;
     --transition: all 350ms ease 0s;
+
+    --max-width: 83.5em;
+    --max-width-bleed: 90%;
+    --max-width-narrow: 50em;
   }
   [tabindex] {
    outline: none !important;
