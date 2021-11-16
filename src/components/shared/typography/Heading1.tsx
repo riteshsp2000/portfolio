@@ -6,6 +6,7 @@ export default styled.h1`
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);
   font-style: normal;
+  letter-spacing: normal;
   font-size: 3rem;
   line-height: 1.6;
   transition: var(--transition);

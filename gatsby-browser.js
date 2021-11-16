@@ -1,6 +1,10 @@
 import React from 'react';
 
 // Components
-import {App} from './src/components';
+import {App, PageContainer} from './src/components';
 
-export const wrapPageElement = ({element}) => <App>{element}</App>;
+export const wrapPageElement = ({element}) => (
+  <App>
+    <PageContainer>{element}</PageContainer>
+  </App>
+);

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Libraries
-import {Helmet} from 'react-helmet';
+import {Helmet, PageContainer} from 'react-helmet';
 
 // Components
 import {App} from './src/components';
@@ -82,6 +82,8 @@ export const onRenderBody = (
   setPreBodyComponents(<MagicScriptTag />);
 };
 
-export const wrapPageElement = ({element}) => {
-  return <App>{element}</App>;
-};
+export const wrapPageElement = ({element}) => (
+  <App>
+    <PageContainer>{element}</PageContainer>
+  </App>
+);
