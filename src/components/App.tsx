@@ -11,7 +11,6 @@ import WotfardBold from '../fonts/wotfard-medium-webfont.woff2';
 
 // Components/Configuration
 import {ThemeProvider, GlobalStyles} from '../theming';
-// import Head from './Head';
 
 const App: React.FC = ({children}) => (
   <LocationProvider>
@@ -38,7 +37,6 @@ const App: React.FC = ({children}) => (
         crossOrigin="anonymous"
       />
     </Helmet>
-    {/* <Head /> */}
 
     <ThemeProvider>
       <GlobalStyles />

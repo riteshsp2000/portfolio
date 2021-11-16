@@ -1,3 +1,16 @@
+const redirects = require('./redirects.json');
+
+exports.createPages = async ({actions}) => {
+  const {createRedirect} = actions;
+
+  redirects.forEach(({fromPath, toPath}) =>
+    createRedirect({
+      fromPath,
+      toPath,
+    }),
+  );
+};
+
 // exports.createPages = async function ({actions, graphql}) {
 //   const {data} = await graphql`
 //     query {

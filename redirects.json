@@ -1,0 +1,10 @@
+[
+  {
+    "fromPath": "/resume",
+    "toPath": "/resume.pdf"
+  },
+  {
+    "fromPath": "/cv",
+    "toPath": "/resume.pdf"
+  }
+]
