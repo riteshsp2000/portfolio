@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 // Libraries
 import styled from 'styled-components';
 import {Link} from 'gatsby';
+import {useTransition, animated} from 'react-spring';
 
 // Components
 import Container from '../shared/layout/Container';
@@ -12,7 +13,7 @@ import {H3, H2, HamburgerMenu, ThemeToggle} from '..';
 import {Z_INDICES} from '../../theming';
 import {LinkObject} from './Navbar';
 
-const OverlayContainer = styled.div`
+const OverlayContainer = styled(animated.div)`
   width: 100vw;
   height: 100vh;
 
@@ -40,6 +41,7 @@ const OverlayControlsContainer = styled.div`
   align-items: center;
   margin-top: 1rem;
   margin-right: 1.5rem;
+  margin-bottom: 3rem;
 `;
 
 const PrimeContainer = styled.div`
@@ -80,6 +82,13 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
   const [showMenu, setShowMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
+  const overlayTransition = useTransition(showMenu, {
+    from: {opacity: 0},
+    enter: {opacity: 1},
+    leave: {opacity: 0},
+    config: {duration: 100},
+  });
+
   // OnClick handler for tabs to set active tab
   const toggleActiveTab = (id: string) => setActiveTab(id);
 
@@ -96,7 +105,33 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
         </NavContainer>
       </PrimeContainer>
 
-      {showMenu && (
+      {overlayTransition(
+        (style, item) =>
+          item && (
+            <OverlayContainer style={style}>
+              <OverlayNavContainer>
+                {navItems.map(
+                  ({name, link, active, id}) =>
+                    active && (
+                      <NavLink
+                        key={id}
+                        to={link}
+                        onClick={() => toggleActiveTab(id)}
+                      >
+                        <NavItem isActive={activeTab === id}>{name}</NavItem>
+                      </NavLink>
+                    ),
+                )}
+
+                <OverlayControlsContainer>
+                  <ThemeToggle />
+                </OverlayControlsContainer>
+              </OverlayNavContainer>
+            </OverlayContainer>
+          ),
+      )}
+
+      {/* {showMenu && (
         <OverlayContainer>
           <OverlayNavContainer>
             {navItems.map(
@@ -117,7 +152,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
             </OverlayControlsContainer>
           </OverlayNavContainer>
         </OverlayContainer>
-      )}
+      )} */}
     </>
   );
 };
