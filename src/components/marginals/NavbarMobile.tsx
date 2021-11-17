@@ -6,7 +6,7 @@ import {Link} from 'gatsby';
 
 // Components
 import Container from '../shared/layout/Container';
-import {H3, H2} from '..';
+import {H3, H2, HamburgerMenu, ThemeToggle} from '..';
 
 // Assets
 import {Z_INDICES} from '../../theming';
@@ -25,7 +25,22 @@ const OverlayContainer = styled.div`
   z-index: ${Z_INDICES.titlebar};
 `;
 
-const OverlayNavContainer = styled.nav``;
+const OverlayNavContainer = styled.nav`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1.5rem;
+`;
+
+const OverlayControlsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+`;
 
 const PrimeContainer = styled.div`
   width: 100%;
@@ -42,6 +57,7 @@ const NavContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 `;
 
 const NavItem = styled(H2)<{isActive: boolean}>`
@@ -72,27 +88,36 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
       <PrimeContainer>
         <NavContainer>
           <H3>Ritesh Patil</H3>
-        </NavContainer>
 
-        {showMenu && (
-          <OverlayContainer>
-            <OverlayNavContainer>
-              {navItems.map(
-                ({name, link, active, id}) =>
-                  active && (
-                    <NavLink
-                      key={id}
-                      to={link}
-                      onClick={() => toggleActiveTab(id)}
-                    >
-                      <NavItem isActive={activeTab === id}>{name}</NavItem>
-                    </NavLink>
-                  ),
-              )}
-            </OverlayNavContainer>
-          </OverlayContainer>
-        )}
+          <HamburgerMenu
+            onClick={() => setShowMenuOpen(c => !c)}
+            open={showMenu}
+          />
+        </NavContainer>
       </PrimeContainer>
+
+      {showMenu && (
+        <OverlayContainer>
+          <OverlayNavContainer>
+            {navItems.map(
+              ({name, link, active, id}) =>
+                active && (
+                  <NavLink
+                    key={id}
+                    to={link}
+                    onClick={() => toggleActiveTab(id)}
+                  >
+                    <NavItem isActive={activeTab === id}>{name}</NavItem>
+                  </NavLink>
+                ),
+            )}
+
+            <OverlayControlsContainer>
+              <ThemeToggle />
+            </OverlayControlsContainer>
+          </OverlayNavContainer>
+        </OverlayContainer>
+      )}
     </>
   );
 };

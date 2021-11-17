@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import {DesktopNavbar, H1} from '..';
+import {DesktopNavbar, MobileNavbar} from '..';
 
 // Hooks
 import {useMediaQuery} from '../../hooks';
@@ -9,7 +9,7 @@ import {useMediaQuery} from '../../hooks';
 const navItems = [
   {
     name: 'About',
-    link: '/href',
+    link: '/about',
     active: true,
     id: 'nav-item-1',
   },
@@ -50,7 +50,7 @@ const Navbar = () => {
   const isMobileView = useMediaQuery('(max-width: 700px)');
 
   return isMobileView ? (
-    <H1>Mobile View</H1>
+    <MobileNavbar navItems={navItems} />
   ) : (
     <DesktopNavbar navItems={navItems} />
   );

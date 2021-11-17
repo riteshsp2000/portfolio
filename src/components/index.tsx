@@ -13,7 +13,9 @@ export {default as FancyText} from './shared/typography/FancyText';
 
 // Marginals
 export {default as ThemeToggle} from './marginals/ThemeToggle';
+export {default as HamburgerMenu} from './marginals/HamburgerMenu';
 export {default as DesktopNavbar} from './marginals/NavbarDesktop';
+export {default as MobileNavbar} from './marginals/NavbarMobile';
 export {default as Navbar} from './marginals/Navbar';
 
 // Layout
