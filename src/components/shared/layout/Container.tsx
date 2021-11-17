@@ -14,7 +14,6 @@ export default styled.div`
 
   @media ${BREAKPOINTS.md} {
     width: 90%;
-    background: blue;
   }
 
   @media ${BREAKPOINTS.sm} {

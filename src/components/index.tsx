@@ -13,6 +13,7 @@ export {default as FancyText} from './shared/typography/FancyText';
 
 // Marginals
 export {default as ThemeToggle} from './marginals/ThemeToggle';
+export {default as DesktopNavbar} from './marginals/DesktopNavbar';
 
 // Layout
 export {default as Container} from './shared/layout/Container';

@@ -9,10 +9,12 @@ export default styled.div`
 
   margin: 0;
   padding: 0;
+  padding-top: 80px;
 
   overflow-x: hidden;
   overflow-y: auto;
 
+  transition: var(--transition);
   background: var(--color-background-primary);
   color: var(--color-text-primary);
 `;
