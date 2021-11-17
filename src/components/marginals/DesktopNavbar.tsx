@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import {Link} from 'gatsby';
 
 // Components
-import {ThemeToggle, P2, H3, Container} from '..';
+import {ThemeToggle, P2, H3} from '..';
+import Container from '../shared/layout/Container';
 
-// Assets
+// Assets and Types
 import {Z_INDICES} from '../../theming';
+import {LinkObject} from './Navbar';
 
 const NavContainer = styled.nav`
   width: 100%;
@@ -51,53 +53,12 @@ const NavLink = styled(Link)`
   text-decoration: none;
 `;
 
-const navItemsDefault = [
-  {
-    name: 'About',
-    link: '/href',
-    active: true,
-    id: 'nav-item-1',
-  },
-  {
-    name: 'Projects',
-    link: '/projects',
-    active: true,
-    id: 'nav-item-2',
-  },
-  {
-    name: 'Blog',
-    link: '/blog',
-    active: true,
-    id: 'nav-item-3',
-  },
-  {
-    name: 'Photos',
-    link: '/photos',
-    active: true,
-    id: 'nav-item-4',
-  },
-  {
-    name: 'Contact',
-    link: '/contact',
-    active: true,
-    id: 'nav-item-5',
-  },
-];
-
-export type LinkObject = {
-  name: string;
-  link: string;
-  active: boolean;
-  id: string;
-};
-
 export interface DesktopNavbarProps {
-  navItems?: LinkObject[];
+  navItems: LinkObject[];
 }
 
-const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
-  navItems = navItemsDefault,
-}) => {
+const DesktopNavbar: React.FC<DesktopNavbarProps> = ({navItems}) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
