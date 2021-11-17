@@ -99,7 +99,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({navItems}) => {
           {navItems.map(
             ({name, link, active, id}: LinkObject) =>
               active && (
-                <NavLink id={id} to={link} onClick={() => toggleActiveTab(id)}>
+                <NavLink key={id} to={link} onClick={() => toggleActiveTab(id)}>
                   <NavItem isActive={activeTab === id}>{name}</NavItem>
                 </NavLink>
               ),

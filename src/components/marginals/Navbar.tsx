@@ -55,4 +55,5 @@ const Navbar = () => {
     <DesktopNavbar navItems={navItems} />
   );
 };
+
 export default Navbar;

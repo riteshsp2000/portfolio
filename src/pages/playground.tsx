@@ -11,12 +11,12 @@ import {
   P3,
   FancyText,
   Container,
-  DesktopNavbar,
+  Navbar,
 } from '../components';
 
 const Playground: React.FC = () => (
   <>
-    <DesktopNavbar />
+    <Navbar />
 
     <Container>
       <H1>Heading 1</H1>
