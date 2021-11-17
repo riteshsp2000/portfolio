@@ -16,6 +16,7 @@ import {LinkObject} from './Navbar';
 const OverlayContainer = styled(animated.div)`
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 
   position: absolute;
   top: 0px;
@@ -81,6 +82,7 @@ export interface NavbarMobileProps {
 const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
   const [showMenu, setShowMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [showTabs, setShowTabs] = useState<[] | LinkObject[]>([]);
 
   const overlayTransition = useTransition(showMenu, {
     from: {opacity: 0},
@@ -89,8 +91,19 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
     config: {duration: 100},
   });
 
+  const tabsTransition = useTransition(showTabs, {
+    from: {marginRight: '-100%'},
+    enter: item => next => next({marginRight: '0%', delay: item.delay}),
+    leave: item => next => next({marginRight: '-100%', delay: item.delay}),
+  });
+
   // OnClick handler for tabs to set active tab
   const toggleActiveTab = (id: string) => setActiveTab(id);
+
+  const hamMenuClick = () => {
+    setShowMenuOpen(c => !c);
+    setShowTabs(c => (c.length ? [] : navItems));
+  };
 
   return (
     <>
@@ -98,10 +111,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
         <NavContainer>
           <H3>Ritesh Patil</H3>
 
-          <HamburgerMenu
-            onClick={() => setShowMenuOpen(c => !c)}
-            open={showMenu}
-          />
+          <HamburgerMenu onClick={hamMenuClick} open={showMenu} />
         </NavContainer>
       </PrimeContainer>
 
@@ -110,19 +120,21 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
           item && (
             <OverlayContainer style={style}>
               <OverlayNavContainer>
-                {navItems.map(
-                  ({name, link, active, id}) =>
-                    active && (
-                      <NavLink
-                        key={id}
-                        to={link}
-                        onClick={() => toggleActiveTab(id)}
-                      >
-                        <NavItem isActive={activeTab === id}>{name}</NavItem>
-                      </NavLink>
+                {tabsTransition(
+                  (tabStyle, tabItem) =>
+                    tabItem && (
+                      <animated.div key={tabItem.id} style={tabStyle}>
+                        <NavLink
+                          to={tabItem.link}
+                          onClick={() => toggleActiveTab(tabItem.id)}
+                        >
+                          <NavItem isActive={activeTab === tabItem.id}>
+                            {tabItem.name}
+                          </NavItem>
+                        </NavLink>
+                      </animated.div>
                     ),
                 )}
-
                 <OverlayControlsContainer>
                   <ThemeToggle />
                 </OverlayControlsContainer>
