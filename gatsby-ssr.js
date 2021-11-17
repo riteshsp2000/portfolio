@@ -84,6 +84,6 @@ export const onRenderBody = (
 
 export const wrapPageElement = ({element}) => (
   <App>
-    <PageContainer>{element}</PageContainer>
+    <PageContainer className="page-container">{element}</PageContainer>
   </App>
 );

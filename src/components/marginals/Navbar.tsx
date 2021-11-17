@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Components
 import {DesktopNavbar, MobileNavbar} from '..';
@@ -37,7 +37,7 @@ const navItems = [
   },
   {
     name: 'Contact',
-    link: '/contact',
+    link: '/playground',
     active: true,
     id: 'nav-item-5',
     delay: 400,
@@ -54,11 +54,48 @@ export type LinkObject = {
 
 const Navbar = () => {
   const isMobileView = useMediaQuery('(max-width: 700px)');
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
+
+  // Function to Identify scrollOffset for the Navbar
+  const toggleVisibility = () => {
+    if (typeof window !== 'undefined') {
+      const scrollHeight = 40;
+
+      if (window.pageYOffset > scrollHeight) {
+        setIsBackgroundVisible(true);
+      } else {
+        setIsBackgroundVisible(false);
+      }
+    }
+  };
+
+  // OnClick handler for tabs to set active tab
+  const toggleActiveTab = (id: string) => setActiveTab(id);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', toggleVisibility);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', toggleVisibility);
+      }
+    };
+  }, []);
+
+  const COMMON_PROPS = {
+    navItems,
+    isBackgroundVisible,
+    activeTab,
+    toggleActiveTab,
+  };
 
   return isMobileView ? (
-    <MobileNavbar navItems={navItems} />
+    <MobileNavbar {...COMMON_PROPS} />
   ) : (
-    <DesktopNavbar navItems={navItems} />
+    <DesktopNavbar {...COMMON_PROPS} />
   );
 };
 

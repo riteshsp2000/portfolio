@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
@@ -22,18 +22,18 @@ const NavContainer = styled.nav`
   bottom: 0;
   z-index: ${Z_INDICES.sidebar};
 
-  display: flex;
-  align-items: center;
-
   @media (max-width: 700px) {
     display: none;
   }
 `;
 
-const InnerContainer = styled(Container)`
+const InnerContainer = styled(Container)<{showBg: boolean}>`
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: ${({showBg}) =>
+    showBg ? 'var(--color-background-primary)' : 'transparent'};
 `;
 
 const NavItemsContainer = styled.div`
@@ -55,44 +55,20 @@ const NavLink = styled(Link)`
 
 export interface DesktopNavbarProps {
   navItems: LinkObject[];
+  isBackgroundVisible: boolean;
+  activeTab: null | string;
+  toggleActiveTab: (id: string) => void;
 }
 
-const DesktopNavbar: React.FC<DesktopNavbarProps> = ({navItems}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState<string | null>(null);
-
-  // Function to Identify scrollOffset for the Navbar
-  const toggleVisibility = () => {
-    if (typeof window !== 'undefined') {
-      const scrollHeight = window.innerWidth > 800 ? 400 : 200;
-
-      if (window.pageYOffset > scrollHeight) {
-        setIsBackgroundVisible(true);
-      } else {
-        setIsBackgroundVisible(false);
-      }
-    }
-  };
-
-  // OnClick handler for tabs to set active tab
-  const toggleActiveTab = (id: string) => setActiveTab(id);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', toggleVisibility);
-    }
-
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', toggleVisibility);
-      }
-    };
-  }, []);
-
+const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
+  navItems,
+  activeTab,
+  toggleActiveTab,
+  isBackgroundVisible,
+}) => {
   return (
     <NavContainer>
-      <InnerContainer>
+      <InnerContainer showBg={isBackgroundVisible}>
         <H3>Ritesh Patil</H3>
 
         <NavItemsContainer>

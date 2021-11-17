@@ -5,6 +5,6 @@ import {App, PageContainer} from './src/components';
 
 export const wrapPageElement = ({element}) => (
   <App>
-    <PageContainer>{element}</PageContainer>
+    <PageContainer className="page-container">{element}</PageContainer>
   </App>
 );

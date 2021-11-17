@@ -83,6 +83,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1;
     background: var(--color-background);
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   ol, ul {
     list-style: none;
@@ -101,6 +102,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    overflow-x: hidden;
+    background: var(--color-background-primary);
+
     --font-weight-bold: 500;
     --font-weight-regular: 400;
     --font-weight-light: 300;
