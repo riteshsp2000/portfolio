@@ -15,11 +15,11 @@ export const COLORS = {
     dark: '#0C62A8',
   },
   'background-primary': {
-    light: '',
+    light: '#F7F7F7',
     dark: '#0A0A0A',
   },
   'background-secondary': {
-    light: '',
+    light: '#F0F0F0',
     dark: '#181818',
   },
   'text-primary': {
@@ -31,7 +31,7 @@ export const COLORS = {
     dark: '#FDA265',
   },
   'text-tertiary': {
-    light: '',
+    light: '#333333',
     dark: '#7E8C9A',
   },
 };
