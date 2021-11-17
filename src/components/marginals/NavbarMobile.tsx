@@ -18,7 +18,7 @@ const OverlayContainer = styled(animated.div)`
   height: 100vh;
   overflow: hidden;
 
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
 
@@ -50,17 +50,19 @@ const PrimeContainer = styled.div`
   max-width: 100vw;
   height: 80px;
 
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   z-index: ${Z_INDICES.titlebar + 1};
 `;
 
-const NavContainer = styled(Container)`
+const NavContainer = styled(Container)<{showBg: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  background: ${({showBg}) =>
+    showBg ? 'var(--color-background-primary)' : 'transparent'};
 `;
 
 const NavItem = styled(H2)<{isActive: boolean}>`
@@ -77,11 +79,18 @@ const NavLink = styled(Link)`
 
 export interface NavbarMobileProps {
   navItems: LinkObject[];
+  isBackgroundVisible: boolean;
+  activeTab: null | string;
+  toggleActiveTab: (id: string) => void;
 }
 
-const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
+const NavbarMobile: React.FC<NavbarMobileProps> = ({
+  navItems,
+  activeTab,
+  toggleActiveTab,
+  isBackgroundVisible,
+}) => {
   const [showMenu, setShowMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<string | null>(null);
   const [showTabs, setShowTabs] = useState<[] | LinkObject[]>([]);
 
   const overlayTransition = useTransition(showMenu, {
@@ -94,13 +103,16 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
   const tabsTransition = useTransition(showTabs, {
     from: {marginRight: '-100%'},
     enter: item => next => next({marginRight: '0%', delay: item.delay}),
-    leave: item => next => next({marginRight: '-100%', delay: item.delay}),
+    leave: {marginRight: '-100%'},
   });
 
-  // OnClick handler for tabs to set active tab
-  const toggleActiveTab = (id: string) => setActiveTab(id);
-
   const hamMenuClick = () => {
+    if (!showMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
     setShowMenuOpen(c => !c);
     setShowTabs(c => (c.length ? [] : navItems));
   };
@@ -108,7 +120,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
   return (
     <>
       <PrimeContainer>
-        <NavContainer>
+        <NavContainer showBg={isBackgroundVisible}>
           <H3>Ritesh Patil</H3>
 
           <HamburgerMenu onClick={hamMenuClick} open={showMenu} />
@@ -142,29 +154,6 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({navItems}) => {
             </OverlayContainer>
           ),
       )}
-
-      {/* {showMenu && (
-        <OverlayContainer>
-          <OverlayNavContainer>
-            {navItems.map(
-              ({name, link, active, id}) =>
-                active && (
-                  <NavLink
-                    key={id}
-                    to={link}
-                    onClick={() => toggleActiveTab(id)}
-                  >
-                    <NavItem isActive={activeTab === id}>{name}</NavItem>
-                  </NavLink>
-                ),
-            )}
-
-            <OverlayControlsContainer>
-              <ThemeToggle />
-            </OverlayControlsContainer>
-          </OverlayNavContainer>
-        </OverlayContainer>
-      )} */}
     </>
   );
 };
