@@ -28,8 +28,6 @@ const Playground: React.FC = () => (
       <P3>Paragraph 3</P3>
 
       <FancyText>Fancy Text</FancyText>
-
-      <div style={{background: 'green', height: '100vh'}} />
     </Container>
   </>
 );
