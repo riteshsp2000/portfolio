@@ -17,6 +17,7 @@ export {default as HamburgerMenu} from './marginals/HamburgerMenu';
 export {default as DesktopNavbar} from './marginals/NavbarDesktop';
 export {default as MobileNavbar} from './marginals/NavbarMobile';
 export {default as Navbar} from './marginals/Navbar';
+export {default as Footer} from './marginals/Footer';
 
 // Layout
 export {default as Container} from './shared/layout/Container';

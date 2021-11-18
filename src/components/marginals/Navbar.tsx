@@ -6,7 +6,7 @@ import {DesktopNavbar, MobileNavbar} from '..';
 // Hooks
 import {useMediaQuery} from '../../hooks';
 
-const navItems = [
+export const navItems = [
   {
     name: 'About',
     link: '/about',
