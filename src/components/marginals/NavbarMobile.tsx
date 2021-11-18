@@ -90,9 +90,19 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
   toggleActiveTab,
   isBackgroundVisible,
 }) => {
+  /**
+   * - showMenu is used for the overlay display and
+   * by extension the navItems display
+   * - showTabs is required for react-spring animation
+   * it internally adds objects of navItems as per the animation
+   */
   const [showMenu, setShowMenuOpen] = useState(false);
   const [showTabs, setShowTabs] = useState<[] | LinkObject[]>([]);
 
+  /**
+   * react Spring transition function for navbar overlay
+   * nav items shown when hamburger menu clicked
+   */
   const overlayTransition = useTransition(showMenu, {
     from: {opacity: 0},
     enter: {opacity: 1},
@@ -100,6 +110,11 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
     config: {duration: 100},
   });
 
+  /**
+   * navItems entry transition function.
+   * entry for each item going down is delayed by 100ms
+   * delay for each item is different hence is obtained from the array
+   */
   const tabsTransition = useTransition(showTabs, {
     from: {marginRight: '-100%'},
     enter: item => next => next({marginRight: '0%', delay: item.delay}),
@@ -107,10 +122,12 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
   });
 
   const hamMenuClick = () => {
-    if (!showMenu) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    if (typeof window !== 'undefined') {
+      if (!showMenu) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
     }
 
     setShowMenuOpen(c => !c);
