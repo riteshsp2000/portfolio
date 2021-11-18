@@ -12,6 +12,7 @@ import {
   FancyText,
   Container,
   Navbar,
+  Footer,
 } from '../components';
 
 const Playground: React.FC = () => (
@@ -29,6 +30,8 @@ const Playground: React.FC = () => (
 
       <FancyText>Fancy Text</FancyText>
     </Container>
+
+    <Footer />
   </>
 );
 
