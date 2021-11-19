@@ -1,3 +1,4 @@
+const path = require('path');
 const redirects = require('./redirects.json');
 
 exports.createPages = async ({actions}) => {
@@ -11,26 +12,19 @@ exports.createPages = async ({actions}) => {
   );
 };
 
-// exports.createPages = async function ({actions, graphql}) {
-//   const {data} = await graphql`
-//     query {
-//       allMdx(sort: {fields: frontmatter__date, order: DESC}) {
-//         edges {
-//           node {
-//             frontmatter {
-//               slug
-//             }
-//             id
-//           }
-//         }
-//       }
-//     }
-//   `;
-
-//   // Created paginated pages for posts
-//   const postPerPage = 3;
-//   const numPages = Math.ceil(data.allMdx.edges.length / postPerPage);
-//   Array.from({length: numPages}).forEach((_, i) => {
-//     actions.createPage;
-//   });
-// };
+exports.onCreateWebpackConfig = ({stage, loaders, actions}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@fonts': path.resolve(__dirname, 'src/fonts'),
+        '@hooks': path.resolve(__dirname, 'src/hooks'),
+        '@images': path.resolve(__dirname, 'src/images'),
+        '@pages': path.resolve(__dirname, 'src/pages'),
+        '@theme': path.resolve(__dirname, 'src/theming'),
+        // '@utils': path.resolve(__dirname, 'src/utils'),
+        // '@config': path.resolve(__dirname, 'src/config'),
+      },
+    },
+  });
+};

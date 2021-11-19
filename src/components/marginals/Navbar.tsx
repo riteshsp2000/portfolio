@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 // Components
-import {DesktopNavbar, MobileNavbar} from '..';
+import {DesktopNavbar, MobileNavbar} from '@components';
 
 // Hooks
 import {useMediaQuery} from '../../hooks';
