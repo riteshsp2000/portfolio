@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Libraries
-import {Helmet, PageContainer} from 'react-helmet';
+import {Helmet} from 'react-helmet';
 
 // Components
-import {App} from './src/components';
+import {App, Layout} from './src/components';
 
 import {
   COLOR_MODE_KEY,
@@ -84,6 +84,6 @@ export const onRenderBody = (
 
 export const wrapPageElement = ({element}) => (
   <App>
-    <PageContainer className="page-container">{element}</PageContainer>
+    <Layout>{element}</Layout>
   </App>
 );
