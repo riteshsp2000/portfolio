@@ -6,7 +6,7 @@ import {Link} from 'gatsby';
 import {useTransition, animated} from 'react-spring';
 
 // Components
-import Container from '../shared/layout/Container';
+import Container from '../layout/Container';
 import {H3, H2, HamburgerMenu, ThemeToggle} from '..';
 
 // Assets
