@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, {
   useState,
   useEffect,
@@ -8,9 +7,9 @@ import React, {
 } from 'react';
 
 // Utils
-import {getInitialColorMode} from './utils';
+import {getInitialColorMode} from '@theme';
 
-import {COLOR_MODE_KEY, COLORS, INITIAL_COLOR_MODE_CSS_PROP} from './constants';
+import {COLOR_MODE_KEY, COLORS, INITIAL_COLOR_MODE_CSS_PROP} from '@theme';
 
 // ==================== Context Types ==================== //
 export enum Theme {

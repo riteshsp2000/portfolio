@@ -13,7 +13,7 @@ import {
 
 // Components
 import Container from '../layout/Container';
-import {H3, P2, P1} from '..';
+import {H3, P2, P1} from '@components';
 
 // Assets
 import {navItems} from './Navbar';

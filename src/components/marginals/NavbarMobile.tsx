@@ -7,10 +7,10 @@ import {useTransition, animated} from 'react-spring';
 
 // Components
 import Container from '../layout/Container';
-import {H3, H2, HamburgerMenu, ThemeToggle} from '..';
+import {H3, H2, HamburgerMenu, ThemeToggle} from '@components';
 
 // Assets
-import {Z_INDICES} from '../../theming';
+import {Z_INDICES} from '@theme';
 import {LinkObject} from './Navbar';
 
 const OverlayContainer = styled(animated.div)`

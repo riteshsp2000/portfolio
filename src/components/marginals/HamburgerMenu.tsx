@@ -4,7 +4,7 @@ import React, {MouseEventHandler} from 'react';
 import styled from 'styled-components';
 
 // Constants
-import {BREAKPOINTS} from '../../theming';
+import {BREAKPOINTS} from '@theme';
 
 const MenuContainer = styled.div`
   width: 25px;

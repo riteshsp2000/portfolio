@@ -1,20 +1,7 @@
 import React from 'react';
 
 // Components
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  P1,
-  P2,
-  P3,
-  FancyText,
-  Container,
-  Navbar,
-  Footer,
-  Layout,
-} from '../components';
+import {H1, H2, H3, H4, P1, P2, P3, FancyText} from '@components';
 
 const Playground: React.FC = () => (
   <>

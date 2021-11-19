@@ -9,10 +9,20 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noUnusedLocals": false,
-    "allowJs": true
+    "allowJs": true,
+    "moduleResolution": "Node",
+    "baseUrl": "src",
+    "paths": {
+      "@components": ["components"],
+      "@fonts": ["fonts"],
+      "@hooks": ["hooks"],
+      "@images": ["images"],
+      "@pages": ["pages"],
+      "@theme": ["theming"]
+    }
   },
   "include": [
-    "src",
+    "./src/**/*",
     "src/types/**/*.d.ts",
     "gatsby-browser.js",
     "gatsby-config.js",

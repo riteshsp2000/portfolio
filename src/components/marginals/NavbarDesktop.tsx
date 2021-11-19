@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import {Link} from 'gatsby';
 
 // Components
-import {ThemeToggle, P2, H3} from '..';
+import {ThemeToggle, P2, H3} from '@components';
 import Container from '../layout/Container';
 
 // Assets and Types
-import {Z_INDICES} from '../../theming';
+import {Z_INDICES} from '@theme';
 import {LinkObject} from './Navbar';
 
 const NavContainer = styled.nav`
