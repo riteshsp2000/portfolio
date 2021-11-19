@@ -6,7 +6,7 @@ import {Link} from 'gatsby';
 
 // Components
 import {ThemeToggle, P2, H3} from '..';
-import Container from '../shared/layout/Container';
+import Container from '../layout/Container';
 
 // Assets and Types
 import {Z_INDICES} from '../../theming';

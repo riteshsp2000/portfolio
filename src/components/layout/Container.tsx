@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Utils
-import {BREAKPOINTS} from '../../../theming';
+import {BREAKPOINTS} from '../../theming';
 
 export default styled.div`
   width: 100%;
