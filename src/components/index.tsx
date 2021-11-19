@@ -22,3 +22,4 @@ export {default as Footer} from './marginals/Footer';
 // Layout
 export {default as Container} from './shared/layout/Container';
 export {default as PageContainer} from './shared/layout/PageContainer';
+export {default as Layout} from './shared/layout/Layout';

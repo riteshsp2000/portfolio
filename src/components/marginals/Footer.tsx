@@ -86,10 +86,7 @@ const SocialsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  @media (max-width: 700px) {
-    margin-top: 2rem;
-  }
+  margin-top: 2rem;
 `;
 
 const NewLink = styled(Link)`
@@ -142,7 +139,7 @@ const Footer = () => (
         </NewA>
 
         <NewP2 style={{marginTop: '2rem'}}>
-          Developed with 💙 and a firey 🔥 macbook💻 by Ritesh Patil
+          Developed with 💙 and a firey 🔥 macbook 💻 by Ritesh Patil
         </NewP2>
       </Row1Container>
 
