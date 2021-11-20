@@ -1,7 +1,18 @@
 import React from 'react';
 
 // Components
-import {H1, H2, H3, H4, P1, P2, P3, FancyText, SectionTitle} from '@components';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  P1,
+  P2,
+  P3,
+  FancyText,
+  SectionTitle,
+  WorkExperience,
+} from '@components';
 
 const Playground: React.FC = () => (
   <>
@@ -15,6 +26,8 @@ const Playground: React.FC = () => (
     <P3>Paragraph 3</P3>
 
     <FancyText>Fancy Text</FancyText>
+
+    <WorkExperience />
   </>
 );
 

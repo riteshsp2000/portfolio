@@ -120,6 +120,10 @@ const GlobalStyles = createGlobalStyle`
     --max-width: 83.5em;
     --max-width-bleed: 90%;
     --max-width-narrow: 50em;
+
+    --nav-tab-max-width: 15em;
+    --nav-tab-height: 2.5rem;
+    --nav-stage-width: 500px;
   }
   [tabindex] {
    outline: none !important;
