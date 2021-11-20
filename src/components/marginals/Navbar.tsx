@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import {DesktopNavbar, MobileNavbar} from '@components';
 
 // Hooks
-import {useMediaQuery} from '../../hooks';
+import {useMediaQuery, useEventListener} from '@hooks';
 
 export const navItems = [
   {
@@ -57,6 +57,9 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
 
+  // OnClick handler for tabs to set active tab
+  const toggleActiveTab = (id: string) => setActiveTab(id);
+
   // Function to Identify scrollOffset for the Navbar
   const toggleVisibility = () => {
     if (typeof window !== 'undefined') {
@@ -70,20 +73,7 @@ const Navbar = () => {
     }
   };
 
-  // OnClick handler for tabs to set active tab
-  const toggleActiveTab = (id: string) => setActiveTab(id);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', toggleVisibility);
-    }
-
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', toggleVisibility);
-      }
-    };
-  }, []);
+  useEventListener('scroll', toggleVisibility);
 
   const COMMON_PROPS = {
     navItems,
