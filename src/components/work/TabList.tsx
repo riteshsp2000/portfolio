@@ -11,13 +11,31 @@ const NavContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   position: relative;
+  list-style: none;
+  width: max-content;
+
+  @media (min-width: 700px) {
+    max-width: var(--nav-tab-max-width);
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: calc(100%);
+    overflow-x: auto;
+    height: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const NavItem = styled(P1)<{isActive: boolean}>`
-  width: 100%;
-  max-width: var(--nav-tab-max-width);
+  width: var(--nav-tab-max-width);
 
   text-align: left;
   vertical-align: middle;
@@ -29,13 +47,23 @@ const NavItem = styled(P1)<{isActive: boolean}>`
     isActive
       ? 'var(--color-background-secondary)'
       : 'var(--color-background-primary)'};
-  border-left: 2px solid var(--color-background-secondary);
   padding-left: 2rem;
   padding-right: 2rem;
 
   &:hover {
     cursor: pointer;
     background: var(--color-background-secondary);
+  }
+
+  @media (min-width: 700px) {
+    border-left: 2px solid var(--color-background-secondary);
+  }
+
+  @media (max-width: 700px) {
+    border-bottom: 2px solid var(--color-background-secondary);
+    min-width: 200px;
+    text-align: center;
+    line-height: 3rem;
   }
 `;
 
@@ -55,6 +83,16 @@ const Highlight = styled.div<{activeTabId: number}>`
   );
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
+
+  @media (max-width: 700px) {
+    height: 3px;
+    width: var(--nav-tab-max-width);
+    transform: translateX(
+      calc(${({activeTabId}) => activeTabId} * var(--nav-tab-max-width))
+    );
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 interface VerticalNavbarProps {
