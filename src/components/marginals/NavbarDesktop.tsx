@@ -34,6 +34,7 @@ const InnerContainer = styled(Container)<{showBg: boolean}>`
   justify-content: space-between;
   background: ${({showBg}) =>
     showBg ? 'var(--color-background-primary)' : 'transparent'};
+  transition: var(--transition);
 `;
 
 const NavItemsContainer = styled.div`

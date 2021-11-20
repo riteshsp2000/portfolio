@@ -7,11 +7,11 @@ import styled from 'styled-components';
 import {P1} from '@components';
 
 const NavContainer = styled.div`
-  /* width: var(--nav-max-width); */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
   position: relative;
 `;
 
@@ -22,10 +22,9 @@ const NavItem = styled(P1)<{isActive: boolean}>`
   text-align: left;
   vertical-align: middle;
   line-height: var(--nav-tab-height);
+
   color: ${({isActive}) =>
     isActive ? 'var(--color-text-primary)' : 'var(--color-text-tertiary)'};
-  font-weight: ${({isActive}) =>
-    isActive ? 'var(--font-weight-bold)' : 'var(--font-weight-normal)'};
   background: ${({isActive}) =>
     isActive
       ? 'var(--color-background-secondary)'
