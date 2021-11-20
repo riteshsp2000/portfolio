@@ -4,15 +4,15 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 // Components
-import VerticalNavbar from './VerticalNavbar';
+import VerticalNavbar from './TabList';
 import WorkStage from './WorkStage';
 
 const MainContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  margin-top: 5rem;
 
-  display: flex;
   @media (max-width: 600px) {
     display: block;
   }

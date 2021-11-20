@@ -6,12 +6,10 @@ const Link = styled.a`
   text-decoration: none;
   font-size: 1.2rem;
   color: var(--color-primary);
-  font-style: italic;
+  /* font-style: italic; */
 `;
 
-const RedirectLink: React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
-> = <Link target="_blank" rel="noreferrer" />;
+const RedirectLink: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> =
+  props => <Link {...props} target="_blank" rel="noreferrer" />;
 
 export default RedirectLink;
