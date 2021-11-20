@@ -8,7 +8,6 @@ import VerticalNavbar from './VerticalNavbar';
 import WorkStage from './WorkStage';
 
 const MainContainer = styled.div`
-  /* max-width: 700px; */
   display: flex;
   align-items: flex-start;
   justify-content: center;

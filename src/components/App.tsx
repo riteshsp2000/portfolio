@@ -5,12 +5,15 @@ import {LocationProvider} from '@reach/router';
 import {Helmet} from 'react-helmet';
 
 // Fonts
-import WotfardRegular from '../fonts/wotfard-regular-webfont.woff2';
-import WotfardLight from '../fonts/wotfard-light-webfont.woff2';
-import WotfardBold from '../fonts/wotfard-medium-webfont.woff2';
+import WotfardRegular from '@fonts/wotfard-regular-webfont.woff2';
+import WotfardLight from '@fonts/wotfard-light-webfont.woff2';
+import WotfardBold from '@fonts/wotfard-medium-webfont.woff2';
 
 // Components/Configuration
-import {ThemeProvider, GlobalStyles} from '../theming';
+import {ThemeProvider} from '@theme';
+
+// Assets
+import '@theme/globalStyles.css';
 
 const App: React.FC = ({children}) => (
   <LocationProvider>
@@ -38,10 +41,7 @@ const App: React.FC = ({children}) => (
       />
     </Helmet>
 
-    <ThemeProvider>
-      <GlobalStyles />
-      {children}
-    </ThemeProvider>
+    <ThemeProvider>{children}</ThemeProvider>
   </LocationProvider>
 );
 
