@@ -27,3 +27,4 @@ export {default as Layout} from './layout/Layout';
 // Atoms
 export {default as InAppLink} from './links/InAppLink';
 export {default as RedirectLink} from './links/RedirectLink';
+export {default as SectionTitle} from './atoms/SectionTitle';
