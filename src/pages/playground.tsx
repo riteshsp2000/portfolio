@@ -27,6 +27,7 @@ const Playground: React.FC = () => (
 
     <FancyText>Fancy Text</FancyText>
 
+    <SectionTitle title="Work" highlight="Experience" />
     <WorkExperience />
   </>
 );
