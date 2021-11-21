@@ -21,13 +21,6 @@ const Stage = styled.div`
   }
 `;
 
-const Ul = styled.ul`
-  list-style: circle;
-  list-style-type: circle;
-  margin-top: 1rem;
-  padding-left: 1rem;
-`;
-
 const WorkStage: React.FC<{job: JobDetailsQuery | null; activeTabId: number}> =
   ({job}) => {
     // @ts-ignore

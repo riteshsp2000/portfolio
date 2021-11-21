@@ -113,9 +113,7 @@ export default () => {
    */
   const focusTab = () => {
     if (tabs.current) {
-      console.log(tabs.current);
       if (tabs.current[tabFocus]) {
-        console.log('Focussing');
         // @ts-ignore
         tabs.current[tabFocus].focus();
         return;
