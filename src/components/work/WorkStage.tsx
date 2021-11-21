@@ -2,7 +2,6 @@ import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
-import {MDXProvider} from '@mdx-js/react';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 // Components
@@ -45,14 +44,9 @@ const WorkStage: React.FC<{job: JobDetailsQuery | null; activeTabId: number}> =
         </H3>
         <P3 style={{fontSize: '14px', marginBottom: '1rem'}}>{range}</P3>
 
-        <MDXProvider
-          components={{
-            ul: Ul,
-            p: P3,
-          }}
-        >
+        <div style={{paddingLeft: '1rem'}}>
           <MDXRenderer>{body}</MDXRenderer>
-        </MDXProvider>
+        </div>
       </Stage>
     );
   };
