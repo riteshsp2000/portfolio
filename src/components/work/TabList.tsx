@@ -96,25 +96,36 @@ const Highlight = styled.div<{activeTabId: number}>`
 `;
 
 interface VerticalNavbarProps {
-  jobs: {
-    name: string;
-    tabId: number;
-    onClick: () => void;
-  }[];
+  jobs: any[];
   activeTabId: number;
+  onClick: (id: number) => void;
 }
 
-const VerticalNavbar: React.FC<VerticalNavbarProps> = ({jobs, activeTabId}) => (
+const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
+  jobs,
+  activeTabId,
+  onClick,
+}) => (
   <NavContainer>
-    {jobs.map(({name, tabId, onClick}) => (
-      <NavItem
-        key={`${tabId}-${name}`}
-        onClick={onClick}
-        isActive={tabId === activeTabId}
-      >
-        {name}
-      </NavItem>
-    ))}
+    {jobs.map(
+      (
+        {
+          node: {
+            frontmatter: {company},
+            id,
+          },
+        },
+        index,
+      ) => (
+        <NavItem
+          key={id}
+          onClick={() => onClick(index)}
+          isActive={index === activeTabId}
+        >
+          {company}
+        </NavItem>
+      ),
+    )}
 
     <Highlight activeTabId={activeTabId} />
   </NavContainer>

@@ -2,6 +2,8 @@ import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {MDXProvider} from '@mdx-js/react';
+import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 // Components
 import {H3, P3, RedirectLink} from '@components';
@@ -19,33 +21,41 @@ const Stage = styled.div`
   }
 `;
 
-const WorkStage = () => {
+const Ul = styled.ul`
+  list-style: circle;
+  list-style-type: circle;
+  margin-top: 1rem;
+  padding-left: 1rem;
+`;
+
+const Li: React.FC = ({children}) => (
+  <li>
+    <P3>{children}</P3>
+  </li>
+);
+
+const WorkStage: React.FC<{job: any}> = ({job}) => {
+  const {frontmatter, body} = job.node;
+  const {title, url, company, range} = frontmatter;
+
   return (
     <Stage>
       <H3>
-        UI Engineer{' '}
-        <RedirectLink href="https://bharatpe.com" style={{fontSize: 'inherit'}}>
-          @BharatPe
+        {title}&nbsp;
+        <RedirectLink href={url} style={{fontSize: 'inherit'}}>
+          @{company}
         </RedirectLink>
       </H3>
-      <P3 style={{fontSize: '14px'}}>November 2021 - Present</P3>
+      <P3 style={{fontSize: '14px', marginBottom: '1rem'}}>{range}</P3>
 
-      <ul
-        style={{
-          listStyleType: 'circle',
-          marginTop: '1rem',
-          paddingLeft: '1rem',
+      <MDXProvider
+        components={{
+          ul: Ul,
+          li: Li,
         }}
       >
-        {[1, 2, 3].map(number => (
-          <li key={number}>
-            <P3>
-              Developed and shipped highly interactive web applications for
-              Apple Music using Ember.js
-            </P3>
-          </li>
-        ))}
-      </ul>
+        <MDXRenderer>{body}</MDXRenderer>
+      </MDXProvider>
     </Stage>
   );
 };

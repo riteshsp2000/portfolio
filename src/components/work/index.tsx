@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {useStaticQuery, graphql} from 'gatsby';
 
 // Components
 import VerticalNavbar from './TabList';
@@ -24,35 +25,48 @@ const MainContainer = styled.div`
 
 export default () => {
   const [activeTabId, setActiveTabId] = useState(0);
+  const [activeTabData, setActiveTabData] = useState<any>(null);
 
-  const jobs = [
-    {
-      name: 'BharatPe',
-      tabId: 0,
-      onClick: () => setActiveTabId(0),
-    },
-    {
-      name: 'MLH Fellowship',
-      tabId: 1,
-      onClick: () => setActiveTabId(1),
-    },
-    {
-      name: 'Boutiques Inc',
-      tabId: 2,
-      onClick: () => setActiveTabId(2),
-    },
-    {
-      name: 'Humaps',
-      tabId: 3,
-      onClick: () => setActiveTabId(3),
-    },
-  ];
+  const {
+    jobs: {edges: jobs},
+  } = useStaticQuery(graphql`
+    query MyQuery {
+      jobs: allMdx(
+        sort: {fields: frontmatter___date, order: DESC}
+        filter: {fileAbsolutePath: {regex: "/content/jobs/"}}
+      ) {
+        edges {
+          node {
+            frontmatter {
+              date
+              title
+              company
+              location
+              range
+              url
+            }
+            id
+            body
+          }
+        }
+      }
+    }
+  `);
+
+  const onClick = (id: number) => {
+    setActiveTabId(id);
+    setActiveTabData(jobs[id]);
+  };
+
+  useEffect(() => {
+    setActiveTabData(jobs[0]);
+  }, []);
 
   return (
     <MainContainer>
-      <VerticalNavbar activeTabId={activeTabId} jobs={jobs} />
+      <VerticalNavbar activeTabId={activeTabId} jobs={jobs} onClick={onClick} />
 
-      <WorkStage />
+      <WorkStage job={activeTabData ? activeTabData : jobs[0]} />
     </MainContainer>
   );
 };
