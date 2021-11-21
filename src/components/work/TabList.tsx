@@ -3,9 +3,6 @@ import React, {KeyboardEvent, MutableRefObject} from 'react';
 // Libraries
 import styled from 'styled-components';
 
-// Components
-import {P1} from '@components';
-
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,7 +57,7 @@ const NavItem = styled.button<{isActive: boolean}>`
   box-shadow: none;
 
   &:hover,
-  &::focus {
+  &:focus {
     cursor: pointer;
     background: var(--color-background-secondary);
   }

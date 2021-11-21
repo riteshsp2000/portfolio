@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import {useStaticQuery, graphql} from 'gatsby';
 
 // Components
-import VerticalNavbar from './TabList';
-import WorkStage from './WorkStage';
+import JobsTabList from './TabList';
+import JobDescription from './WorkStage';
 
 // Types + Utils
-import {JobDetailsQuery} from '../../../gatsby-graphql';
 import {keyCodes as KEY_CODES} from '@utils';
 
 const MainContainer = styled.div`
@@ -18,7 +17,7 @@ const MainContainer = styled.div`
   justify-content: center;
   margin-top: 5rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     display: block;
   }
 
@@ -28,6 +27,12 @@ const MainContainer = styled.div`
 `;
 
 export default () => {
+  /**
+   * Fetch data via useStaticQuery during build time
+   * from /content/jobs directory. A list of .mdx files
+   * contains frontmatter details and a description of
+   * the job in the form of body.
+   */
   const {
     jobs: {edges: jobs},
   } = useStaticQuery(graphql`
@@ -54,24 +59,33 @@ export default () => {
     }
   `);
 
+  /**
+   * States and references to manage the active tab and
+   * tab switches.
+   * - activeTabId keeps a track of the current active tab
+   * - tabFocus keeps a track of current focused tab.
+   * - tabs keeps a reference to the job tabs.
+   */
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>(
     Array.from({length: jobs.length}),
   );
-  const [activeTabData, setActiveTabData] = useState<JobDetailsQuery | null>(
-    jobs[0],
-  );
 
+  /**
+   * Function to handle tab change when clicked on a tab
+   */
   const onClick = (id: number) => {
     setActiveTabId(id);
-    setActiveTabData(jobs[id]);
     setTabFocus(id);
   };
 
   // Focus on tabs when using up & down arrow keys
+  /**
+   * Handles specific key inputs when on the work experience section.
+   * Mainly looks for Up and Down arrow strikes
+   */
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    event.preventDefault();
     switch (event.key) {
       case KEY_CODES.ARROW_UP: {
         event.preventDefault();
@@ -91,13 +105,19 @@ export default () => {
     }
   };
 
-  // Function to handle focus states
+  /**
+   * Handler to focus the selected tab.
+   * Uses the tabs array to get the focussed element and then
+   * uses the .focus() method on the element
+   * The element here is a button
+   */
   const focusTab = () => {
     if (tabs.current) {
       console.log(tabs.current);
       if (tabs.current[tabFocus]) {
         console.log('Focussing');
-        tabs.current[tabFocus]?.focus();
+        // @ts-ignore
+        tabs.current[tabFocus].focus();
         return;
       }
 
@@ -114,13 +134,9 @@ export default () => {
     focusTab();
   }, [tabFocus]);
 
-  useEffect(() => {
-    setActiveTabData(jobs[0]);
-  }, []);
-
   return (
-    <MainContainer role="tablist" aria-label="Job tabs" onKeyDown={onKeyDown}>
-      <VerticalNavbar
+    <MainContainer>
+      <JobsTabList
         activeTabId={activeTabId}
         jobs={jobs}
         onClick={onClick}
@@ -128,10 +144,7 @@ export default () => {
         tabs={tabs}
       />
 
-      <WorkStage
-        job={activeTabData ? activeTabData : jobs[0]}
-        activeTabId={activeTabId}
-      />
+      <JobDescription job={jobs[activeTabId]} activeTabId={activeTabId} />
     </MainContainer>
   );
 };
