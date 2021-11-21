@@ -8,6 +8,9 @@ import {useStaticQuery, graphql} from 'gatsby';
 import VerticalNavbar from './TabList';
 import WorkStage from './WorkStage';
 
+// Types
+import {JobDetailsQuery} from '../../../gatsby-graphql';
+
 const MainContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -24,13 +27,10 @@ const MainContainer = styled.div`
 `;
 
 export default () => {
-  const [activeTabId, setActiveTabId] = useState(0);
-  const [activeTabData, setActiveTabData] = useState<any>(null);
-
   const {
     jobs: {edges: jobs},
   } = useStaticQuery(graphql`
-    query MyQuery {
+    query JobDetails {
       jobs: allMdx(
         sort: {fields: frontmatter___date, order: DESC}
         filter: {fileAbsolutePath: {regex: "/content/jobs/"}}
@@ -52,6 +52,11 @@ export default () => {
       }
     }
   `);
+
+  const [activeTabId, setActiveTabId] = useState(0);
+  const [activeTabData, setActiveTabData] = useState<JobDetailsQuery | null>(
+    jobs[0],
+  );
 
   const onClick = (id: number) => {
     setActiveTabId(id);
