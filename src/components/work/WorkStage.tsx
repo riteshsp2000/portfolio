@@ -7,6 +7,7 @@ import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 // Components
 import {H3, P3, RedirectLink} from '@components';
+import {JobDetailsQuery} from '../../../gatsby-graphql';
 
 const Stage = styled.div`
   width: var(--nav-stage-width);
@@ -28,36 +29,32 @@ const Ul = styled.ul`
   padding-left: 1rem;
 `;
 
-const Li: React.FC = ({children}) => (
-  <li>
-    <P3>{children}</P3>
-  </li>
-);
+const WorkStage: React.FC<{job: JobDetailsQuery | null; activeTabId: number}> =
+  ({job}) => {
+    // @ts-ignore
+    const {frontmatter, body} = job?.node;
+    const {title, url, company, range} = frontmatter;
 
-const WorkStage: React.FC<{job: any}> = ({job}) => {
-  const {frontmatter, body} = job.node;
-  const {title, url, company, range} = frontmatter;
+    return (
+      <Stage>
+        <H3>
+          {title}&nbsp;
+          <RedirectLink href={url} style={{fontSize: 'inherit'}}>
+            @{company}
+          </RedirectLink>
+        </H3>
+        <P3 style={{fontSize: '14px', marginBottom: '1rem'}}>{range}</P3>
 
-  return (
-    <Stage>
-      <H3>
-        {title}&nbsp;
-        <RedirectLink href={url} style={{fontSize: 'inherit'}}>
-          @{company}
-        </RedirectLink>
-      </H3>
-      <P3 style={{fontSize: '14px', marginBottom: '1rem'}}>{range}</P3>
-
-      <MDXProvider
-        components={{
-          ul: Ul,
-          li: Li,
-        }}
-      >
-        <MDXRenderer>{body}</MDXRenderer>
-      </MDXProvider>
-    </Stage>
-  );
-};
+        <MDXProvider
+          components={{
+            ul: Ul,
+            p: P3,
+          }}
+        >
+          <MDXRenderer>{body}</MDXRenderer>
+        </MDXProvider>
+      </Stage>
+    );
+  };
 
 export default WorkStage;
