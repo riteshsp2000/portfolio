@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {KeyboardEvent, MutableRefObject} from 'react';
 
 // Libraries
 import styled from 'styled-components';
@@ -34,12 +34,18 @@ const NavContainer = styled.div`
   }
 `;
 
-const NavItem = styled(P1)<{isActive: boolean}>`
+const NavItem = styled.button<{isActive: boolean}>`
   width: var(--nav-tab-max-width);
+
+  font-weight: var(--font-weight-regular);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-size: 1.125rem;
+  transition: var(--transition);
 
   text-align: left;
   vertical-align: middle;
-  line-height: var(--nav-tab-height);
+  height: var(--nav-tab-height);
 
   color: ${({isActive}) =>
     isActive ? 'var(--color-text-primary)' : 'var(--color-text-tertiary)'};
@@ -50,7 +56,11 @@ const NavItem = styled(P1)<{isActive: boolean}>`
   padding-left: 2rem;
   padding-right: 2rem;
 
-  &:hover {
+  border: none;
+  box-shadow: none;
+
+  &:hover,
+  &::focus {
     cursor: pointer;
     background: var(--color-background-secondary);
   }
@@ -99,14 +109,18 @@ interface VerticalNavbarProps {
   jobs: any[];
   activeTabId: number;
   onClick: (id: number) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
+  tabs: MutableRefObject<(HTMLButtonElement | null)[]>;
 }
 
 const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
   jobs,
   activeTabId,
   onClick,
+  onKeyDown,
+  tabs,
 }) => (
-  <NavContainer>
+  <NavContainer role="tablist" aria-label="Job tabs" onKeyDown={onKeyDown}>
     {jobs.map(
       (
         {
@@ -119,8 +133,14 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
       ) => (
         <NavItem
           key={id}
+          ref={element => (tabs.current[index] = element)}
           onClick={() => onClick(index)}
           isActive={index === activeTabId}
+          role="tab"
+          id={`jobs-list-${index}`}
+          tabIndex={activeTabId === index ? 0 : -1}
+          aria-selected={activeTabId === index ? true : false}
+          aria-controls={`jobs-list-${index}`}
         >
           {company}
         </NavItem>

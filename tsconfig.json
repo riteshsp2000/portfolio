@@ -18,7 +18,8 @@
       "@hooks": ["hooks"],
       "@images": ["images"],
       "@pages": ["pages"],
-      "@theme": ["theming"]
+      "@theme": ["theming"],
+      "@utils": ["utils"]
     }
   },
   "include": [
