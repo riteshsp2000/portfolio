@@ -12,6 +12,7 @@ import {
   FancyText,
   SectionTitle,
   WorkExperience,
+  Image,
 } from '@components';
 
 const Playground: React.FC = () => (
@@ -26,6 +27,11 @@ const Playground: React.FC = () => (
     <P3>Paragraph 3</P3>
 
     <FancyText>Fancy Text</FancyText>
+
+    <Image
+      src="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.png"
+      alt="Iphone image"
+    />
 
     <SectionTitle title="Work" highlight="Experience" />
     <WorkExperience />

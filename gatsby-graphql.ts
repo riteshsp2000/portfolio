@@ -617,18 +617,18 @@ export type ImageSharpResize = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  id?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['String']>;
+  company?: Maybe<Scalars['String']>;
+  location?: Maybe<Scalars['String']>;
+  range?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   featureImageCloudinary?: Maybe<Scalars['String']>;
   featureImage?: Maybe<File>;
   tech?: Maybe<Array<Maybe<Scalars['String']>>>;
   github?: Maybe<Scalars['String']>;
   live?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  company?: Maybe<Scalars['String']>;
-  location?: Maybe<Scalars['String']>;
-  range?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
 };
 
 export type MdxHeadingMdx = {
@@ -1131,18 +1131,18 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatterFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<IntQueryOperatorInput>;
   date?: InputMaybe<StringQueryOperatorInput>;
+  company?: InputMaybe<StringQueryOperatorInput>;
+  location?: InputMaybe<StringQueryOperatorInput>;
+  range?: InputMaybe<StringQueryOperatorInput>;
+  url?: InputMaybe<StringQueryOperatorInput>;
   featureImageCloudinary?: InputMaybe<StringQueryOperatorInput>;
   featureImage?: InputMaybe<FileFilterInput>;
   tech?: InputMaybe<StringQueryOperatorInput>;
   github?: InputMaybe<StringQueryOperatorInput>;
   live?: InputMaybe<StringQueryOperatorInput>;
   excerpt?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<IntQueryOperatorInput>;
-  company?: InputMaybe<StringQueryOperatorInput>;
-  location?: InputMaybe<StringQueryOperatorInput>;
-  range?: InputMaybe<StringQueryOperatorInput>;
-  url?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileFilterInput = {
@@ -1440,7 +1440,12 @@ export type FileFieldsEnum =
   | 'childrenMdx___rawBody'
   | 'childrenMdx___fileAbsolutePath'
   | 'childrenMdx___frontmatter___title'
+  | 'childrenMdx___frontmatter___id'
   | 'childrenMdx___frontmatter___date'
+  | 'childrenMdx___frontmatter___company'
+  | 'childrenMdx___frontmatter___location'
+  | 'childrenMdx___frontmatter___range'
+  | 'childrenMdx___frontmatter___url'
   | 'childrenMdx___frontmatter___featureImageCloudinary'
   | 'childrenMdx___frontmatter___featureImage___sourceInstanceName'
   | 'childrenMdx___frontmatter___featureImage___absolutePath'
@@ -1484,11 +1489,6 @@ export type FileFieldsEnum =
   | 'childrenMdx___frontmatter___github'
   | 'childrenMdx___frontmatter___live'
   | 'childrenMdx___frontmatter___excerpt'
-  | 'childrenMdx___frontmatter___id'
-  | 'childrenMdx___frontmatter___company'
-  | 'childrenMdx___frontmatter___location'
-  | 'childrenMdx___frontmatter___range'
-  | 'childrenMdx___frontmatter___url'
   | 'childrenMdx___slug'
   | 'childrenMdx___body'
   | 'childrenMdx___excerpt'
@@ -1543,7 +1543,12 @@ export type FileFieldsEnum =
   | 'childMdx___rawBody'
   | 'childMdx___fileAbsolutePath'
   | 'childMdx___frontmatter___title'
+  | 'childMdx___frontmatter___id'
   | 'childMdx___frontmatter___date'
+  | 'childMdx___frontmatter___company'
+  | 'childMdx___frontmatter___location'
+  | 'childMdx___frontmatter___range'
+  | 'childMdx___frontmatter___url'
   | 'childMdx___frontmatter___featureImageCloudinary'
   | 'childMdx___frontmatter___featureImage___sourceInstanceName'
   | 'childMdx___frontmatter___featureImage___absolutePath'
@@ -1587,11 +1592,6 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___github'
   | 'childMdx___frontmatter___live'
   | 'childMdx___frontmatter___excerpt'
-  | 'childMdx___frontmatter___id'
-  | 'childMdx___frontmatter___company'
-  | 'childMdx___frontmatter___location'
-  | 'childMdx___frontmatter___range'
-  | 'childMdx___frontmatter___url'
   | 'childMdx___slug'
   | 'childMdx___body'
   | 'childMdx___excerpt'
@@ -3356,7 +3356,12 @@ export type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter___title'
+  | 'frontmatter___id'
   | 'frontmatter___date'
+  | 'frontmatter___company'
+  | 'frontmatter___location'
+  | 'frontmatter___range'
+  | 'frontmatter___url'
   | 'frontmatter___featureImageCloudinary'
   | 'frontmatter___featureImage___sourceInstanceName'
   | 'frontmatter___featureImage___absolutePath'
@@ -3442,11 +3447,6 @@ export type MdxFieldsEnum =
   | 'frontmatter___github'
   | 'frontmatter___live'
   | 'frontmatter___excerpt'
-  | 'frontmatter___id'
-  | 'frontmatter___company'
-  | 'frontmatter___location'
-  | 'frontmatter___range'
-  | 'frontmatter___url'
   | 'slug'
   | 'body'
   | 'excerpt'
