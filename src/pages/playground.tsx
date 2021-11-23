@@ -29,7 +29,10 @@ const Playground: React.FC = () => (
     <FancyText>Fancy Text</FancyText>
 
     <Image
-      src="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.png"
+      className="some-class"
+      style={{width: '100%', aspectRatio: '0.525', objectFit: 'contain'}}
+      id="iphone-image"
+      src="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
       alt="Iphone image"
     />
 

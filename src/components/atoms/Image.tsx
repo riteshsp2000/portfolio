@@ -1,25 +1,39 @@
 import React from 'react';
 
+// Libraries
+import {Helmet} from 'react-helmet';
+
 export interface ImageFallbackProps
   extends React.DetailedHTMLProps<
     React.ImgHTMLAttributes<HTMLImageElement>,
     HTMLImageElement
   > {
+  mediaType?: string | undefined;
+  fallbackSrc?: string | undefined;
   widths?: {
     [x: string]: string;
   };
-  mediaType?: string | undefined;
 }
+
+const w1 = ['960w', '480w', '240w'];
+const w2 = ['500w', '250w', '125w'];
+const s1 = '(min-width: 960px) 960px, 100vw';
+const s2 = '(min-width: 500px) 500px, 100vw';
 
 const ImageFallback: React.FC<ImageFallbackProps> = ({
   src,
-  alt,
+  srcSet,
+  loading = 'lazy',
+  sizes = '(max-width: 650px) 100vw, 650px',
+  fallbackSrc,
+  alt = 'Ritesh Patil Portfolio Image',
   mediaType = 'image/webp',
   widths = {
     '650w': 'w_650,f_auto,q_auto',
     '508w': 'w_508,f_auto,q_auto',
     '200w': 'w_200,f_auto,q_auto',
   },
+  ...rest
 }) => {
   if (!src) {
     console.error(new Error('No src provided'));
@@ -27,7 +41,9 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
   }
 
   const getSrcSet = (src: string): string => {
-    let srcSet = '';
+    if (srcSet) return srcSet;
+
+    let newSrcSet = '';
     if (widths) {
       Object.keys(widths).forEach(key => {
         const arr: string[] = src.split('upload');
@@ -36,10 +52,10 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
           arr.push(`upload/${widths[key]}`, lastElem, ` ${key},`);
         }
 
-        srcSet += arr.join('');
+        newSrcSet += arr.join('');
       });
     }
-    return srcSet;
+    return newSrcSet;
   };
 
   const getSrc = (src: string) => {
@@ -49,41 +65,29 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
       arr.push('upload/w_auto,f_auto,q_auto', lastElem);
     }
 
-    return arr.join('');
-  };
-
-  const props = {
-    source: {
-      // @ts-ignore
-      srcSet: getSrcSet(src),
-      sizes: '(max-width: 650px) 100vw, 650px',
-    },
-    img: {
-      loading: 'lazy',
-      sizes: '(max-width: 650px) 100vw, 650px',
-      // @ts-ignore
-      srcSet: getSrcSet(src),
-      // @ts-ignore
-      src: getSrc(src),
-      alt,
-    },
+    return [arr.join('').split('.webp')[0], '-1', '.png'].join('');
   };
 
   return (
-    <picture>
-      <source
-        srcSet={getSrcSet(src)}
-        sizes="(max-width: 650px) 100vw, 650px"
-        type={mediaType}
-      />
-      <img
-        loading="lazy"
-        sizes="(max-width: 650px) 100vw, 650px"
-        srcSet={getSrcSet(src)}
-        src={getSrc(src)}
-        alt={alt}
-      />
-    </picture>
+    <>
+      <Helmet>
+        <link rel="preload" as="image" href={getSrc(src)} />
+      </Helmet>
+
+      <picture>
+        <source srcSet={getSrcSet(src)} sizes={sizes} type={mediaType} />
+        <img
+          loading={loading}
+          decoding="async"
+          sizes={sizes}
+          srcSet={getSrcSet(src)}
+          src={fallbackSrc || getSrc(src)}
+          data-main-image=""
+          alt={alt}
+          {...rest}
+        />
+      </picture>
+    </>
   );
 };
 
