@@ -207,7 +207,7 @@ html {
   --max-width-narrow: 50em;
 
   --nav-tab-max-width: 200px;
-  --nav-tab-height: 2.5rem;
+  --nav-tab-height: 3rem;
   --nav-stage-width: 500px;
 }
 [tabindex] {

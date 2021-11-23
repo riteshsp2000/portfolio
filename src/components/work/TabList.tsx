@@ -23,7 +23,7 @@ const NavContainer = styled.div`
 
     width: calc(100%);
     overflow-x: auto;
-    height: auto;
+    height: var(--nav-tab-height);
 
     &::-webkit-scrollbar {
       display: none;
@@ -40,8 +40,9 @@ const NavItem = styled.button<{isActive: boolean}>`
   font-size: 1.125rem;
   transition: var(--transition);
 
-  text-align: left;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: left;
   height: var(--nav-tab-height);
 
   color: ${({isActive}) =>
@@ -69,8 +70,7 @@ const NavItem = styled.button<{isActive: boolean}>`
   @media (max-width: 700px) {
     border-bottom: 2px solid var(--color-background-secondary);
     min-width: 200px;
-    text-align: center;
-    line-height: 3rem;
+    justify-content: center;
   }
 `;
 
@@ -80,7 +80,6 @@ const Highlight = styled.div<{activeTabId: number}>`
   border-radius: 3px;
 
   position: absolute;
-  top: 0;
   left: 0;
   z-index: 10;
 
@@ -91,13 +90,18 @@ const Highlight = styled.div<{activeTabId: number}>`
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
 
+  @media (min-width: 700px) {
+    border-left: 2px solid var(--color-background-secondary);
+    top: 0;
+  }
+
   @media (max-width: 700px) {
     height: 3px;
     width: var(--nav-tab-max-width);
     transform: translateX(
       calc(${({activeTabId}) => activeTabId} * var(--nav-tab-max-width))
     );
-    bottom: 0;
+    bottom: 0rem;
     left: 0;
   }
 `;
