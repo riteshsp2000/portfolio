@@ -13,6 +13,8 @@ import {
   SectionTitle,
   WorkExperience,
   Image,
+  Card,
+  FeaturedProject,
 } from '@components';
 
 const Playground: React.FC = () => (
@@ -28,13 +30,23 @@ const Playground: React.FC = () => (
 
     <FancyText>Fancy Text</FancyText>
 
-    <Image
+    <FeaturedProject
+      img="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
+      title="Boutiqes"
+      excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
+      tech={['react', 'typescript', 'firebase', 'agora', 'razorpay']}
+      github="hello"
+      live="live"
+      type="mobile"
+    />
+
+    {/* <Image
       className="some-class"
       style={{width: '100%', aspectRatio: '0.525', objectFit: 'contain'}}
       id="iphone-image"
       src="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
       alt="Iphone image"
-    />
+    /> */}
 
     <SectionTitle title="Work" highlight="Experience" />
     <WorkExperience />
