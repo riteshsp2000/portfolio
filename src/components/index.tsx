@@ -29,7 +29,11 @@ export {default as InAppLink} from './links/InAppLink';
 export {default as RedirectLink} from './links/RedirectLink';
 export {default as SectionTitle} from './atoms/SectionTitle';
 export {default as Image} from './atoms/Image';
+export {default as Card} from './atoms/Card';
 export * from './atoms/Lists';
 
 // Work Experience
 export {default as WorkExperience} from './work';
+
+// Projects
+export {default as FeaturedProject} from './projects/FeaturedProject';
