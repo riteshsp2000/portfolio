@@ -36,8 +36,6 @@ export {default as Flexbox} from './atoms/Flexbox';
 export {default as ThemeToggle} from './atoms/ThemeToggle';
 export * from './atoms/ListItems/Lists';
 
-// Work Experience
-export {default as WorkExperience} from './molecules/work';
-
-// Projects
-export {default as FeaturedProject} from './molecules/projects/FeaturedProject';
+// Molecules
+export {default as FeaturedProject} from './molecules/FeaturedProject';
+export {default as WorkExperience} from './molecules/WorkExperience';

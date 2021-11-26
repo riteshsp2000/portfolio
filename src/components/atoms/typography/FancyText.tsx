@@ -25,6 +25,7 @@ export default styled.h1`
 
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
