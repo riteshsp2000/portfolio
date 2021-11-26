@@ -4,10 +4,13 @@ export default styled.button`
   background: var(--color-background-primary);
   border: 1px solid var(--color-text-primary);
 
-  border-radius: 50;
+  border-radius: 50px;
   width: auto;
   min-width: 100px;
   height: auto;
+
+  margin: 0;
+  padding: 5px 20px;
 
   color: var(--color-text-primary);
   font-weight: var(--font-weight-regular);
