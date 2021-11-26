@@ -1,12 +1,10 @@
-import React from 'react';
-
 // Libraries
 import styled from 'styled-components';
 
 // Components
 import {Card, Image, H1 as Head1, P1 as Para1, P2} from '@components';
 
-const H1 = styled(Head1)`
+export const H1 = styled(Head1)`
   @media (max-width: 700px) {
     color: var(--color-text-primary);
     font-weight: var(--font-weight-bold);
@@ -18,7 +16,7 @@ const H1 = styled(Head1)`
   }
 `;
 
-const P1 = styled(Para1)`
+export const P1 = styled(Para1)`
   @media (max-width: 700px) {
     color: var(--color-text-primary);
     font-weight: var(--font-weight-regular);
@@ -30,14 +28,14 @@ const P1 = styled(Para1)`
   }
 `;
 
-const AlignerContainer = styled.div`
+export const AlignerContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Container = styled(Card)`
+export const Container = styled(Card)`
   width: 80%;
   max-width: var(--max-width);
   overflow: hidden;
@@ -57,7 +55,7 @@ const Container = styled(Card)`
   }
 `;
 
-const Section1 = styled.div<{type: 'mobile' | 'web'}>`
+export const Section1 = styled.div<{type: 'mobile' | 'web'}>`
   grid-column: 1 / span 1;
   grid-row: 1 / span 5;
   width: 100%;
@@ -80,7 +78,7 @@ const Section1 = styled.div<{type: 'mobile' | 'web'}>`
   }
 `;
 
-const Section2 = styled.div`
+export const Section2 = styled.div`
   grid-column: 2 / span 2;
   grid-row: 1 / span 3;
   width: 100%;
@@ -97,7 +95,7 @@ const Section2 = styled.div`
   }
 `;
 
-const Section3 = styled.div`
+export const Section3 = styled.div`
   grid-column: 2 / span 2;
   grid-row: 4 / span 2;
   width: 100%;
@@ -116,64 +114,8 @@ const Section3 = styled.div`
   }
 `;
 
-const TechContainer = styled.div`
+export const TechContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 `;
-
-export interface FeaturedProjectProps {
-  img: string;
-  title: string;
-  excerpt: string;
-  tech: string[];
-  github: string;
-  live: string;
-  type: 'mobile' | 'web';
-}
-
-const FeaturedProject: React.FC<FeaturedProjectProps> = ({
-  img,
-  title,
-  excerpt,
-  tech,
-  github,
-  live,
-  type,
-}) => {
-  return (
-    <AlignerContainer>
-      <Container>
-        <Section1 type={'mobile'}>
-          <Image
-            style={{
-              aspectRatio: '0.525',
-              objectFit: 'contain',
-            }}
-            className="project-image"
-            alt="boutiques project"
-            src={img}
-          />
-        </Section1>
-
-        <Section2>
-          <H1>{title}</H1>
-          <P1>{excerpt}</P1>
-        </Section2>
-
-        <Section3>
-          <TechContainer>
-            {tech.map(name => (
-              <P2 style={{marginRight: '1rem'}} key={name}>
-                {name}{' '}
-              </P2>
-            ))}
-          </TechContainer>
-          <P1 style={{marginTop: '1rem'}}>View Website</P1>
-        </Section3>
-      </Container>
-    </AlignerContainer>
-  );
-};
-
-export default FeaturedProject;
