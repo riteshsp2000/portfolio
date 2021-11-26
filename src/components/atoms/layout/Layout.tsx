@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import {PageContainer, Navbar, Footer, Container} from '..';
+import {PageContainer, Navbar, Footer, Container} from '@components';
 
 const Layout: React.FC = ({children}) => {
   return (

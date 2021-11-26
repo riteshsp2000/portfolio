@@ -6,7 +6,7 @@ import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 // Components
 import {H3, P3, RedirectLink} from '@components';
-import {JobDetailsQuery} from '../../../gatsby-graphql';
+import {JobDetailsQuery} from '../../../../gatsby-graphql';
 
 const Stage = styled.div`
   width: var(--nav-stage-width);
