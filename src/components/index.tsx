@@ -12,7 +12,6 @@ export {default as P3} from './typography/Para3';
 export {default as FancyText} from './typography/FancyText';
 
 // Marginals
-export {default as ThemeToggle} from './marginals/ThemeToggle';
 export {default as HamburgerMenu} from './marginals/HamburgerMenu';
 export {default as DesktopNavbar} from './marginals/NavbarDesktop';
 export {default as MobileNavbar} from './marginals/NavbarMobile';
@@ -25,12 +24,17 @@ export {default as PageContainer} from './layout/PageContainer';
 export {default as Layout} from './layout/Layout';
 
 // Atoms
-export {default as InAppLink} from './links/InAppLink';
-export {default as RedirectLink} from './links/RedirectLink';
+export {default as InAppLink} from './atoms/links/InAppLink';
+export {default as RedirectLink} from './atoms/links/RedirectLink';
 export {default as SectionTitle} from './atoms/SectionTitle';
 export {default as Image} from './atoms/RawImage';
 export {default as Card} from './atoms/Card';
-export * from './atoms/Lists';
+export {default as Input} from './atoms/Input';
+export {default as Button} from './atoms/Button';
+export {default as Tag} from './atoms/Tag';
+export {default as Flexbox} from './atoms/Flexbox';
+export {default as ThemeToggle} from './atoms/ThemeToggle';
+export * from './atoms/ListItems/Lists';
 
 // Work Experience
 export {default as WorkExperience} from './work';
