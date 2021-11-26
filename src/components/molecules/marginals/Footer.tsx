@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 // Components
-import Container from '../layout/Container';
+import Container from '../../atoms/layout/Container';
 import {H3, P2, P1} from '@components';
 
 // Assets
