@@ -17,6 +17,7 @@ import {
   SectionTitle,
   WorkExperience,
   FeaturedProject,
+  ProjectGrid,
   Input,
   Button,
   Tag,
@@ -65,6 +66,17 @@ const Playground: React.FC = () => (
       live="live"
       type="web"
       flip={true}
+    />
+
+    <ProjectGrid
+      projects={[1, 2, 3, 4, 5].map(() => ({
+        title: 'Boutiques',
+        excerpt:
+          'Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android).',
+        tech: ['react', 'typescript', 'firebase', 'agora', 'razorpay'],
+        github: 'hello',
+        live: 'live',
+      }))}
     />
 
     {/* <Image

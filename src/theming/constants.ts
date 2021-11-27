@@ -19,7 +19,7 @@ export const COLORS = {
     dark: '#0A0A0A',
   },
   'background-secondary': {
-    light: '#F0F0F0',
+    light: '#E2E2E2',
     dark: '#181818',
   },
   'text-primary': {
