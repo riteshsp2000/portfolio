@@ -16,8 +16,6 @@ import {
   FancyText,
   SectionTitle,
   WorkExperience,
-  Image,
-  Card,
   FeaturedProject,
   Input,
   Button,
@@ -47,16 +45,26 @@ const Playground: React.FC = () => (
       <Input showLabel label="Enter query" icon={faSearch} />
     </div>
 
-    <Button>Click me</Button>
+    <Button isBgPrimary={true}>Click me</Button>
 
     <FeaturedProject
-      img="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
+      img="https://res.cloudinary.com/riteshp2000/image/upload/v1638024276/portfolio/v2/Rectangle_39_gtk3ab.webp"
       title="Boutiqes"
       excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
       tech={['react', 'typescript', 'firebase', 'agora', 'razorpay']}
       github="hello"
       live="live"
       type="mobile"
+    />
+    <FeaturedProject
+      img="https://res.cloudinary.com/riteshp2000/image/upload/v1638024273/portfolio/v2/Rectangle_2_l8k9cz.webp"
+      title="Boutiqes"
+      excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
+      tech={['react', 'typescript', 'firebase', 'agora', 'razorpay']}
+      github="hello"
+      live="live"
+      type="web"
+      flip={true}
     />
 
     {/* <Image

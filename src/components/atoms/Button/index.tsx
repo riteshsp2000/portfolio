@@ -33,5 +33,6 @@ export default styled.button<{isBgPrimary: boolean}>`
   &:focus {
     background: var(--color-text-primary);
     color: var(--color-background-primary);
+    cursor: pointer;
   }
 `;

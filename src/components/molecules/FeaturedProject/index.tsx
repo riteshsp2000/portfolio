@@ -31,6 +31,7 @@ export interface FeaturedProjectProps {
   github: string;
   live: string;
   type: 'mobile' | 'web';
+  flip?: boolean;
 }
 
 const FeaturedProject: React.FC<FeaturedProjectProps> = ({
@@ -40,26 +41,60 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
   tech,
   github,
   live,
-  type,
+  type = 'mobile',
+  flip = false,
 }) => {
   const isMobile = useMediaQuery(BREAKPOINTS.sm);
 
   return (
-    <Flexbox justifyCenter alignCenter>
-      <GridContainer>
-        <Section1 alignCenter justifyCenter={isMobile} justifyEnd={!isMobile}>
+    <Flexbox
+      justifyCenter
+      alignCenter
+      style={{marginBottom: isMobile ? '1rem' : '3rem'}}
+    >
+      <GridContainer flip={flip}>
+        <Section1
+          flip={flip}
+          type={type}
+          alignCenter
+          justifyCenter={isMobile}
+          justifyEnd={!isMobile && !flip}
+          justifyStart={!isMobile && flip}
+        >
           <Image className="project-image" alt="boutiques project" src={img} />
         </Section1>
 
-        <Section2 flexColumn alignStart justifyStart>
+        <Section2
+          isMobile={isMobile}
+          flip={flip}
+          flexColumn
+          alignStart={!isMobile && !flip}
+          alignEnd={flip}
+          justifyStart
+        >
           <H1>{title}</H1>
-          <P1 style={{marginTop: '1rem'}}>{excerpt}</P1>
+          <P1 style={{marginTop: '1rem', textAlign: flip ? 'right' : 'left'}}>
+            {excerpt}
+          </P1>
         </Section2>
 
-        <Section3 flexColumn alignStart justifyStart>
-          <TechContainer>
+        <Section3
+          isMobile={isMobile}
+          flip={flip}
+          flexColumn
+          justifyCenter
+          alignStart={!isMobile && !flip}
+          alignEnd={!isMobile && flip}
+        >
+          <TechContainer flip={flip}>
             {tech.map(name => (
-              <Tag style={{marginRight: '2rem'}} key={name}>
+              <Tag
+                style={{
+                  marginRight: flip ? '0rem' : '2rem',
+                  marginLeft: flip ? '2rem' : '0rem',
+                }}
+                key={name}
+              >
                 {name}{' '}
               </Tag>
             ))}
@@ -67,21 +102,23 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
 
           <Flexbox
             alignCenter
-            justifyStart
-            style={{
-              marginTop: '3rem',
-            }}
+            justifyStart={!isMobile && !flip}
+            justifyEnd={!isMobile && flip}
+            flexReverse={flip}
+            className="buttons-container"
           >
             <Button
               isBgPrimary={false}
               onClick={() => {
                 if (typeof window !== 'undefined') {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
                   window.open(live, '_blank').focus();
                 }
               }}
               style={{
-                marginRight: '2rem',
+                marginRight: flip ? '0rem' : '2rem',
+                marginLeft: flip ? '2rem' : '0rem',
               }}
             >
               View Website
@@ -93,6 +130,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
                 style={{
                   fontSize: '2.3rem',
                   color: 'var(--color-text-primary)',
+                  transition: 'var(--transition)',
                 }}
               />
             </RedirectLink>

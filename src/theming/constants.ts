@@ -40,7 +40,8 @@ export const UNIT = 8;
 export const CONTROL_RADIUS = 3;
 
 export const BREAKPOINT_SIZES = {
-  sm: 540,
+  xs: 540,
+  sm: 700,
   md: 800,
   lg: 1125,
 };
