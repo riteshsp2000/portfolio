@@ -50,7 +50,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
     <Flexbox
       justifyCenter
       alignCenter
-      style={{marginBottom: isMobile ? '1rem' : '3rem'}}
+      style={{marginBottom: isMobile ? '1rem' : '3rem', width: '100%'}}
     >
       <GridContainer flip={flip}>
         <Section1
@@ -83,8 +83,8 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
           flip={flip}
           flexColumn
           justifyCenter
-          alignStart={!isMobile && !flip}
-          alignEnd={!isMobile && flip}
+          alignStart={!flip}
+          alignEnd={flip}
         >
           <TechContainer flip={flip}>
             {tech.map(name => (

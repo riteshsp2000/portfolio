@@ -38,4 +38,6 @@ export * from './atoms/ListItems/Lists';
 
 // Molecules
 export {default as FeaturedProject} from './molecules/FeaturedProject';
+export {default as RegularProject} from './molecules/RegularProject';
+export {default as ProjectGrid} from './molecules/ProjectGrid/';
 export {default as WorkExperience} from './molecules/WorkExperience';

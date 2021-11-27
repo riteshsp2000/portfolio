@@ -39,7 +39,7 @@ export const Tag = styled(P2)`
 `;
 
 export const GridContainer = styled(Card)<{flip: boolean}>`
-  width: 80%;
+  width: 100%;
   max-width: 900px;
   height: auto;
   overflow: hidden;
