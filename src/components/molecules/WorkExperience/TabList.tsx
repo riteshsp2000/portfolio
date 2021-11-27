@@ -3,6 +3,9 @@ import React, {KeyboardEvent, MutableRefObject} from 'react';
 // Libraries
 import styled from 'styled-components';
 
+// Types
+import {JobsQuery} from './index';
+
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,11 +93,6 @@ const Highlight = styled.div<{activeTabId: number}>`
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
 
-  @media (min-width: 700px) {
-    border-left: 2px solid var(--color-background-secondary);
-    top: 0;
-  }
-
   @media (max-width: 700px) {
     height: 3px;
     width: var(--nav-tab-max-width);
@@ -107,7 +105,7 @@ const Highlight = styled.div<{activeTabId: number}>`
 `;
 
 interface VerticalNavbarProps {
-  jobs: any[];
+  jobs: JobsQuery[];
   activeTabId: number;
   onClick: (id: number) => void;
   onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;

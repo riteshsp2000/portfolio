@@ -26,6 +26,21 @@ const MainContainer = styled.div`
   }
 `;
 
+export type JobsQuery = {
+  node: {
+    id: string;
+    body: string;
+    frontmatter: {
+      date: string;
+      title: string;
+      company: string;
+      location: string;
+      range: string;
+      url: string;
+    };
+  };
+};
+
 export default () => {
   /**
    * Fetch data via useStaticQuery during build time
@@ -105,13 +120,14 @@ export default () => {
     }
   };
 
-  /**
-   * Handler to focus the selected tab.
-   * Uses the tabs array to get the focussed element and then
-   * uses the .focus() method on the element
-   * The element here is a button
-   */
-  const focusTab = () => {
+  // Only re-run the effect if tabFocus changes
+  useEffect(() => {
+    /**
+     * Handler to focus the selected tab.
+     * Uses the tabs array to get the focussed element and then
+     * uses the .focus() method on the element
+     * The element here is a button
+     */
     if (tabs.current) {
       if (tabs.current[tabFocus]) {
         // @ts-ignore
@@ -125,11 +141,6 @@ export default () => {
       // If we're at the start, move to the end
       if (tabFocus < 0) setTabFocus(tabs.current.length - 1);
     }
-  };
-
-  // Only re-run the effect if tabFocus changes
-  useEffect(() => {
-    focusTab();
   }, [tabFocus]);
 
   return (

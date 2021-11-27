@@ -31,23 +31,31 @@ export const Tag = styled(P2)`
     color: var(--color-primary);
     cursor: pointer;
   }
+
+  @media ${BREAKPOINTS.sm} {
+    padding: 0px 0px;
+    margin-right: 1rem;
+  }
 `;
 
-export const GridContainer = styled(Card)`
+export const GridContainer = styled(Card)<{flip: boolean}>`
   width: 80%;
   max-width: 900px;
   height: auto;
   overflow: hidden;
   padding: 4rem 4rem 5rem 0rem;
+  padding: ${({flip}) =>
+    flip ? '4rem 0rem 4rem 4rem' : '4rem 4rem 4rem 0rem'};
 
   display: grid;
-  grid-template-columns: 1.5fr 2fr;
+  grid-template-columns: ${({flip}) => (flip ? '2fr 1.5fr' : '1.5fr 2fr')};
   grid-template-rows: auto auto;
   grid-gap: 1rem;
 
   @media ${BREAKPOINTS.md} {
     width: 100%;
-    padding: 3rem 3rem 3rem 0rem;
+    padding: ${({flip}) =>
+      flip ? '3rem 0rem 3rem 3rem' : '3rem 3rem 3rem 0rem'};
   }
 
   @media ${BREAKPOINTS.sm} {
@@ -58,17 +66,20 @@ export const GridContainer = styled(Card)`
   }
 `;
 
-export const Section1 = styled(Flexbox)`
-  grid-column: 1 / span 1;
+export const Section1 = styled(Flexbox)<{
+  flip: boolean;
+  type: 'mobile' | 'web';
+}>`
+  grid-column: ${({flip}) => (flip ? '2 / span 1' : '1 / span 1')};
   grid-row: 1 / span 3;
 
   picture {
     .project-image {
-      width: 80%;
+      width: ${({type}) => (type === 'web' ? '160%' : '80%')};
       height: auto;
       object-fit: contain;
-      aspect-ratio: 0.525;
-      max-width: 260px;
+      aspect-ratio: ${({type}) => (type === 'web' ? '1.65' : '0.525')} 0.525;
+      max-width: ${({type}) => (type === 'web' ? '700px' : '260px')};
     }
   }
 
@@ -78,17 +89,18 @@ export const Section1 = styled(Flexbox)`
 
     picture {
       .project-image {
-        width: 50%;
+        width: ${({type}) => (type === 'web' ? '100%' : '50%')};
       }
     }
   }
 `;
 
-export const Section2 = styled(Flexbox)`
-  grid-column: 2 / span 1;
+export const Section2 = styled(Flexbox)<{flip: boolean; isMobile: boolean}>`
+  grid-column: ${({flip}) => (flip ? '1 / span 1' : '2 / span 1')};
   grid-row: 1 / span 2;
 
-  margin-left: 2rem;
+  ${({flip, isMobile}) =>
+    !isMobile && flip ? 'margin-right: 2rem;' : 'margin-left: 2rem;'}
 
   @media ${BREAKPOINTS.md} {
     margin-left: 1rem;
@@ -102,11 +114,12 @@ export const Section2 = styled(Flexbox)`
   }
 `;
 
-export const Section3 = styled(Flexbox)`
-  grid-column: 2 / span 1;
+export const Section3 = styled(Flexbox)<{flip: boolean; isMobile: boolean}>`
+  grid-column: ${({flip}) => (flip ? '1 / span 1' : '2 / span 1')};
   grid-row: 3 / span 1;
 
-  margin-left: 2rem;
+  ${({flip, isMobile}) =>
+    !isMobile && flip ? 'margin-right: 2rem;' : 'margin-left: 2rem;'}
 
   @media ${BREAKPOINTS.md} {
     margin-left: 1rem;
@@ -118,10 +131,26 @@ export const Section3 = styled(Flexbox)`
 
     margin-left: 0rem;
   }
+
+  /* Child Styles */
+  .buttons-container {
+    margin-top: 3rem;
+
+    @media ${BREAKPOINTS.sm} {
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  }
 `;
 
-export const TechContainer = styled.div`
+export const TechContainer = styled.div<{flip: boolean}>`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
+  justify-content: ${({flip}) => (flip ? 'flex-end' : 'flex-start')};
+
+  @media ${BREAKPOINTS.sm} {
+    margin-top: 0.5rem;
+  }
 `;

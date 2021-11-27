@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 import styled from 'styled-components';
@@ -18,11 +19,19 @@ interface FlexboxProps
   alignEnd?: boolean;
   flexColumn?: boolean;
   flexWrap?: boolean;
+  flexReverse?: boolean;
 }
 
 export default styled.div<FlexboxProps>`
   display: flex;
-  flex-direction: ${({flexColumn}) => (flexColumn ? 'column' : 'row')};
+  flex-direction: ${({flexColumn, flexReverse}) =>
+    flexColumn
+      ? flexReverse
+        ? 'column-reverse'
+        : 'column'
+      : flexReverse
+      ? 'row-reverse'
+      : 'row'};
 
   justify-content: flex-start;
   justify-content: ${({justifyStart}) => justifyStart && 'flex-start'};
