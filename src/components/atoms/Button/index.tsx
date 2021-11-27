@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export default styled.button`
-  background: var(--color-background-primary);
+export default styled.button<{isBgPrimary: boolean}>`
+  background: ${({isBgPrimary}) =>
+    isBgPrimary
+      ? 'var(--color-background-primary)'
+      : 'var(--color-background-secondary)'};
   border: 1px solid var(--color-text-primary);
 
   border-radius: 50px;
