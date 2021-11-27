@@ -15,10 +15,10 @@ export interface ImageFallbackProps
   };
 }
 
-const w1 = ['960w', '480w', '240w'];
-const w2 = ['500w', '250w', '125w'];
-const s1 = '(min-width: 960px) 960px, 100vw';
-const s2 = '(min-width: 500px) 500px, 100vw';
+// const w1 = ['960w', '480w', '240w'];
+// const w2 = ['500w', '250w', '125w'];
+// const s1 = '(min-width: 960px) 960px, 100vw';
+// const s2 = '(min-width: 500px) 500px, 100vw';
 
 const ImageFallback: React.FC<ImageFallbackProps> = ({
   src,
@@ -40,13 +40,13 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
     return <div />;
   }
 
-  const getSrcSet = (src: string): string => {
+  const getSrcSet = (srcParam: string): string => {
     if (srcSet) return srcSet;
 
     let newSrcSet = '';
     if (widths) {
       Object.keys(widths).forEach(key => {
-        const arr: string[] = src.split('upload');
+        const arr: string[] = srcParam.split('upload');
         const lastElem = arr.pop();
         if (lastElem) {
           arr.push(`upload/${widths[key]}`, lastElem, ` ${key},`);
@@ -58,8 +58,8 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
     return newSrcSet;
   };
 
-  const getSrc = (src: string) => {
-    const arr = src.split('upload');
+  const getSrc = (srcParam: string) => {
+    const arr = srcParam.split('upload');
     const lastElem = arr.pop();
     if (lastElem) {
       arr.push('upload/w_auto,f_auto,q_auto', lastElem);
@@ -74,7 +74,7 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
         <link rel="preload" as="image" href={getSrc(src)} />
       </Helmet>
 
-      <picture>
+      <picture style={{display: 'contents'}}>
         <source srcSet={getSrcSet(src)} sizes={sizes} type={mediaType} />
         <img
           loading={loading}

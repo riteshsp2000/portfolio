@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 // Styles
@@ -48,7 +49,7 @@ const Playground: React.FC = () => (
 
     <Button>Click me</Button>
 
-    {/* <FeaturedProject
+    <FeaturedProject
       img="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
       title="Boutiqes"
       excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
@@ -56,7 +57,7 @@ const Playground: React.FC = () => (
       github="hello"
       live="live"
       type="mobile"
-    /> */}
+    />
 
     {/* <Image
       className="some-class"

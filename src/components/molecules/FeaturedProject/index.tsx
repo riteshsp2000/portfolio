@@ -1,17 +1,27 @@
 import React from 'react';
 
+// Libraries
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
+
 // Components
 import {
   H1,
   P1,
-  AlignerContainer,
-  Container,
+  GridContainer,
   Section1,
   Section2,
   Section3,
   TechContainer,
+  Tag,
 } from './styles';
-import {Image, P2} from '@components';
+import {Image, Flexbox, Button, RedirectLink} from '@components';
+
+// Hooks
+import {useMediaQuery} from '@hooks';
+
+// Utils + Assets
+import {BREAKPOINTS} from '@theme';
 
 export interface FeaturedProjectProps {
   img: string;
@@ -32,38 +42,64 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
   live,
   type,
 }) => {
+  const isMobile = useMediaQuery(BREAKPOINTS.sm);
+
   return (
-    <AlignerContainer>
-      <Container>
-        <Section1 type={'mobile'}>
-          <Image
-            style={{
-              aspectRatio: '0.525',
-              objectFit: 'contain',
-            }}
-            className="project-image"
-            alt="boutiques project"
-            src={img}
-          />
+    <Flexbox justifyCenter alignCenter>
+      <GridContainer>
+        <Section1 alignCenter justifyCenter={isMobile} justifyEnd={!isMobile}>
+          <Image className="project-image" alt="boutiques project" src={img} />
         </Section1>
 
-        <Section2>
+        <Section2 flexColumn alignStart justifyStart>
           <H1>{title}</H1>
-          <P1>{excerpt}</P1>
+          <P1 style={{marginTop: '1rem'}}>{excerpt}</P1>
         </Section2>
 
-        <Section3>
+        <Section3 flexColumn alignStart justifyStart>
           <TechContainer>
             {tech.map(name => (
-              <P2 style={{marginRight: '1rem'}} key={name}>
+              <Tag style={{marginRight: '2rem'}} key={name}>
                 {name}{' '}
-              </P2>
+              </Tag>
             ))}
           </TechContainer>
-          <P1 style={{marginTop: '1rem'}}>View Website</P1>
+
+          <Flexbox
+            alignCenter
+            justifyStart
+            style={{
+              marginTop: '3rem',
+            }}
+          >
+            <Button
+              isBgPrimary={false}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  // @ts-ignore
+                  window.open(live, '_blank').focus();
+                }
+              }}
+              style={{
+                marginRight: '2rem',
+              }}
+            >
+              View Website
+            </Button>
+
+            <RedirectLink href={github}>
+              <FontAwesomeIcon
+                icon={faGithub}
+                style={{
+                  fontSize: '2.3rem',
+                  color: 'var(--color-text-primary)',
+                }}
+              />
+            </RedirectLink>
+          </Flexbox>
         </Section3>
-      </Container>
-    </AlignerContainer>
+      </GridContainer>
+    </Flexbox>
   );
 };
 
