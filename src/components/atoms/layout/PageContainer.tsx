@@ -15,6 +15,9 @@ export default styled.div`
   overflow-y: auto;
 
   transition: var(--transition);
-  background: var(--color-background-primary);
+  /* background: var(--color-background-primary); */
   color: var(--color-text-primary);
+
+  position: relative;
+  z-index: 1;
 `;
