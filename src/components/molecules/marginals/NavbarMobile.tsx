@@ -56,13 +56,12 @@ const PrimeContainer = styled.div`
   z-index: ${Z_INDICES.titlebar + 1};
 `;
 
-const NavContainer = styled(Container)<{showBg: boolean}>`
+const NavContainer = styled(Container)<{bgColor: string}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  background: ${({showBg}) =>
-    showBg ? 'var(--color-background-primary)' : 'transparent'};
+  background: ${({bgColor}) => bgColor};
 `;
 
 const NavItem = styled(H2)<{isActive: boolean}>`
@@ -79,16 +78,16 @@ const NavLink = styled(Link)`
 
 export interface NavbarMobileProps {
   navItems: LinkObject[];
-  isBackgroundVisible: boolean;
   activeTab: null | string;
   toggleActiveTab: (id: string) => void;
+  bgColor: string;
 }
 
 const NavbarMobile: React.FC<NavbarMobileProps> = ({
   navItems,
   activeTab,
   toggleActiveTab,
-  isBackgroundVisible,
+  bgColor,
 }) => {
   /**
    * - showMenu is used for the overlay display and
@@ -137,7 +136,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
   return (
     <>
       <PrimeContainer>
-        <NavContainer showBg={isBackgroundVisible}>
+        <NavContainer bgColor={bgColor}>
           <InAppLink to="/">
             <H3>Ritesh Patil</H3>
           </InAppLink>

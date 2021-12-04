@@ -27,14 +27,14 @@ const NavContainer = styled.nav`
   }
 `;
 
-const InnerContainer = styled(Container)<{showBg: boolean}>`
+const InnerContainer = styled(Container)<{
+  bgColor: string;
+}>`
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${({showBg}) =>
-    showBg ? 'var(--color-background-primary)' : 'transparent'};
-  transition: var(--transition);
+  background: ${({bgColor}) => bgColor};
 `;
 
 const NavItemsContainer = styled.div`
@@ -56,20 +56,20 @@ const NavLink = styled(Link)`
 
 export interface DesktopNavbarProps {
   navItems: LinkObject[];
-  isBackgroundVisible: boolean;
   activeTab: null | string;
   toggleActiveTab: (id: string) => void;
+  bgColor: string;
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
   navItems,
   activeTab,
   toggleActiveTab,
-  isBackgroundVisible,
+  bgColor,
 }) => {
   return (
     <NavContainer>
-      <InnerContainer showBg={isBackgroundVisible}>
+      <InnerContainer bgColor={bgColor}>
         <InAppLink to="/">
           <H3>Ritesh Patil</H3>
         </InAppLink>

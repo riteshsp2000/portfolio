@@ -25,12 +25,14 @@ const Box = styled.div`
 `;
 
 const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
+  const isBlogPage = pathname.split('/')[1] === 'blog';
+
   return (
     <PrimaryContainer>
-      {pathname.split('/')[1] === 'blog' && <Box />}
+      {isBlogPage && <Box />}
 
       <PageContainer style={{zIndex: 1}}>
-        <Navbar />
+        <Navbar isBlogPage={isBlogPage} />
 
         <Container>{children}</Container>
 
