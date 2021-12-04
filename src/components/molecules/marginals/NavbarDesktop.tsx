@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {Link} from 'gatsby';
 
 // Components
-import {ThemeToggle, P2, H3} from '@components';
+import {ThemeToggle, P2, H3, InAppLink} from '@components';
 import Container from '../../atoms/layout/Container';
 
 // Assets and Types
@@ -70,7 +70,9 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
   return (
     <NavContainer>
       <InnerContainer showBg={isBackgroundVisible}>
-        <H3>Ritesh Patil</H3>
+        <InAppLink to="/">
+          <H3>Ritesh Patil</H3>
+        </InAppLink>
 
         <NavItemsContainer>
           {navItems.map(

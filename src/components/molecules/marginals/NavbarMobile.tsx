@@ -6,8 +6,8 @@ import {Link} from 'gatsby';
 import {useTransition, animated} from 'react-spring';
 
 // Components
+import {H3, H2, HamburgerMenu, ThemeToggle, InAppLink} from '@components';
 import Container from '../../atoms/layout/Container';
-import {H3, H2, HamburgerMenu, ThemeToggle} from '@components';
 
 // Assets
 import {Z_INDICES} from '@theme';
@@ -138,7 +138,9 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
     <>
       <PrimeContainer>
         <NavContainer showBg={isBackgroundVisible}>
-          <H3>Ritesh Patil</H3>
+          <InAppLink to="/">
+            <H3>Ritesh Patil</H3>
+          </InAppLink>
 
           <HamburgerMenu onClick={hamMenuClick} open={showMenu} />
         </NavContainer>
