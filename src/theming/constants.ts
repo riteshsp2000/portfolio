@@ -22,6 +22,10 @@ export const COLORS = {
     light: '#E2E2E2',
     dark: '#181818',
   },
+  'background-secondary-alpha': {
+    light: 'rgba(226,226,226, 0.7)',
+    dark: 'rgba(24, 24, 24, 0.7)',
+  },
   'text-primary': {
     light: '#293592',
     dark: '#F2F5F7',

@@ -21,6 +21,7 @@ import {
   Input,
   Button,
   Tag,
+  ArticleStack,
 } from '@components';
 
 const Playground: React.FC = () => (
@@ -86,6 +87,10 @@ const Playground: React.FC = () => (
       src="https://res.cloudinary.com/riteshp2000/image/upload/v1637558612/portfolio/v2/project-1.webp"
       alt="Iphone image"
     /> */}
+
+    <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
+      <ArticleStack />
+    </div>
 
     <SectionTitle title="Work" highlight="Experience" />
     <WorkExperience />
