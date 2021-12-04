@@ -7,7 +7,6 @@ import {BREAKPOINTS} from '@theme';
 export default styled.div`
   width: 100%;
   max-width: var(--max-width);
-  height: auto;
 
   margin: 0px auto;
   padding: 1rem;

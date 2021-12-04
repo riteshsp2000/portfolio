@@ -34,6 +34,7 @@ export {default as Button} from './atoms/Button';
 export {default as Tag} from './atoms/Tag';
 export {default as Flexbox} from './atoms/Flexbox';
 export {default as ThemeToggle} from './atoms/ThemeToggle';
+export {default as Breadcrumb} from './atoms/Breadcrumb';
 export * from './atoms/ListItems/Lists';
 
 // Molecules
