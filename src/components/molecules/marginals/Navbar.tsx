@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 // Components
 import {DesktopNavbar, MobileNavbar} from '@components';
@@ -52,10 +52,10 @@ export type LinkObject = {
   delay: number;
 };
 
-const Navbar = () => {
+const Navbar: React.FC<{isBlogPage: boolean}> = ({isBlogPage}) => {
   const isMobileView = useMediaQuery('(max-width: 700px)');
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
+  const [bgColor, setBgColor] = useState('transparent');
 
   // OnClick handler for tabs to set active tab
   const toggleActiveTab = (id: string) => setActiveTab(id);
@@ -63,12 +63,20 @@ const Navbar = () => {
   // Function to Identify scrollOffset for the Navbar
   const toggleVisibility = () => {
     if (typeof window !== 'undefined') {
-      const scrollHeight = 40;
-
-      if (window.pageYOffset > scrollHeight) {
-        setIsBackgroundVisible(true);
+      if (window.pageYOffset > 40 && window.pageYOffset < 400) {
+        setBgColor(() =>
+          isBlogPage
+            ? 'var(--color-background-secondary)'
+            : 'var(--color-background-primary)',
+        );
+      } else if (window.pageYOffset >= 400 && window.pageYOffset < 500) {
+        setBgColor(() =>
+          isBlogPage ? 'transparent' : 'var(--color-background-primary)',
+        );
+      } else if (window.pageYOffset >= 500) {
+        setBgColor('var(--color-background-primary)');
       } else {
-        setIsBackgroundVisible(false);
+        setBgColor('transparent');
       }
     }
   };
@@ -77,9 +85,9 @@ const Navbar = () => {
 
   const COMMON_PROPS = {
     navItems,
-    isBackgroundVisible,
     activeTab,
     toggleActiveTab,
+    bgColor,
   };
 
   return isMobileView ? (
