@@ -125,7 +125,7 @@ const Footer = () => (
   <PrimeContainer>
     <FlexibleContainer>
       <Row1Container>
-        <NewH3>Let's connect and grab a coffee ☕</NewH3>
+        <NewH3>{"Let's connect and grab a coffee ☕"}</NewH3>
 
         <NewP2 style={{marginTop: '2rem'}}>
           Drop me a line for work inquiries or just say hello
