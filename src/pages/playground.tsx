@@ -27,6 +27,9 @@ import {
 
 const Playground: React.FC = () => (
   <>
+    <SectionTitle title="Work" highlight="Experience" />
+    <WorkExperience />
+
     <SectionTitle title="Selected" highlight="Projects" />
     <H1>Heading 1</H1>
     <H2>Heading 2</H2>
@@ -96,9 +99,6 @@ const Playground: React.FC = () => (
     <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
       <FeaturedArticle />
     </div>
-
-    <SectionTitle title="Work" highlight="Experience" />
-    <WorkExperience />
   </>
 );
 
