@@ -37,9 +37,9 @@ export default styled.div<FlexboxProps>`
   justify-content: ${({justifyStart}) => justifyStart && 'flex-start'};
   justify-content: ${({justifyCenter}) => justifyCenter && 'center'};
   justify-content: ${({justifyEnd}) => justifyEnd && 'flex-end'};
-  justify-content: ${({justifyAround}) => justifyAround && 'flex-start'};
-  justify-content: ${({justifyBetween}) => justifyBetween && 'flex-start'};
-  justify-content: ${({justifyEvenly}) => justifyEvenly && 'flex-start'};
+  justify-content: ${({justifyAround}) => justifyAround && 'space-around'};
+  justify-content: ${({justifyBetween}) => justifyBetween && 'space-between'};
+  justify-content: ${({justifyEvenly}) => justifyEvenly && 'space-evenly'};
 
   align-items: flex-start;
   align-items: ${({alignStart}) => alignStart && 'flex-start'};

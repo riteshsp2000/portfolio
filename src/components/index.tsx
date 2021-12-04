@@ -41,3 +41,5 @@ export {default as FeaturedProject} from './molecules/FeaturedProject';
 export {default as RegularProject} from './molecules/RegularProject';
 export {default as ProjectGrid} from './molecules/ProjectGrid/';
 export {default as WorkExperience} from './molecules/WorkExperience';
+export {default as Article} from './molecules/Article';
+export {default as ArticleStack} from './molecules/ArticleStack';
