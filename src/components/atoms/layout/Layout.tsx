@@ -1,17 +1,42 @@
 import React from 'react';
 
+// Libraries
+import styled from 'styled-components';
+
 // Components
 import {PageContainer, Navbar, Footer, Container} from '@components';
 
-const Layout: React.FC = ({children}) => {
+export interface PageLayouts {
+  pathname: string;
+}
+
+const PrimaryContainer = styled.div`
+  background: var(--color-background-primary);
+`;
+
+const Box = styled.div`
+  width: 100vw;
+  height: 500px;
+  background: var(--color-background-secondary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+`;
+
+const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
   return (
-    <PageContainer>
-      <Navbar />
+    <PrimaryContainer>
+      {pathname.split('/')[1] === 'blog' && <Box />}
 
-      <Container>{children}</Container>
+      <PageContainer style={{zIndex: 1}}>
+        <Navbar />
 
-      <Footer />
-    </PageContainer>
+        <Container>{children}</Container>
+
+        <Footer />
+      </PageContainer>
+    </PrimaryContainer>
   );
 };
 
