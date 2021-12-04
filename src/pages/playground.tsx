@@ -22,6 +22,7 @@ import {
   Button,
   Tag,
   ArticleStack,
+  FeaturedArticle,
 } from '@components';
 
 const Playground: React.FC = () => (
@@ -90,6 +91,10 @@ const Playground: React.FC = () => (
 
     <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
       <ArticleStack />
+    </div>
+
+    <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
+      <FeaturedArticle />
     </div>
 
     <SectionTitle title="Work" highlight="Experience" />
