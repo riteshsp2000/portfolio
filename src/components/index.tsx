@@ -10,6 +10,8 @@ export {default as P1} from './atoms/typography/Para1';
 export {default as P2} from './atoms/typography/Para2';
 export {default as P3} from './atoms/typography/Para3';
 export {default as FancyText} from './atoms/typography/FancyText';
+export {default as InlineCode} from './atoms/typography/InlineCode';
+export {default as Strong} from './atoms/typography/Strong';
 
 // Marginals
 export {default as HamburgerMenu} from './molecules/marginals/HamburgerMenu';

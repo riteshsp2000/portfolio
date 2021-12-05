@@ -18,13 +18,13 @@ import {Ul, Li, P3} from '@components';
 import '@theme/globalStyles.css';
 
 // List of Components
-// - H1, H2, H3
-// - P1, P2, P3
-// - Images
+// - H1, H2, H3 =>
+// - P1, P2, P3 =>
+// - Images =>
 // - Code
-// - Quote
-// - Ordered and Unordered List
-// - Links
+// - Quote =>
+// - Ordered and Unordered List =>
+// - Links =>
 
 const App: React.FC = ({children}) => (
   <LocationProvider>
