@@ -3,7 +3,6 @@ import React from 'react';
 // Libraries
 import {LocationProvider} from '@reach/router';
 import {Helmet} from 'react-helmet';
-import {MDXProvider} from '@mdx-js/react';
 
 // Fonts
 import WotfardRegular from '@fonts/wotfard-regular-webfont.woff2';
@@ -12,7 +11,7 @@ import WotfardBold from '@fonts/wotfard-medium-webfont.woff2';
 
 // Components/Configuration
 import {ThemeProvider} from '@theme';
-import {Ul, Li, P3} from '@components';
+import {MdxProvider} from '@components';
 
 // Assets
 import '@theme/globalStyles.css';
@@ -53,15 +52,7 @@ const App: React.FC = ({children}) => (
     </Helmet>
 
     <ThemeProvider>
-      <MDXProvider
-        components={{
-          ul: Ul,
-          li: Li,
-          p: P3,
-        }}
-      >
-        {children}
-      </MDXProvider>
+      <MdxProvider>{children}</MdxProvider>
     </ThemeProvider>
   </LocationProvider>
 );

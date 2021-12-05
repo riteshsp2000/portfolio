@@ -1,5 +1,998 @@
 ---
-title: My First Project!
-date: 05-04-2021
-tech: ['react', 'typescript', 'node']
+title: 'Custom React Hooks'
+description:
+  'React has undergone significate modifications in the previous three years
+  resulting in significant changes in the way React'
+isPublished: true
+date: '2021-12-04'
+slug: /blog/custom-react-hooks
+tags: ['react', 'jsx', 'javascript']
+category: React
+timeToRead: '4 mins'
 ---
+
+## Introduction
+
+You may have noticed your Facebook friend's fancy profile pictures with the
+frame of the sports team they support or a colleague's LinkedIn profile with a
+frame about openness to work. Yes, this is exactly what you'll be building! With
+a high level of customisation, you can easily build one for your online events
+for all the participants to use. Here's a quick glance to what we'll be
+building.
+
+![HackNITR Frameboi](https://res.cloudinary.com/riteshp2000/image/upload/v1638708391/portfolio/v2/Screenshot_2021-12-02_at_6.22.40_PM_1_u2vazy.webp)
+
+HTML5 Canvas is a powerful tool for incorporating dynamic, performant visuals in
+web apps. It supports a wide range of browsers and includes built-in APIs for
+drawing shapes, pictures, and text. A variety of utility libraries, such as
+`Konva.js`, `p5.js`, have been created on top of Canvas to assist with event
+handling and animations.
+
+I choose `konva.js` over the many other canvas libraries available. The Canvas
+API is essentially imperative, and it was built to interact with vanilla
+javascript with methods like `ctx.rect(x, y, width, height)`. This syntax is
+completely alien to React Developers and is unsuitable with modern React
+Patterns. `react-konva`, a react wrapper for `konva.js` allows you to use React
+component interfaces to connect with the Konva API
+
+## Prerequisites
+
+Before you begin, this article assumes that you are familiar with the following
+concepts.
+
+- Familiarity with React and its basic usage. You can check out
+  [getting started with Create React App](https://blog.logrocket.com/getting-started-with-create-react-app-d93147444a27/)
+  to brush up on your React skills before we start.
+- Understanding of a state management tool such as `Redux` or `Context API`.
+  This guide on
+  [using redux in react apps](https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835/)
+  will get you covered. Alternatively, you can also check out this guide on
+  [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+- Prior knowledge about `react-konva` would be beneficial. You can take a look
+  at this guide to
+  [canvas manipulation using react-konva](https://blog.logrocket.com/canvas-manipulation-react-konva/)
+- Here is a look at all the technologies and libraries we'll be using
+
+  `react` `create-react-app` `styled-components` `react Context API`
+  `react-konva` `netlify`
+
+## Project Setup
+
+1. Install `yarn`. Yarn is a package manager just like `npm` but faster. Using
+   `yarn` would make your development process much smoother.
+
+   ```bash
+   # Globally install yarn
+   npm install -g yarn
+   ```
+
+1. Create a basic react app using CRA. To run this command, you need to have
+   `node.js` installed which you can check if you have Node using the command
+   `node --version`. You can find the links to
+   [download on Node.js's website](https://nodejs.org/en/download/). Installing
+   `node.js` will automatically enable the `npm` and `npx` commands.
+
+   ```bash
+   # Using npm
+   npx create-react-app profile-frames
+
+   # Using yarn
+   yarn create react-app profile-frames
+
+   ```
+
+1. Setting up a clean directory structure. Delete all the files that come with
+   CRA and create the required folders and files as shown below.
+
+   - public - files in this directory will be directly accessible to the users.
+   - src - contains all the files which we add and use.
+   - assets - all the images and frames we'll be using would be here.
+   - components - contains all the various components that we'll be having
+   - pages - all the different screens that we'll be having
+   - store - files handling the global state management of the app.
+
+1. Running your React app. Create an `index.js` and `App.jsx` files in the src
+   directory and add the following code.
+
+   ```jsx
+   // App.jsx
+   import React from 'react';
+
+   const App = () => {
+     return (
+       <div>
+         <h1>Hello World</h1>
+       </div>
+     );
+   };
+
+   export default App;
+
+   // index.js
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+
+   import App from './App';
+
+   ReactDOM.render(
+     <React.StrictMode>
+       <App />
+     </React.StrictMode>,
+     document.querySelector('#root'),
+   );
+   ```
+
+1. Installing the required packages and libraries. We will be using
+   `styled-components` for css styling and `react-konva` for canvas
+   manipulations
+
+   ```jsx
+   yarn add styled-components react-konva konva
+   ```
+
+## List of Features
+
+Before you begin coding, you must first make a detailed list of the features we
+intend to include, based on which you would build your components. The features
+you'll be implementing are listed below.
+
+- A stage where the user can interact with different Konva elements
+- A carousel which consists of various frame options to choose from
+- Control panel consisting of
+  - An upload image button
+  - Name and Guild inputs
+  - A Download button
+
+Depending upon the above list of required features, the following is a component
+architecture that that would be suitable for the project.
+
+![Component Architecture.png](https://res.cloudinary.com/riteshp2000/image/upload/v1638729285/portfolio/v2/App_Architecture_aaexlc.webp)
+
+> Note: This article focuses on `react-konva` usage and will not focus much on
+> styling and css. You can find the details of specific implementation in the
+> repository linked below.
+
+## Let's get building...
+
+### Step 1: Creating the Canvas component
+
+- So, how react-konva works is that it has a component called Stage that you can
+  use to render various canvas shapes and items.
+- The immediate child component of `Stage` needs to be a `Layer` component. A
+  layer can then house different components such as images, texts, shapes, etc.
+  In this case, just a single layer would do the job great.
+- Create a new file named Canvas.jsx in the components directory and add the
+  following code.
+
+```jsx
+import React, {useRef} from 'react';
+
+// Libraries
+import {Layer, Stage, Image, Text} from 'react-konva';
+
+// Assets
+import frame1 from '../assets/frame1';
+import profile from '../assets/frame1';
+
+const Canvas = () => {
+  /**
+   * A list of variables containing the various details that we
+   * would require for all the different elements.
+   *
+   * It is better to separate them now as we will be shifting
+   * them to their global states later
+   */
+  const stageRef = useRef();
+  const stageDetails = {
+    width: 350,
+    height: 350,
+    x: 0,
+    y: 0,
+  };
+
+  const imageDetails = {
+    originalDimensions: {
+      width: 0,
+      height: 0,
+    },
+    renderDimensions: {
+      width: 300,
+      height: 300,
+    },
+    position: {
+      x: 0,
+      y: 0,
+    },
+  };
+
+  const textDetails = {
+    name: {
+      value: 'name field',
+      id: 'user-name',
+      dimensions: {
+        width: 100,
+        height: 50,
+      },
+      position: {
+        x: 50,
+        y: 50,
+      },
+    },
+    guild: {
+      value: 'guild field',
+      id: 'user-guild',
+      dimensions: {
+        x: 100,
+        y: 50,
+      },
+      position: {
+        x: 100,
+        y: 100,
+      },
+    },
+  };
+
+  return (
+    <Stage
+      ref={stageRef}
+      width={stageDetails.width}
+      height={stageDetails.height}
+      style={{position: 'relative'}}
+    >
+      <Layer>
+        <Image
+          image={profile}
+          width={imageDetails.renderDimensions.width}
+          height={imageDetails.renderDimensions.height}
+          x={imageDetails.position.x}
+          y={imageDetails.position.y}
+        />
+
+        <Text
+          text={textDetails.name.value}
+          width={textDetails.name.dimensions.width}
+          height={textDetails.name.dimensions.height}
+          x={textDetails.name.position.x}
+          y={textDetails.name.position.y}
+        />
+        <Text
+          text={textDetails.guild.value}
+          width={textDetails.guild.dimensions.width}
+          height={textDetails.guild.dimensions.height}
+          x={textDetails.guild.position.x}
+          y={textDetails.guild.position.y}
+        />
+
+        <Image
+          image={frame1}
+          width={stageDetails.width}
+          height={stageDetails.height}
+          x={0}
+          y={0}
+          style={{position: 'absolute', top: 0, left: 0, zIndex: 100}}
+        />
+      </Layer>
+    </Stage>
+  );
+};
+
+export default Canvas;
+```
+
+- As you can see, quite a few things are going on here. Most of them are pretty
+  straightforward but let's get started with the different props that are being
+  passed to all the elements.
+- Each canvas element takes the following props
+  - width and height specifying the dimensions of the particular component
+  - x and y specifying the position of the component. Here x and y are relative
+    to the stage component and start from the top-left corner of the stage.
+- The Stage component requires a reference which is created using the useRef
+  hook.
+- There are 2 Image components, one for the profile picture and the other for
+  the frame. Since these images can be of high resolution, we need to calculate
+  the render dimensions for each image to fit it inside the stage (which will be
+  done as we proceed ahead)
+- Additionally, there are 2 Text components as well. It has a text prop that
+  renders the content i.e. the text we provide
+- At this point, you would be having the Stage ready, but if you see, there are
+  a few issues going on.
+  1. The text appearing doesn't have a background. It needs to be fixed so that
+     it looks distinct from the images.
+  2. None of the elements is transformable, as in neither their sizes can be
+     changed nor can they be rotated.
+  3. Finally, everything at this point is static, the app needs to be made
+     dynamic.
+
+### Step 2: Creating a custom Text component.
+
+- The issue with the inbuilt Text component is that it doesn't have a
+  background. Silly, but it is what it is.
+- Instead, what you'll be doing is creating a custom component using a Text
+  component placed on top of a Rect Component (Rectangle). In order to achieve
+  this, react-konva provides a group component so that a single set of props
+  such as dimensions and positions are provided just to one component instead of
+  multiple.
+- Create a new file - CustomText.jsx and add the following code.
+
+```jsx
+import React from 'react';
+
+// Libraries
+import {Rect, Text, Group} from 'react-konva';
+
+const CustomText = ({dimensions, position, name}) => {
+  const shapeRef = React.useRef(null);
+
+  /**
+   * As with other konva components, group also takes in
+   * width, height and positions x and y.
+   *
+   * In addition to this, the properities of offsetX and offsetY
+   * prop which shifts its coordinate system origin to the center instead
+   * of the top-left corner are also added.
+   *
+   * This would help in positioning both the rectangle and the
+   * text element at the center of the group.
+   */
+  const groupProps = {
+    width: dimensions.width,
+    height: dimensions.height,
+    offsetX: dimensions.width / 2,
+    offsetY: dimensions.height / 2,
+    x: position.x,
+    y: position.y,
+  };
+
+  return (
+    <Group ref={shapeRef} {...groupProps}>
+      {/* The width of both the elements are kept same */}
+      {/* Not passing any positions defaults them to x=0 and y=0 */}
+      <Rect
+        width={dimensions.width}
+        height={dimensions.height}
+        cornerRadius={[7, 7, 7, 7]}
+        fill="lightblue"
+      />
+      <Text
+        width={dimensions.width}
+        height={dimensions.height}
+        align="center"
+        verticalAlign="middle"
+        text={name}
+        fontSize={20}
+      />
+    </Group>
+  );
+};
+
+export default CustomText;
+```
+
+- Here you go! A custom Text component that is way more legible and can be
+  easily distinguished from the background image is ready.
+
+### Step 3: Scale your components with Transformer
+
+- So far you have gotten the majority of the components ready with a key feature
+  missing which would add a new level of customisation to your application.
+  Let's start with Images. Before you create your custom image component, you
+  need to refactor the canvas component to have some states since we are
+  shifting to a more dynamic application with interactions.
+
+```jsx
+import profile from '../assets/frame1';
+
+const Canvas = () => {
+  /* Existing Code */
+
+  /**
+   * Okay so the imageDetails variables are removed and
+   * shifted to a state. Not only this but also 2 new properties of
+   * scale defaulted to 1 which would determine
+   * the size of our shape/element and id are added
+   *
+   * In addition to that, a new state called selectedElement is also
+   * selectedElement. This element stores an id or unique field which
+   * showcases which element is currently selected.
+   */
+  const [selectedElement, setSelectedElement] = useState(null);
+  const [imageDetails, setImageDetails] = useState({
+    originalDimensions: {
+      width: 0,
+      height: 0,
+    },
+    renderDimensions: {
+      width: 300,
+      height: 300,
+    },
+    position: {
+      x: 0,
+      y: 0,
+    },
+    scale: 1,
+    id: 'user-profile-image',
+    image: profile,
+  });
+
+  /* Existing code */
+};
+
+export default Canvas;
+```
+
+- Now that you have set up your stage with states, time to build a transformable
+  image component. To reduce the code in a single component and avoid any sort
+  of repetition, create a new file named `CustomImage.jsx`
+- `react-konva` has a Transformer component that creates a box around the shape
+  using which the user can resize or rotate the shape. Add the following code to
+  the above-mentioned file.
+
+```jsx
+import React from 'react';
+
+// Components
+import {Image, Transformer} from 'react-konva';
+
+const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
+  /**
+   * Create references to the shape which needs to be transformed
+   * and to the transformer component itself.
+   */
+  const shapeRef = React.useRef();
+  const transformerRef = React.useRef();
+
+  /**
+   * This effect runs whenever the isSelected variable is toggled
+   * The isSelected variable is set from the parent element which indicates
+   * that the current element is selected and is to be transformed.
+   */
+  React.useEffect(() => {
+    if (isSelected) {
+      /**
+       * Here you are instructing the transformer component via its ref to
+       * enable the specified component i.e. the image is to be transformed
+       * and then create the transformer box around it.
+       * This code will run everytime the isSelected variable is updated.
+       */
+      transformerRef.current?.nodes([shapeRef.current]);
+      transformerRef.current?.getLayer().batchDraw();
+    }
+  }, [isSelected]);
+
+  const {
+    renderDimensions: {width, height},
+    position: {x, y},
+    image,
+  } = imageDetails;
+
+  /**
+   * The most important handler functions for transformations
+   * You need to handle 2 things -
+   *    Change in Dimensions on transform and
+   *    Change in Positions on drag
+   */
+
+  /**
+   * This function handles the dimension changes of the shape
+   * If you recall, you have set a property named scale equal to 1 on
+   * initialisation.
+   * Using this handler, you need to update the scale property of this
+   * shape which can be obtained from the shapeRef
+   */
+  const onTransformEnd = () => {
+    if (shapeRef.current) {
+      const node = shapeRef.current;
+      setImageDetails(current => ({...current, scale: node.scale()}));
+    }
+  };
+
+  /**
+   * This function handles the positional changes of the shape
+   * You have positions (x and y) properties in the state which you
+   * will update through this handler, similar to the onTransformEnd
+   * function.
+   */
+  const onDragEnd = () => {
+    if (shapeRef.current) {
+      const node = shapeRef.current;
+      setImageDetails(current => ({...current, x: node.x(), y: node.y()}));
+    }
+  };
+
+  return (
+    <>
+      <Image
+        ref={shapeRef}
+        image={image}
+        width={width}
+        height={height}
+        x={x}
+        y={y}
+        /**
+        onSelect is a function that toggles the isSelected
+        variable. This function is called when image is
+        clicked or tapped.
+        */
+        onClick={onSelect}
+        onTap={onSelect}
+        /** Transformation Handlers Explained above */
+        onTransformEnd={onTransformEnd}
+        onDragEnd={onDragEnd}
+      />
+
+      {isSelected && (
+        <Transformer
+          ref={transformerRef}
+          boundBoxFunc={(oldBox, newBox) => {
+            /**
+              this function handles the sizing of the box
+              Essentially what it does is adding a check
+              to avoid reduction of size to 0
+              if the newBox dimensions are less than 5 units,
+              it returns the oldBox dimensions
+             */
+            if (newBox.width < 5 || newBox.height < 5) {
+              return oldBox;
+            }
+            return newBox;
+          }}
+        />
+      )}
+    </>
+  );
+};
+
+export default CustomImage;
+```
+
+- Okay, you have a transformable image component all set up, time to update the
+  canvas stage with the new component. In the `Canvas.jsx` file, replace the
+  Image component with the following code.
+
+  NOTE: Replace only the Image component used for the user profile image as you
+  don't want the frame to be transformable.
+
+```jsx
+<CustomImage
+  imageDetails={imageDetails}
+  setImageDetails={setImageDetails}
+  isSelected={selectedElement === imageDetails.id}
+  onSelect={() => setSelectedElement(imageDetails.id)}
+/>
+```
+
+- Yay! You got your image to be transformable! Images down, texts to go!
+  Similarly, refactor the CustomText component to make them transformable.
+
+### Step 4: Time to refactor
+
+- As you can see, in the current setup you have quite a lot of state-related
+  items such as image details, text details, stage details etc in the component
+  itself. Additionally, you also have all sorts of handler functions in the same
+  component. Quickly the code will start growing and become unreadable.
+- In addition to this, you can see that with just 3 components, there is a lot
+  of prop drilling going on which is not at all a good practice. There are a few
+  states here that need to be uplifted since components such as the inputs and
+  upload button require them.
+- Time to set up global state management. You will be using the Context API
+  along with the useReducer hook. I believe that at its core React is a state
+  management library and hence any external libraries such as Redux are not
+  necessary.
+
+  > [Kent C. Dodds](https://kentcdodds.com) has a phenomenal article explaining
+  > the
+  > [Context API and useReducer pattern for state management](https://kentcdodds.com/blog/how-to-use-react-context-effectively).
+
+- Under the `store/actions` directory, create a new file - `frames.action.js`
+  and add the following code.
+
+```jsx
+/**
+ * the useReducer hook from react takes the initialState as
+ * one of its parameters. If no param is passed, the initial state
+ * would be considered as null which not necessarily wrong but not at
+ * all a better practice. It can lead to unknown undefined errors during
+ * build time.
+ * As defined below, this is the initial state structure considering all
+ * the required fields related to the user profile image.
+ */
+export const initialState = {
+  imageDetails: {
+    originalDimensions: {
+      width: 0,
+      height: 0,
+    },
+    renderDimensions: {
+      width: 0,
+      height: 0,
+    },
+    position: {
+      x: 0,
+      y: 0,
+    },
+    scale: 1,
+    id: 'user-profile-image',
+    image: null,
+  },
+};
+
+/**
+ * Similar to redux, define all the different types of
+ * actions related to image state changes to avoid any errors down
+ * the line.
+ */
+export const CANVAS_ACTIONS = Object.freeze({
+  UPLOAD_IMAGE: 'IMAGE/UPDATE_IMAGE_DETAILS',
+  UPDATE_IMAGE_DIMENSIONS: 'IMAGE/UPDATE_IMAGE_RENDER_DIMENSIONS',
+  UPDATE_IMAGE_POSITION: 'IMAGE/UPDATE_IMAGE_POSITIONS',
+});
+```
+
+- Now that you have our action types and initial state set up, let's set the
+  reducer for the same as well. Create a file - `frames.reducer.js` under the
+  `store/reducers` directory and add the following code.
+
+```jsx
+import {CANVAS_ACTIONS} from '../actions/compose.action';
+
+/**
+ * Similar to Redux, canvasReducer handles all the different
+ * actions and the changes to be made to the state depending
+ * on the action type.
+ *
+ * For now, each case returns the default state. You'll start
+ * writing cases after the context API is setup
+ */
+export default function canvasReducer(state, action) {
+  switch (action.type) {
+    case CANVAS_ACTIONS.UPLOAD_IMAGE:
+      return state;
+
+    case CANVAS_ACTIONS.UPDATE_IMAGE_DIMENSIONS:
+      return state;
+
+    case CANVAS_ACTIONS.UPDATE_IMAGE_POSITIONS:
+      return state;
+
+    default:
+      return state;
+  }
+}
+```
+
+- Props are used to send data top-down (parent to child) in a standard React
+  application, but this might be inconvenient for certain sorts of props that
+  are required by multiple components within an application. The Context API
+  makes it possible to share values like these between components without having
+  to pass a prop through each level of the tree explicitly.
+- Create a new file - `canvas.context.js` under the `store/contexts` directory
+  and add the following code.
+
+```jsx
+import React, {useReducer, useMemo, createContext, useContext} from 'react';
+
+// Reducer, Initial State, Types
+import canvasReducer from '../reducers/frames.reducer';
+import {initialState} from '../actions/frames.action';
+
+/**
+ * use the createContext function from react to create a context component
+ */
+const FramesContext = createContext(initialState);
+
+export function FramesCtxProvider(props) {
+  /**
+   * The useReducer hook provided by React enables you to create
+   * global states. Similar to the useState hook, useReducer provides
+   * access to the state through is first destructured variable and a
+   * function - dispatch to which you pass an object consisting of 2 properites -
+   *
+   * dispatch({
+   * 	type: one of the types from CANVAS_ACTIONS,
+   * 	payload: data that would be sent to reducer function to update the state,
+   * })
+   */
+  const [state, dispatch] = useReducer(canvasReducer, initialState);
+  const value = useMemo(() => [state, dispatch], [state]);
+  return <FramesContext.Provider value={value} {...props} />;
+}
+
+/**
+ * A very handy custom hook to easily get access to the state and dispatch functions
+ * in any component
+ *
+ * This avoids quite a few steps where you would have to import the above context,
+ * useContext hook from react and bunch of other steps.
+ *
+ * Instead, all you have to do now is import this hook and call it inside a component!
+ */
+export function useFrames() {
+  const context = useContext(FramesContext);
+  if (!context)
+    throw new Error('useFrames must be used within a FramesCtxProvider');
+
+  const [state, dispatch] = context;
+  return [state, dispatch];
+}
+```
+
+- Before you proceed with reducers, you need to wrap your Application with this
+  context provider. Head to `App.jsx` and update the code with the following
+  code.
+
+```jsx
+import React from "react";
+
+// Components
+import { FramesCtxProvider } from "./store/contexts/frames.context";
+import Frames from "./pages/Frame";
+
+const App = () => {
+  return (
+    <FramesCtxProvider>
+      <Frames />
+    </FramesCtxProvider>
+  );
+};
+
+export default App;
+
+/* ==================== Inside pages/Frames.jsx ==================== */
+import React from "react";
+
+// Components
+import Canvas from "../components/Canvas";
+
+const Frames = () => {
+  return (
+    <div>
+      <Canvas />
+    </div>
+  );
+};
+
+export default Frames;
+```
+
+- You are all set, with a few final things remaining. You need to update your
+  reducer function to handle the different updates and call the dispatch
+  function with the appropriate action types. Refactor the `frames.reducer.js`
+  file with the following code.
+
+```jsx
+export default function canvasReducer(state, action) {
+  switch (action.type) {
+    case CANVAS_ACTIONS.UPLOAD_IMAGE:
+      return {
+        ...state,
+        originalDimensions: {
+          width: action.payload.width,
+          height: action.payload.height,
+        },
+        image: action.payload.image,
+      };
+
+    case CANVAS_ACTIONS.UPDATE_IMAGE_DIMENSIONS:
+      return {
+        ...state,
+        scale: action.payload.scale,
+      };
+
+    case CANVAS_ACTIONS.UPDATE_IMAGE_POSITIONS:
+      return {
+        ...state,
+        position: {
+          x: action.payload.x,
+          y: action.payload.y,
+        },
+      };
+
+    default:
+      return state;
+  }
+}
+```
+
+### Step 5: Updating the components to use dispatch.
+
+- Back to the Image component, we need to update 2 things
+  - Image scale when onTransformEnd triggers
+  - Image positions when onDragEnd triggers
+  - The other thing is update the image details when an image is uploaded which
+    will be done later
+
+```jsx
+// State Handlers
+import {useFrames} from '../store/contexts/frames.context';
+import {CANVAS_ACTIONS} from '../store/actions/frames.action';
+
+/* Remove the rest of the destructured props */
+const CustomImage = ({isSelected, onSelect}) => {
+  /* Rest of code */
+
+  const [state, dispatch] = useFrames();
+
+  /* Update the destructured element to use the state */
+  const {
+    renderDimensions: {width, height},
+    position: {x, y},
+    image,
+  } = state.imageDetails;
+
+  /* Replace the setImageDetails with the following dispatch code */
+  const onTransformEnd = () => {
+    if (shapeRef.current) {
+      const node = shapeRef.current;
+      dispatch({
+        type: CANVAS_ACTIONS.UPDATE_IMAGE_DIMENSIONS,
+        payload: {
+          scale: node.scale(),
+        },
+      });
+    }
+  };
+
+  /* Replace the setImageDetails with the following dispatch code */
+  const onDragEnd = () => {
+    if (shapeRef.current) {
+      const node = shapeRef.current;
+      dispatch({
+        type: CANVAS_ACTIONS.UPDATE_IMAGE_POSITIONS,
+        payload: {
+          x: node.x(),
+          y: node.y(),
+        },
+      });
+    }
+  };
+
+  /* Rest of code */
+};
+```
+
+- That's it, you have successfully set up all the functions related to the
+  profile image with the final step of uploading the image remaining.
+
+### Step 6: Create an upload image component.
+
+- A fairly simple component with an input of type image and an onChange handler
+  with the dispatch function of type upload image. Create a file -
+  `UploadImage.jsx` in the components directory.
+
+```jsx
+import React from 'react';
+
+// State Handlers
+import {CANVAS_ACTIONS} from '../store/actions/frames.action';
+import {useFrames} from '../store/contexts/frames.context';
+
+const UploadImage = () => {
+  /**
+   * Following is a destructuring way to get only dispatch
+   */
+  const [, dispatch] = useFrames();
+
+  const handleInputChange = e => {
+    /**
+     * The following code is to get the image data and
+     * the dimensions of the uploaded image. In order to get this
+     * use the FileReader class.
+     */
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const i = new Image();
+      i.src = URL.createObjectURL(file);
+
+      i.onload = () => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          dispatch({
+            type: CANVAS_ACTIONS.UPLOAD_IMAGE,
+            payload: {
+              image: i.src,
+              originalDimensions: {
+                width: i.width,
+                height: i.height,
+              },
+            },
+          });
+        };
+      };
+    }
+  };
+
+  return (
+    <div>
+      <label htmlFor="contained-button-file">
+        <button>Upload Image</button>
+      </label>
+
+      <input
+        type="file"
+        accept="image/*"
+        style={{display: 'none'}}
+        id="contained-button-file"
+        maxFiles={1}
+        onChange={handleInputChange}
+      />
+    </div>
+  );
+};
+
+export default UploadImage;
+```
+
+- Okay so you have the upload functionality ready but now you have another small
+  problem to deal with. As of now, you have hardcoded the dimensions of the
+  CustomImage component which is wrong. What if the uploaded image is of an
+  aspect ratio other than 1:1?
+- This exact reason is why the renderedDimensions property is in the image
+  initial state. This exact reason is why you are also getting the original
+  dimensions of the image at the time of upload
+- What you are going to do is calculate the aspect ratio of the image, and
+  depending on the size of the stage calculate the rendered dimensions of the
+  image. Add the following code to the handleImageInput function right after the
+  first dispatch.
+
+```jsx
+const aspectRatio = i.width / i.height;
+const stageHeight = state.stageDetails.height;
+const stageWidth = state.stageDetails.width;
+dispatch({
+  type: CANVAS_ACTIONS.UPDATE_IMAGE_RENDERED_DIMENSIONS,
+  payload: {
+    width: aspectRatio > 1 ? stageWidth : stageHeight * aspectRatio,
+    height: aspectRatio > 1 ? stageWidth / aspectRatio : stageHeight,
+  },
+});
+```
+
+### Step 6 - Downloading the frames and other final steps.
+
+- Converting the canvas to the image isn't a big deal. `react-konva` provides a
+  method to do so via the reference that we passed to the Stage component.
+
+```jsx
+const downloadURI = (uri, name) => {
+  const link = document.createElement('a');
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+const handleDownload = () => {
+  if (stageRef.current) {
+    const uri = stageRef.current.toDataURL();
+    downloadURI(uri, 'certificate.png');
+  }
+};
+```
+
+- Proceeding ahead, you need to get the input components ready and show the
+  value in the text component of the stage (the CustomText component). The
+  methodology for achieving this is exactly the same that you did for the
+  images. Here is a recap of how to get it done.
+
+![Untitled.drawio (1).png](<https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3e6b14e7-6581-4e7c-90da-8e06151a5afb/Untitled.drawio_(1).png>)
+
+## References
+
+Here are a few links that can help you to get a deeper understanding of the
+different patterns and technologies that we used in building this application.
+
+- [Guide to canvas manipulations using React Konva](https://blog.logrocket.com/canvas-manipulation-react-konva/)
+- [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+- [Code repository](https://github.com/dscnitrourkela/project-icecream)
+- [Live working example - Frameboi HackNITR](https://frames.hacknitr.tech)
+
+## Conclusion.
+
+Through this article, you were able to create a React and React Konva project
+with a sophisticated state management pattern without using any external
+packages. You learned how to set up a canvas environment and how to manipulate
+different aspects of a canvas in a React based single page application. From
+here, you can integrate the various other react-konva components to make your
+project more interactive.

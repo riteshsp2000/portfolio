@@ -1,0 +1,87 @@
+---
+title: 'Custom React Hooks'
+description:
+  'React has undergone significate modifications in the previous three years
+  resulting in significant changes in the way React'
+isPublished: true
+date: '2021-12-05'
+slug: /blog/custom-react-hooks-2
+tags: ['react', 'jsx', 'javascript']
+timeToRead: '4 mins'
+---
+
+## Introduction
+
+You may have noticed your Facebook friend's fancy profile pictures with the
+frame of the sports team they support or a colleague's LinkedIn profile with a
+frame about openness to work. Yes, this is exactly what you'll be building! With
+a high level of customisation, you can easily build one for your online events
+for all the participants to use. Here's a quick glance to what we'll be
+building.
+
+![HackNITR Frameboi]('https://res.cloudinary.com/riteshp2000/image/upload/v1638708391/portfolio/v2/Screenshot_2021-12-02_at_6.22.40_PM_1_u2vazy.webp')
+
+HTML5 Canvas is a powerful tool for incorporating dynamic, performant visuals in
+web apps. It supports a wide range of browsers and includes built-in APIs for
+drawing shapes, pictures, and text. A variety of utility libraries, such as
+`Konva.js`, `p5.js`, have been created on top of Canvas to assist with event
+handling and animations.
+
+I choose `konva.js` over the many other canvas libraries available. The Canvas
+API is essentially imperative, and it was built to interact with vanilla
+javascript with methods like `ctx.rect(x, y, width, height)`. This syntax is
+completely alien to React Developers and is unsuitable with modern React
+Patterns. `react-konva`, a react wrapper for `konva.js` allows you to use React
+component interfaces to connect with the Konva API
+
+## Prerequisites
+
+Before you begin, this article assumes that you are familiar with the following
+concepts.
+
+- Familiarity with React and its basic usage. You can check out
+  [getting started with Create React App](https://blog.logrocket.com/getting-started-with-create-react-app-d93147444a27/)
+  to brush up on your React skills before we start.
+- Understanding of a state management tool such as `Redux` or `Context API`.
+  This guide on
+  [using redux in react apps](https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835/)
+  will get you covered. Alternatively, you can also check out this guide on
+  [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+- Prior knowledge about `react-konva` would be beneficial. You can take a look
+  at this guide to
+  [canvas manipulation using react-konva](https://blog.logrocket.com/canvas-manipulation-react-konva/)
+- Here is a look at all the technologies and libraries we'll be using
+
+  `react` `create-react-app` `styled-components` `react Context API`
+  `react-konva` `netlify`
+
+1. Running your React app. Create an `index.js` and `App.jsx` files in the src
+   directory and add the following code.
+
+   ```jsx
+   // App.jsx
+   import React from 'react';
+
+   const App = () => {
+     return (
+       <div>
+         <h1>Hello World</h1>
+       </div>
+     );
+   };
+
+   export default App;
+
+   // index.js
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+
+   import App from './App';
+
+   ReactDOM.render(
+     <React.StrictMode>
+       <App />
+     </React.StrictMode>,
+     document.querySelector('#root'),
+   );
+   ```
