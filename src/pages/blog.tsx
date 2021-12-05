@@ -14,6 +14,8 @@ import {
   Quote,
   CoverImage,
   TableOfContents,
+  InlineCode,
+  Strong,
 } from '@components';
 import {BREAKPOINTS} from '@theme';
 
@@ -89,10 +91,11 @@ export default () => {
           <H2>Some fancy ass title</H2>
 
           <P2 style={{textAlign: 'justify'}}>
-            React has undergone significant modifications in the previous three
-            years, resulting in significant change in the way react apps are
-            built. The most significant modifications are the Functional
-            Component Pattern and Hooks.
+            <em>React</em> has <Strong>undergone</Strong> modifications in the
+            previous three years, resulting in significant change in the way
+            react apps are built. The most significant modifications are the
+            Functional Component Pattern and Hooks.{' '}
+            <InlineCode>react-redux</InlineCode>
           </P2>
 
           <P2>
