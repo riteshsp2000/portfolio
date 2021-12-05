@@ -12,16 +12,20 @@ export interface PageLayouts {
 
 const PrimaryContainer = styled.div`
   background: var(--color-background-primary);
+  transition: var(--transition);
+  /* overflow-x: hidden; */
 `;
 
 const Box = styled.div`
   width: 100vw;
   height: 500px;
   background: var(--color-background-secondary);
+  transition: var(--transition);
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
+  overflow-x: hidden;
 `;
 
 const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
