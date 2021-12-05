@@ -10,10 +10,10 @@ import {
   Flexbox,
   P2,
   H2,
-  P3,
   P1,
   Quote,
   CoverImage,
+  TableOfContents,
 } from '@components';
 import {BREAKPOINTS} from '@theme';
 
@@ -88,7 +88,7 @@ export default () => {
 
           <H2>Some fancy ass title</H2>
 
-          <P2>
+          <P2 style={{textAlign: 'justify'}}>
             React has undergone significant modifications in the previous three
             years, resulting in significant change in the way react apps are
             built. The most significant modifications are the Functional
@@ -212,11 +212,7 @@ export default () => {
 
         <div>
           <Aside>
-            <P1>TABLE of CONTENTS</P1>
-            <P3>Introduction</P3>
-            <P3>What are Hooks?</P3>
-            <P3>Why use custom Hooks?</P3>
-            <P3>Precautions to be followed</P3>
+            <TableOfContents />
           </Aside>
         </div>
       </GridContainer>
