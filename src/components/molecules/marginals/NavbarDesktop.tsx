@@ -16,6 +16,7 @@ const NavContainer = styled.nav`
   width: 100%;
   height: 80px;
   background: transparent;
+  transition: var(--transition-bg);
 
   position: fixed;
   top: 0;
@@ -35,6 +36,7 @@ const InnerContainer = styled(Container)<{
   align-items: center;
   justify-content: space-between;
   background: ${({bgColor}) => bgColor};
+  transition: var(--transition-bg);
 `;
 
 const NavItemsContainer = styled.div`

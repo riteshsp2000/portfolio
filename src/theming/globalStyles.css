@@ -163,8 +163,9 @@ section {
 body {
   line-height: 1;
   background: var(--color-background);
+  transition: background-color 350ms ease 0s;
   scroll-behavior: smooth;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 ol,
 ul {
@@ -189,6 +190,7 @@ table {
 html {
   /* overflow-x: hidden; */
   background: var(--color-background-primary);
+  transition: background-color 350ms ease 0s;
 
   --font-weight-bold: 500;
   --font-weight-regular: 400;
@@ -200,6 +202,7 @@ html {
   --transition-time: 350ms;
   --transition-type: ease;
   --transition-delay: 0s;
+  --transition-bg: all 350ms ease 0s;
   --transition: all 350ms ease 0s;
 
   --max-width: 70em;
@@ -220,11 +223,13 @@ html {
 }
 /* Track */
 ::-webkit-scrollbar-track {
+  transition: var(--transition);
   background: var(--color-background-primary);
   height: 100px;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
+  transition: var(--transition);
   background: var(--color-background-secondary);
   border-radius: 5px;
 }

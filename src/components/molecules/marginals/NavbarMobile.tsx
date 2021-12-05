@@ -23,7 +23,7 @@ const OverlayContainer = styled(animated.div)`
   left: 0px;
 
   background: var(--color-background-primary);
-  transition: var(--transition);
+  transition: var(--transition-bg);
   z-index: ${Z_INDICES.titlebar};
 `;
 
@@ -62,6 +62,7 @@ const NavContainer = styled(Container)<{bgColor: string}>`
   justify-content: space-between;
   height: 100%;
   background: ${({bgColor}) => bgColor};
+  transition: var(--transition-bg);
 `;
 
 const NavItem = styled(H2)<{isActive: boolean}>`

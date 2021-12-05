@@ -4,7 +4,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Components
-import {Breadcrumb, H1, Flexbox, P2, H2, P3, P1} from '@components';
+import {
+  Breadcrumb,
+  H1,
+  Flexbox,
+  P2,
+  H2,
+  P3,
+  P1,
+  Quote,
+  CoverImage,
+} from '@components';
 import {BREAKPOINTS} from '@theme';
 
 const TopContainer = styled(Flexbox)`
@@ -34,6 +44,10 @@ const ContentContainer = styled.div`
   height: auto;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Aside = styled.aside`
@@ -59,6 +73,13 @@ export default () => {
 
       <GridContainer>
         <ContentContainer>
+          <CoverImage
+            // eslint-disable-next-line max-len
+            src="https://res.cloudinary.com/riteshp2000/image/upload/v1638601340/portfolio/v2/Things-You-Should-Know-About-React-Hooks_slwxim.webp"
+            alt="Cover Image"
+            aspectRatio="16/9"
+          />
+
           <H2>Some fancy ass title</H2>
 
           <P2>
@@ -74,6 +95,17 @@ export default () => {
             built. The most significant modifications are the Functional
             Component Pattern and Hooks.
           </P2>
+
+          <Quote>
+            <P1>Some fancy ass title</P1>
+
+            <P2>
+              React has undergone significant modifications in the previous
+              three years, resulting in significant change in the way react apps
+              are built. The most significant modifications are the Functional
+              Component Pattern and Hooks.
+            </P2>
+          </Quote>
 
           <P2>
             React has undergone significant modifications in the previous three
