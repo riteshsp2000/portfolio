@@ -50,3 +50,4 @@ export {default as Article} from './molecules/Article';
 export {default as ArticleStack} from './molecules/ArticleStack';
 export {default as FeaturedArticle} from './molecules/FeaturedArticle';
 export {default as TableOfContents} from './molecules/TableOfContents';
+export {default as Code} from './molecules/Code';

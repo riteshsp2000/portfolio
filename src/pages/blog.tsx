@@ -16,6 +16,7 @@ import {
   TableOfContents,
   InlineCode,
   Strong,
+  Code,
 } from '@components';
 import {BREAKPOINTS} from '@theme';
 
@@ -97,6 +98,9 @@ export default () => {
             Functional Component Pattern and Hooks.{' '}
             <InlineCode>react-redux</InlineCode>
           </P2>
+
+          {/* @ts-ignore */}
+          <Code />
 
           <P2>
             React has undergone significant modifications in the previous three

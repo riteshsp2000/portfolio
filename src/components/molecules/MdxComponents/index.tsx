@@ -34,12 +34,7 @@ const MdxWrapper: React.FC = ({children}) => {
         img: CoverImage,
         inlineCode: InlineCode,
         /**
-         * em - emphasis
-         * strong: - bold
-         * delete - strikethrough
-         * inlineCode - obv
          * code - obv
-         * ol
          */
       }}
     >
