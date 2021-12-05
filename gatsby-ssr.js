@@ -82,8 +82,13 @@ export const onRenderBody = (
   setPreBodyComponents(<MagicScriptTag />);
 };
 
-export const wrapPageElement = ({element}) => (
+export const wrapPageElement = ({
+  element,
+  props: {
+    location: {pathname},
+  },
+}) => (
   <App>
-    <Layout>{element}</Layout>
+    <Layout pathname={pathname}>{element}</Layout>
   </App>
 );

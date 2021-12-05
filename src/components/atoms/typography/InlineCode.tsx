@@ -1,14 +1,16 @@
 // Libraries
 import styled from 'styled-components';
 
-// Components
-import {P3} from '@components';
-
-export default styled(P3)`
+export default styled.span`
+  margin: 0px;
+  margin-left: 2px;
   padding: 2px 10px;
+  border-radius: 6px;
+
+  color: var(--color-text-tertiary);
   background-color: var(--color-background-secondary);
-  border-radius: 8px;
   transition: var(--transition);
+
   font-family: var(--font-family-mono);
   font-size: 0.9rem;
   display: inline;
