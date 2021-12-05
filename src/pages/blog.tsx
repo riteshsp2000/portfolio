@@ -21,6 +21,11 @@ const TopContainer = styled(Flexbox)`
   width: 100%;
   height: 404px;
   padding-bottom: 80px;
+
+  @media ${BREAKPOINTS.sm} {
+    height: 250px;
+    padding-bottom: 40px;
+  }
 `;
 
 const GridContainer = styled.div`
@@ -44,6 +49,7 @@ const ContentContainer = styled.div`
   height: auto;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding-right: 0;
 
   &::-webkit-scrollbar {
     display: none;

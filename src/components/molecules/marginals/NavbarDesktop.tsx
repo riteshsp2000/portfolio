@@ -12,10 +12,12 @@ import Container from '../../atoms/layout/Container';
 import {Z_INDICES} from '@theme';
 import {LinkObject} from './Navbar';
 
-const NavContainer = styled.nav`
+const NavContainer = styled.nav<{
+  bgColor: string;
+}>`
   width: 100%;
   height: 80px;
-  background: transparent;
+  background: ${({bgColor}) => bgColor};
   transition: var(--transition-bg);
 
   position: fixed;
@@ -28,15 +30,11 @@ const NavContainer = styled.nav`
   }
 `;
 
-const InnerContainer = styled(Container)<{
-  bgColor: string;
-}>`
+const InnerContainer = styled(Container)`
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${({bgColor}) => bgColor};
-  transition: var(--transition-bg);
 `;
 
 const NavItemsContainer = styled.div`
@@ -70,8 +68,8 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
   bgColor,
 }) => {
   return (
-    <NavContainer>
-      <InnerContainer bgColor={bgColor}>
+    <NavContainer bgColor={bgColor}>
+      <InnerContainer>
         <InAppLink to="/">
           <H3>Ritesh Patil</H3>
         </InAppLink>

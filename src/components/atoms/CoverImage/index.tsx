@@ -8,7 +8,8 @@ import {Image} from '@components';
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: auto;
+  min-height: 100px;
   border-radius: 8px;
   overflow: hidden;
 `;

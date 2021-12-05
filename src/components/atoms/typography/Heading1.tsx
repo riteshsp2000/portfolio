@@ -1,5 +1,6 @@
 // Libraries
 import styled from 'styled-components';
+import {BREAKPOINTS} from '../../../theming';
 
 export default styled.h1`
   color: var(--color-text-primary);
@@ -10,4 +11,8 @@ export default styled.h1`
   font-size: 3rem;
   line-height: 1.6;
   transition: var(--transition);
+
+  @media ${BREAKPOINTS.sm} {
+    font-size: 2.2rem;
+  }
 `;

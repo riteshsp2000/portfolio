@@ -21,8 +21,8 @@ const Container = styled.div`
 `;
 
 const Circle = styled.div`
-  width: 31px;
-  height: 31px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 3px solid var(--color-primary);
   transition: var(--transition);
@@ -38,8 +38,8 @@ const IconContainer = styled.div`
   transition: var(--transition);
   border-radius: 50%;
   position: absolute;
-  top: -21px;
-  left: -21px;
+  top: -24px;
+  left: -24px;
 `;
 
 const Icon = styled(FontAwesomeIcon)`
