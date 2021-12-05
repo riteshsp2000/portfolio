@@ -45,7 +45,7 @@ const OverlayControlsContainer = styled.div`
   margin-bottom: 3rem;
 `;
 
-const PrimeContainer = styled.div`
+const PrimeContainer = styled.div<{bgColor: string}>`
   width: 100%;
   max-width: 100vw;
   height: 80px;
@@ -54,15 +54,16 @@ const PrimeContainer = styled.div`
   top: 0px;
   left: 0px;
   z-index: ${Z_INDICES.titlebar + 1};
+
+  background: ${({bgColor}) => bgColor};
+  transition: var(--transition-bg);
 `;
 
-const NavContainer = styled(Container)<{bgColor: string}>`
+const NavContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  background: ${({bgColor}) => bgColor};
-  transition: var(--transition-bg);
 `;
 
 const NavItem = styled(H2)<{isActive: boolean}>`
@@ -136,8 +137,8 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 
   return (
     <>
-      <PrimeContainer>
-        <NavContainer bgColor={bgColor}>
+      <PrimeContainer bgColor={bgColor}>
+        <NavContainer>
           <InAppLink to="/">
             <H3>Ritesh Patil</H3>
           </InAppLink>

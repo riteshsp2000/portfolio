@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 // Components
 import {PageContainer, Navbar, Footer, Container} from '@components';
+import {BREAKPOINTS} from '@theme';
 
 export interface PageLayouts {
   pathname: string;
@@ -13,7 +14,6 @@ export interface PageLayouts {
 const PrimaryContainer = styled.div`
   background: var(--color-background-primary);
   transition: var(--transition);
-  /* overflow-x: hidden; */
 `;
 
 const Box = styled.div`
@@ -26,6 +26,10 @@ const Box = styled.div`
   left: 0;
   z-index: 0;
   overflow-x: hidden;
+
+  @media ${BREAKPOINTS.sm} {
+    height: 350px;
+  }
 `;
 
 const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
@@ -35,9 +39,9 @@ const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
     <PrimaryContainer>
       {isBlogPage && <Box />}
 
-      <PageContainer style={{zIndex: 1}}>
-        <Navbar isBlogPage={isBlogPage} />
+      <Navbar isBlogPage={isBlogPage} />
 
+      <PageContainer style={{zIndex: 1}}>
         <Container>{children}</Container>
 
         <Footer />
