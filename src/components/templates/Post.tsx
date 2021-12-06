@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 
 // Libraries
@@ -7,7 +6,7 @@ import {graphql} from 'gatsby';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 
 // Components
-import {Breadcrumb, H1, Flexbox, TableOfContents} from '@components';
+import {Breadcrumb, H1, Flexbox, TableOfContents, Comments} from '@components';
 import {BREAKPOINTS} from '@theme';
 
 const TopContainer = styled(Flexbox)`
@@ -100,6 +99,8 @@ export default ({data}) => {
             <TableOfContents headings={headings} />
           </Aside>
         </div>
+
+        <Comments withSeparator={false} />
       </GridContainer>
     </div>
   );
