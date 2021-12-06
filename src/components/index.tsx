@@ -53,3 +53,4 @@ export {default as FeaturedArticle} from './molecules/FeaturedArticle';
 export {default as TableOfContents} from './molecules/TableOfContents';
 export {default as Code} from './molecules/Code';
 export {default as MdxProvider} from './molecules/MdxComponents';
+export {default as Comments} from './molecules/Comments';
