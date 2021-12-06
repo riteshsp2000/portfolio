@@ -65,16 +65,21 @@ export const pageQuery = graphql`
   query ($path: String!) {
     mdx(frontmatter: {slug: {eq: $path}, isPublished: {eq: true}}) {
       body
+      headings {
+        value
+        depth
+      }
       frontmatter {
         title
       }
+      tableOfContents
     }
   }
 `;
 
 // @ts-ignore
 export default ({data}) => {
-  const {frontmatter, body} = data.mdx;
+  const {frontmatter, body, headings} = data.mdx;
   const {title} = frontmatter;
 
   return (
@@ -92,7 +97,7 @@ export default ({data}) => {
 
         <div>
           <Aside>
-            <TableOfContents />
+            <TableOfContents headings={headings} />
           </Aside>
         </div>
       </GridContainer>

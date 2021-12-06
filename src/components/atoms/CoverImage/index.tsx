@@ -12,10 +12,8 @@ const ImageContainer = styled.div`
   min-height: 100px;
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 2rem;
 
   .cover-image {
-    border-radius: 8px;
     width: 100%;
     height: 100%;
     object-fit: cover;
