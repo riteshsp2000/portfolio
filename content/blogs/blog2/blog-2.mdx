@@ -1,87 +1,579 @@
 ---
-title: 'Custom React Hooks'
+title: Custom React Hooks
+img: https://res.cloudinary.com/riteshp2000/image/upload/v1638813232/portfolio/v2/blogs/blog-2/React_Hooks_jc93z4.webp
 description:
-  'React has undergone significate modifications in the previous three years
-  resulting in significant changes in the way React'
+  In this article, you will be able to create custom hooks that can be
+  frequently used and can cut down on a lot of boilerplate code.
+isFeatured: false
 isPublished: true
 date: '2021-12-05'
-slug: /blog/custom-react-hooks-2
+slug: /post/react-custom-hooks
 tags: ['react', 'jsx', 'javascript']
 timeToRead: '4 mins'
 ---
 
-## Introduction
+## The Modern React way
 
-You may have noticed your Facebook friend's fancy profile pictures with the
-frame of the sports team they support or a colleague's LinkedIn profile with a
-frame about openness to work. Yes, this is exactly what you'll be building! With
-a high level of customisation, you can easily build one for your online events
-for all the participants to use. Here's a quick glance to what we'll be
-building.
+React has undergone significant modifications in the previous three years, resulting in significant changes in the way React apps are built.
+The most significant modifications are the Functional Component Pattern and
+Hooks. Hooks are the newest trend in the React community and are inevitable for
+any React Developer
 
-![HackNITR Frameboi]('https://res.cloudinary.com/riteshp2000/image/upload/v1638708391/portfolio/v2/Screenshot_2021-12-02_at_6.22.40_PM_1_u2vazy.webp')
+In this article, you will be able to create custom hooks that can be frequently
+used and can cut down on a lot of boilerplate code. Before that, let's look into
+what exactly are hooks.
 
-HTML5 Canvas is a powerful tool for incorporating dynamic, performant visuals in
-web apps. It supports a wide range of browsers and includes built-in APIs for
-drawing shapes, pictures, and text. A variety of utility libraries, such as
-`Konva.js`, `p5.js`, have been created on top of Canvas to assist with event
-handling and animations.
+![Custom React Hooks](https://res.cloudinary.com/riteshp2000/image/upload/v1638812997/portfolio/v2/blogs/blog-2/Things-You-Should-Know-About-React-Hooks_slwxim_nj4ezm.webp)
 
-I choose `konva.js` over the many other canvas libraries available. The Canvas
-API is essentially imperative, and it was built to interact with vanilla
-javascript with methods like `ctx.rect(x, y, width, height)`. This syntax is
-completely alien to React Developers and is unsuitable with modern React
-Patterns. `react-konva`, a react wrapper for `konva.js` allows you to use React
-component interfaces to connect with the Konva API
+## React Hooks
 
-## Prerequisites
+React Hooks was first suggested in October 2018 and then published four months
+later in February 2019. Hooks have been swiftly learned and adopted in
+production codebases since then because they greatly simplify the handling of
+state and side effects in applications.
 
-Before you begin, this article assumes that you are familiar with the following
-concepts.
+Before React 16.8, implementing states and life cycle methods in a functional
+component was not possible. The introduction of hooks made this possible. Hooks
+are functions that let you “hook into” React state and lifecycle features from
+functional components. Following are a few inbuilt hooks provided by React.
 
-- Familiarity with React and its basic usage. You can check out
-  [getting started with Create React App](https://blog.logrocket.com/getting-started-with-create-react-app-d93147444a27/)
-  to brush up on your React skills before we start.
-- Understanding of a state management tool such as `Redux` or `Context API`.
-  This guide on
-  [using redux in react apps](https://blog.logrocket.com/why-use-redux-reasons-with-clear-examples-d21bffd5835/)
-  will get you covered. Alternatively, you can also check out this guide on
-  [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
-- Prior knowledge about `react-konva` would be beneficial. You can take a look
-  at this guide to
-  [canvas manipulation using react-konva](https://blog.logrocket.com/canvas-manipulation-react-konva/)
-- Here is a look at all the technologies and libraries we'll be using
+- useState: as suggested by the name, it is used for states in a functional
+  component
+- useEffect: used for implementing life cycle methods
+- useContext: a useful hook that helps prevent props drilling
+- useRef: specifically used for references in JSX (has additional use cases as
+  well)
+- useReducer: an implementation of redux state management with hooks.
+  (alternative to useState)
 
-  `react` `create-react-app` `styled-components` `react Context API`
-  `react-konva` `netlify`
+These are a few of the inbuilt hooks, React has more to offer. For in-depth
+details about these hooks, you can check the
+[official documentation](https://reactjs.org/docs/hooks-reference.html). For
+video enthusiasts, you can check out the hooks
+[playlist by Ben Awad](https://www.youtube.com/playlist?list=PLN3n1USn4xlmyw3ebYuZmGp60mcENitdM).
 
-1. Running your React app. Create an `index.js` and `App.jsx` files in the src
-   directory and add the following code.
+## Custom Hooks
+
+As projects develop, the likelihood of a specific piece of code recurring
+increases dramatically. In such cases, it's always a good idea to abstract the
+logic of these components into bespoke utils. Custom hooks are used in frontend
+react apps when state and life cycle methods are required to implement the
+abstraction logic.
+
+Before we look into some of the useful custom hooks, it is necessary that you
+understand why hooks are really important and also understand a few rules
+related to hooks while using them.
+
+You might have heard of [Kent C. Dodds](https://kentcdodds.com/), he is a big
+deal in React and his [blog](https://kentcdodds.com/blog/) is one of the most
+revered blogs out there. Here is a direct quote from him regarding hooks.
+
+> Hooks come with a lot of benefits, but one of my favourites is that it makes
+> your components more declarative in that it allows you to stop thinking about
+> "when things should happen in the lifecycle of the component" (which doesn't
+> matter all that much) and more about "when things should happen in relation to
+> state changes" (which matters much more).
+
+In short, what he means to say is, lifecycle methods should occur as per the
+changes in the state, and as we think about it, it does make sense. And hence
+understanding hooks is a big step in the journey of learning React.
+
+With this said, here are a few rules that one needs to follow while using hooks.
+These are important and would be needed as we go on building our own custom
+hooks.
+
+1. **Call hooks only on top-level:**
+
+   Hooks cannot be called inside conditionals, loops or nested functions in a
+   component. Make sure you're using the hook at the top level of your
+   functional components at all times.
+
+2. **Call hooks from React functions:**
+
+   Hooks should be called from the React functional component, or from our
+   custom hooks. Hooks should never be called from a javascript function.
+
+3. **Order of hooks:**
+
+   React relies on the order in which hooks are called, so make sure they're in
+   the right order as per your functionality/requirement.
+
+With this said, let's look into a few custom hooks that I use in my projects to
+make things easier for me.
+
+1. useInput
 
    ```jsx
-   // App.jsx
+   import {useState} from 'react';
+
+   export const useInput = initialState => {
+     const [state, setState] = useState(initialState);
+
+     const set = event => setState(event.target.value);
+     const reset = () => setState(initialState);
+
+     return [state, set, reset];
+   };
+   ```
+
+   - A really useful hook for keeping track of your inputs. The hook accepts an
+     initial state parameter and returns an array of handlers, as seen above.
+   - The state variable is the one that keeps track of the input value. The set
+     is a common onChange handler that sets the state to the value of the event
+     target. The reset utility returns the input value to its original state.
+   - Following is an implementation of the useInput hook.
+
+   ```jsx
    import React from 'react';
 
+   // Utils
+   import {useInput} from '../hooks';
+
    const App = () => {
+     const [name, setName] = useInput();
+     const [email, setEmail] = useInput();
+
      return (
        <div>
-         <h1>Hello World</h1>
+         <input value={name} onChange={setName} />
+         <input value={email} onChange={setEmail} />
        </div>
      );
    };
 
    export default App;
-
-   // index.js
-   import React from 'react';
-   import ReactDOM from 'react-dom';
-
-   import App from './App';
-
-   ReactDOM.render(
-     <React.StrictMode>
-       <App />
-     </React.StrictMode>,
-     document.querySelector('#root'),
-   );
    ```
+
+2. useSwitch and useToggle
+
+   ```jsx
+   import {useState} from 'react';
+
+   export const useSwitch = (initialState = false) => {
+     const [state, setState] = useState(initialState);
+
+     const open = () => setState(true);
+     const close = () => setState(false);
+
+     return [state, open, close];
+   };
+
+   export const useToggle = (initialState = false) => {
+     const [state, setState] = useState(initialState);
+     const toggle = () => setState(currentState => !currentState);
+     return [state, toggle, setState];
+   };
+   ```
+
+   - It's a small hook, but it's quite handy. There are several occasions in
+     which a boolean controls some aspect of the user interface in an
+     application. useToggle and useSwitch come very handily in this situation.
+   - Using the open and close functions, useSwitch changes the boolean state in
+     a controlled manner, whereas useToggle toggles the current state condition.
+
+3. useAsync
+
+   ```jsx
+   import {useEffect, useState} from 'react';
+
+   /*
+   options: {
+   	executeOnMount: boolean,
+   	dependencies: array
+   }
+   */
+
+   const defaultOptions = {
+     executeOnMount: false,
+     dependencies: [],
+   };
+
+   export const useAsync = (api, options = defaultOptions) => {
+     const [data, setData] = useState();
+     const [error, setError] = useState(null);
+     const [waiting, setWaiting] = useState(true);
+
+     if (!api || typeof api !== 'function') {
+       const message = `API not valid!`;
+       throw new Error(message);
+     }
+
+     const onData = d => {
+       setWaiting(false);
+       setError(null);
+       setData(d);
+     };
+
+     const onError = err => {
+       setWaiting(false);
+       setError(err);
+     };
+
+     const execute = async () => {
+       if (!waiting) {
+         setWaiting(true);
+
+         try {
+           const d = await api();
+           onData(d);
+         } catch (err) {
+           onError(err);
+         }
+       }
+     };
+
+     useEffect(() => {
+       if (options?.executeOnMount) execute();
+     }, [...options?.dependencies]);
+
+     return [data, error, waiting, execute];
+   };
+   ```
+
+   - Asynchronous calls are the backbone of a web application, and if handled
+     incorrectly, they can lead to catastrophic failures and bugs.
+   - The useAsync hook aids in the management of an asynchronous call's three
+     states: initialisation, loading, and successful fetch. The implementation
+     is simple, using the onData and onError utilities to handle the various
+     states and the execute function for making the API call.
+   - The hook accepts a Promise function as well as an options object as input.
+     The options object can be totally customised to meet the project's
+     requirements. Though the two properties, executeOnMount and dependencies,
+     are crucial to the hook's operation.
+   - Following is an example of the implementation of the useAsync hook.
+
+   ```jsx
+   import React from 'react';
+
+   // Libraries
+   import axios from 'axios';
+
+   // Utils
+   import {useAsync} from '../hooks';
+
+   const App = () => {
+     const fetchData = axios.get('https://api.yourdomain.com/users');
+     const [data, error, waiting] = useAsync(fetchData, {executeOnMount: true});
+
+     if (waiting) {
+       return <h1>Loading...</h1>;
+     }
+
+     return <div>{error && !data ? <h1>{error}</h1> : <h1>{data}</h1>}</div>;
+   };
+
+   export default App;
+   ```
+
+4. useEventListener
+
+   ```jsx
+   import {useEffect, useRef} from 'react';
+
+   export const useEventListener = (eventName, handler, element = window) => {
+     const eventHandler = useRef();
+
+     useEffect(() => {
+       eventHandler.current = handler;
+     }, [handler]);
+
+     useEffect(() => {
+       if (!element && !element.addEventListener) return;
+
+       element.addEventListener(eventName, event =>
+         eventHandler.current(event),
+       );
+
+       return () => element.removeEventListener(eventName, eventListener);
+     }, [eventName, element]);
+   };
+   ```
+
+   - If you frequently use useEffect to add event listeners, you should consider
+     transferring that logic to a custom hook. The following useEventListener
+     hook above handles verifying if addEventListener is supported, adding the
+     event listener, and removing it on cleanup.
+   - useRef is a versatile hook that can be used in multiple ways. One way that
+     it is used above is to prevent potential multiple re-runs on every render.
+     This allows our first useEffect to always get the latest handler without
+     users needing to pass it in useEffect dependencies.
+
+   ```jsx
+   import React from 'react';
+
+   // Utils
+   import {useEventListener} from '../hooks';
+
+   const App = () => {
+     const element = document.querySelector('#button-id');
+     const [showDate, setShowDate] = useState();
+
+     const eventHandler = () => setShowDate(current => !current);
+     useEventListener('click', handler, element);
+
+     return (
+       <div>
+         <button id="#button-id">Click here for date</button>
+         {showDate && <h1>{new Date().toDateString()}</h1>}
+       </div>
+     );
+   };
+
+   export default App;
+   ```
+
+5. useIsComponentUnmounted
+
+   ```jsx
+   import {useRef, useEffect} from 'react';
+
+   export const useIsComponentUnmounted = () => {
+     const isMounted = useRef(true);
+
+     useEffect(() => {
+       return () => (isMounted.current = false);
+     }, []);
+
+     return isMounted.current;
+   };
+   ```
+
+   - Memory Leaks are one of the most frequent errors encountered by React
+     Developers. A memory leak is a situation where a component tries to update
+     its state when its unmounted.
+   - In order to prevent such scenarios, it is always recommended to check if a
+     component is mounted before updating the state. Hence the following hook. A
+     very short hook though the frequency of it being used is very high.
+
+   ```jsx
+   import React, {useEffect, useState} from 'react';
+
+   // Libraries
+   import axios from 'axios';
+
+   // Utils
+   import {useIsComponentUnmounted} from './hooks';
+
+   const App = () => {
+     const [name, setName] = useState();
+     const isUnmounted = useIsComponentUnmounted();
+
+     useEffect(() => {
+       if (!isUnmounted) {
+         axios
+           .get('https://api.yourdomain.com/getName')
+           .then(data => setName(data.name))
+           .catch(error => console.log(error));
+       }
+     }, []);
+
+     return <h1>Hello {name}</h1>;
+   };
+   ```
+
+6. useScript
+
+   ```jsx
+   import {useEffect, useState} from 'react';
+
+   /*
+   constants in order to maintain consistency
+   */
+   const STATUS = {
+     IDLE: 'Idle',
+     LOADING: 'Loading scripts',
+     READY: 'Script loaded successfully',
+     ERROR: 'Unable to load Script',
+   };
+
+   export const useScript = src => {
+     const [status, setStatus] = useState(src ? STATUS.LOADING : STATUS.IDLE);
+
+     // Helper function to add listeners
+     const addEventListeners = (element, onChange) => {
+       element.addEventListener('load', onChange);
+       element.addEventListener('error', onChange);
+     };
+
+     useEffect(() => {
+       // Allow falsy src value if waiting on other data needed for
+       // constructing the script URL passed to this hook.
+       if (!src) {
+         setStatus(STATUS.ERROR);
+         return;
+       }
+       // Fetch existing script element by src
+       // It may have been added by another intance of this hook
+       let script = document.querySelector(`script[src="${src}"]`);
+
+       if (!script) {
+         // Create script
+         script = document.createElement('script');
+         script.src = src;
+         script.async = true;
+         script.setAttribute('data-status', 'loading');
+         // Add script to document body
+         document.body.appendChild(script);
+         // Store status in attribute on script
+         // This can be read by other instances of this hook
+         const setAttributeFromEvent = event => {
+           script.setAttribute(
+             'data-status',
+             event.type === 'load' ? 'ready' : 'error',
+           );
+         };
+
+         addEventListeners(script, setAttibuteFromEvent);
+       } else {
+         // Grab existing script status from attribute and set to state.
+         setStatus(STATUS.LOADING);
+       }
+       // Script event handler to update status in state
+       // Note: Even if the script already exists we still need to add
+       // event handlers to update the state for *this* hook instance.
+       const setStateFromEvent = event => {
+         setStatus(event.type === 'load' ? STATUS.READY : STATUS.ERROR);
+       };
+       // Add event listeners
+       addEventListeners(script, setStateFromEvent);
+       // Remove event listeners on cleanup
+
+       return () => {
+         if (script) {
+           script.removeEventListener('load', setStateFromEvent);
+           script.removeEventListener('error', setStateFromEvent);
+         }
+       };
+     }, [src]);
+
+     return status;
+   };
+   ```
+
+   - Even though most of the modern libraries and packages are shifting to a
+     module-based system, quite a few times there are situations wherein you
+     would have to use a script. In such cases, it becomes important that the
+     script is properly loaded and used appropriately.
+   - The useScript hook shown above keeps a track of the stages of a script
+     loading in order to notify the app of its usage.
+   - Along with this, it also checks for a few basic things such as if the
+     script is loaded earlier (helps in preventing unnecessary loading and
+     improves performance).
+
+7. useMediaQuery
+
+   ```jsx
+   import {useState, useEffect} from 'react';
+
+   export const useMediaQuery = query => {
+     const [matches, setMatches] = useState(false);
+
+     useEffect(() => {
+       const media = window.matchMedia(query);
+       if (media.matches !== matches) {
+         setMatches(media.matches);
+       }
+
+       const listener = () => setMatches(media.matches);
+       window.addEventListener('resize', listener);
+
+       return () => window.removeEventListener('resize', listener);
+     }, [matches, query]);
+
+     return matches;
+   };
+   ```
+
+   - Another handy hook. With applications becoming more and more dynamic,
+     handling the responsiveness of an app just via CSS queries could be
+     daunting.
+   - With patterns where desktop and mobile components are separately created
+     and rendered separately. The useMediaQuery hook helps in implementing this.
+     Following is an implementation of the same.
+
+   ```jsx
+   import React from 'react';
+   import {useMediaQuery} from './hooks';
+
+   function App() {
+     // You can use any @media property
+     const isDesktop = useMediaQuery('(min-width: 960px)');
+
+     return (
+       <div className="App">
+         {isDesktop ? <h1>Desktop</h1> : <h1>Mobile</h1>}
+       </div>
+     );
+   }
+   ```
+
+8. useLocalStorage
+
+   ```jsx
+   export const useLocalStorage = (key, initialValue) => {
+     const [error, setError] = useState(null);
+     // State to store our value
+     // Pass initial state function to useState so logic is only executed once
+     const [storedValue, setStoredValue] = useState(() => {
+       try {
+         // Get from local storage by key and
+         // parse stored json or if none return initialValue
+         const item = window.localStorage.getItem(key);
+         return item ? JSON.parse(item) : initialValue;
+       } catch (error) {
+         // If error also return initialValue
+         setError({type: 'Initialisation', message: error});
+         return initialValue;
+       }
+     });
+
+     // ... persists the new value to localStorage.
+     const setValue = value => {
+       try {
+         // Save to local state and to local storage
+         setStoredValue(value);
+         window.localStorage.setItem(key, JSON.stringify(value));
+       } catch (error) {
+         setError({type: 'Set Value', message: error});
+       }
+     };
+
+     // ... remove the persisted value from localStorage
+     const removeValue = () => {
+       try {
+         setStoredValue(null);
+         window.localStorage.removeItem(key);
+       } catch (error) {
+         setError({type: 'Remove Value', message: error});
+       }
+     };
+
+     return [storedValue, setValue, removeValue, error];
+   };
+   ```
+
+   - With the rise of state persistence for user personalisation, usage of
+     localStorage has risen commendably.
+   - The useLocalStorage eases our work by handling the storage and removal of
+     key-value pairs in LocalStorage as well as any error occurring during the
+     process.
+
+## Conclusion
+
+Okay! So there you go, quite a few custom hooks for you to use and experiment
+around. Hooks are extremely powerful and when done right can help you to write
+clean and concise code. Saying this, there are still quite a few things that you
+can look into. With these examples, I hope you were able to get an idea about
+how to create custom hooks and I hope that you would use these hooks in your own
+projects as well.
+
+- Introduction of Typescript in custom hooks.
+- Testing hooks (Kent C. Dodds has a super cool
+  [article](https://kentcdodds.com/blog/how-to-test-custom-react-hooks) about
+  it.)
+- Pitfalls to lookout while using Hooks
+  ([article](https://kentcdodds.com/blog/react-hooks-pitfalls))
+- More Custom Hooks!
+
+If you have any questions or suggestions or any other custom hooks, feel free to
+write in the comments below.

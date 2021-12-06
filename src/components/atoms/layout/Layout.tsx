@@ -33,7 +33,7 @@ const Box = styled.div`
 `;
 
 const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
-  const isBlogPage = pathname.split('/')[1] === 'blog';
+  const isBlogPage = pathname.split('/')[1] === 'post';
 
   return (
     <PrimaryContainer>

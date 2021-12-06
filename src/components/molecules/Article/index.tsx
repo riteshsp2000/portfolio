@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 
 // Components
@@ -11,29 +10,27 @@ import {
 } from './styles';
 
 export interface ArticleProps {
-  img?: {
-    src: string;
-    alt: string;
-  };
-  title?: string;
-  date?: string;
-  time?: string;
+  title: string;
+  date: string;
+  timeToRead: string;
+  description: string;
+  slug: string;
+  img: string;
+  isFeatured: boolean;
 }
 
 const Article: React.FC<ArticleProps> = ({
-  title = 'Make your life easier with Custom Hooks',
-  date = '12th Nov 2021',
-  time = '4 min',
+  title,
+  date,
+  timeToRead,
+  slug,
+  img,
 }) => {
-  const src =
-    'https://res.cloudinary.com/riteshp2000/image/upload/v1638601340/portfolio/v2/Things-You-Should-Know-About-React-Hooks_slwxim.webp';
-  const alt = 'React Hooks';
-
   return (
-    <InAppLink to="/link">
+    <InAppLink to={slug}>
       <OuterContainer>
         <ImgContainer>
-          <Image src={src} alt={alt} className="article-img" />
+          <Image src={img} alt={title} className="article-img" />
         </ImgContainer>
 
         <ContentContainer>
@@ -43,7 +40,7 @@ const Article: React.FC<ArticleProps> = ({
             <Flexbox justifyBetween alignCenter style={{width: '100%'}}>
               <P3>{date}</P3>
 
-              <P3>{time}</P3>
+              <P3>{timeToRead}</P3>
             </Flexbox>
           </Overlay>
         </ContentContainer>
