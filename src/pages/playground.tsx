@@ -83,14 +83,6 @@ const Playground: React.FC = () => (
         live: 'live',
       }))}
     />
-
-    <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
-      <ArticleStack />
-    </div>
-
-    <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
-      <FeaturedArticle />
-    </div>
   </>
 );
 
