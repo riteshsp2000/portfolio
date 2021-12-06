@@ -166,7 +166,6 @@ body {
   line-height: 1;
   background: var(--color-background);
   transition: background-color 350ms ease 0s;
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 ol,
@@ -191,6 +190,7 @@ table {
 
 html {
   /* overflow-x: hidden; */
+  scroll-behavior: smooth;
   background: var(--color-background-primary);
   transition: background-color 350ms ease 0s;
 

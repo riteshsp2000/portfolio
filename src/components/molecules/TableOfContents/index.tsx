@@ -4,11 +4,14 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 // Components
-import {P3, P1} from '@components';
+import {P1} from '@components';
 
-const Item = styled(P3)<{isActive: boolean}>`
+const Item = styled.a<{isActive: boolean}>`
   color: ${({isActive}) =>
     isActive ? 'var(--color-text-secondary)' : 'var(--color-text-tertiary)'};
+  text-decoration: none;
+  display: block;
+  line-height: 1.6;
 
   &:hover {
     color: ${({isActive}) =>
@@ -23,39 +26,34 @@ const Title = styled(P1)`
   margin-bottom: 10px;
 `;
 
-const TableOfContents = () => {
-  const [activeId, setActiveId] = useState(0);
+export interface TableOfContentsProps {
+  headings: {
+    value: string;
+    depth: number;
+  }[];
+}
 
-  const items = [
-    {
-      value: 'Introduction',
-      id: 1,
-    },
-    {
-      value: 'What are Hooks?',
-      id: 2,
-    },
-    {
-      value: 'Why use custom hooks?',
-      id: 3,
-    },
-    {
-      value: 'Precautions to be followed',
-      id: 4,
-    },
-  ];
+const TableOfContents: React.FC<TableOfContentsProps> = ({headings}) => {
+  const [activeId, setActiveId] = useState(0);
 
   return (
     <>
       <Title>Table of Contents</Title>
 
-      {items.map(({value, id}) => (
+      {headings.map(({value, depth}, index) => (
         <Item
-          isActive={activeId === id}
-          key={id}
-          onClick={() => setActiveId(id)}
+          key={index}
+          href={`#${value
+            .replace(/[^\w\s]|_/g, '')
+            .replace(/\s+/g, ' ')
+            .split(' ')
+            .join('-')
+            .toLowerCase()}`}
+          isActive={activeId === index}
+          onClick={() => setActiveId(index)}
+          style={{marginLeft: depth < 3 ? 0 : depth * 8}}
         >
-          {value}
+          {value.length > 24 ? value.substring(0, 25) + '...' : value}
         </Item>
       ))}
     </>

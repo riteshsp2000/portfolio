@@ -30,14 +30,7 @@ const Item = () => {
 export default Item;
 `;
 
-const Code = ({
-  // @ts-ignore
-  children,
-  // @ts-ignore
-  codeString,
-  className: cn = 'language-jsx',
-  ...props
-}) => {
+const Code = ({className: cn = 'language-jsx'}) => {
   const [colorMode] = useTheme();
   const language = cn.replace('language-', '');
 
@@ -57,7 +50,6 @@ const Code = ({
                 <Line key={i} {...getLineProps({line, key: i})}>
                   <LineContent>
                     {line.map((token, key) => {
-                      console.log(token);
                       let ct = '';
                       if (token.content.search(/\t/) !== -1) {
                         let count = token.content.split('\t').length - 1;
