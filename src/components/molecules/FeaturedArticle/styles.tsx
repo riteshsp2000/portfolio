@@ -21,6 +21,63 @@ export const Title = styled(H1)`
   }
 `;
 
+export const PrimaryContainer = styled(Flexbox)`
+  .read-button {
+    width: auto;
+
+    button {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+  }
+  &:hover {
+    .arrow-container {
+      visibility: visible;
+
+      .first-arrow {
+        margin-left: 5px;
+      }
+
+      .second-arrow {
+        margin-left: 15px;
+      }
+
+      .third-arrow {
+        margin-left: 25px;
+      }
+    }
+  }
+`;
+
+export const ArrowContainer = styled.div`
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  .arrow {
+    opacity: 0;
+    position: absolute;
+    margin-left: 0;
+    transition: all 200ms ease-in 0s;
+    opacity: 1;
+  }
+
+  .second-arrow {
+    transition: all 300ms ease-in 0s;
+    opacity: 0.6;
+  }
+  .third-arrow {
+    transition: all 400ms ease-in 0s;
+    opacity: 0.3;
+  }
+`;
+
 export const CardContainer = styled(Flexbox)`
   width: 100%;
   height: 500px;

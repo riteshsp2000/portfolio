@@ -8,6 +8,12 @@ export const OuterContainer = styled.div`
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  transition: var(--transition);
+  transform: scale(1) translateY(0);
+
+  &:hover {
+    transform: scale(1.03) translateY(-8px);
+  }
 `;
 
 export const ContentContainer = styled.div`

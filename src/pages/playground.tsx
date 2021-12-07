@@ -21,8 +21,6 @@ import {
   Input,
   Button,
   Tag,
-  ArticleStack,
-  FeaturedArticle,
 } from '@components';
 
 const Playground: React.FC = () => (
