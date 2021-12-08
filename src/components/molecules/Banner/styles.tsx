@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // Components
-import {Flexbox, H3, P2} from '@components';
+import {Flexbox, P2} from '@components';
 import {BREAKPOINTS} from '../../../theming';
 
 export const Container = styled(Flexbox)`

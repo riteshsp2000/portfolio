@@ -10,7 +10,7 @@ import {BREAKPOINTS} from '@theme';
 
 export interface BannerProps {
   title?: string;
-  content: string;
+  content: string[];
   flip?: boolean;
   short?: boolean;
   src: string;
@@ -42,9 +42,12 @@ const Banner: React.FC<BannerProps> = ({
           {title}
         </H3>
       )}
-      <Content short={short} flip={flip}>
-        {content}
-      </Content>
+
+      {content.map(ct => (
+        <Content short={short} flip={flip} key={ct}>
+          {ct}
+        </Content>
+      ))}
     </ContentContainer>
   );
 
