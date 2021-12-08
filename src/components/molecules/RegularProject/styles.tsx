@@ -9,9 +9,12 @@ export const Container = styled(Card)`
   max-height: 400px;
   overflow: hidden;
 
-  /* display: flex;
-  align-items: center;
-  justify-items: center; */
+  transition: var(--transition);
+  transform: scale(1) translateY(0);
+
+  &:hover {
+    transform: scale(1.02) translateY(-6px);
+  }
 
   padding: 1.5rem;
   border-radius: 12px;

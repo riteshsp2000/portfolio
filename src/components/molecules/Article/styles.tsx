@@ -12,7 +12,7 @@ export const OuterContainer = styled.div`
   transform: scale(1) translateY(0);
 
   &:hover {
-    transform: scale(1.03) translateY(-8px);
+    transform: scale(1.02) translateY(-6px);
   }
 `;
 
