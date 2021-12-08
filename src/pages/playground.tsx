@@ -21,6 +21,7 @@ import {
   Input,
   Button,
   Tag,
+  Banner,
 } from '@components';
 
 const Playground: React.FC = () => (
@@ -60,6 +61,29 @@ const Playground: React.FC = () => (
         github: 'hello',
         live: 'live',
       }))}
+    />
+
+    <Banner
+      alt="Ritesh Patil"
+      src="https://res.cloudinary.com/riteshp2000/image/upload/v1638948441/portfolio/v2/assets/RiteshPatil_px7ns1.webp"
+      content="Hey! I am Ritesh Patil, a Student Passionate about Computer Science. I enjoy creating web applications that live on the internet and can be accessed by everyone. I have been developing software for the past 2 years and it has been awesome so far! \n Fast Forward to today, I am a undergrad at National Institute of Technology Rourkela, India in the field of Industrial Design. My main focus these days is to write performant and industry standard code mainly using React and Node.js. I pay close attention to details, and have a great understanding of what it takes to build great user-centric experiences"
+    />
+
+    <Banner
+      title="🚀 Ritesh Patil"
+      short
+      alt="Ritesh Patil"
+      src="https://res.cloudinary.com/riteshp2000/image/upload/v1638948441/portfolio/v2/assets/RiteshPatil_px7ns1.webp"
+      content="Hey! I am Ritesh Patil, a Student Passionate about Computer Science. I enjoy creating web applications that live on the internet and can be accessed by everyone. I have been developing software for the past 2 years and it has been awesome so far! \n Fast Forward to today, I am a undergrad at National Institute of Technology Rourkela, India in the field of Industrial Design. My main focus these days is to write performant and industry standard code mainly using React and Node.js. I pay close attention to details, and have a great understanding of what it takes to build great user-centric experiences"
+    />
+
+    <Banner
+      title="🚀 Ritesh Patil"
+      short
+      flip
+      alt="Ritesh Patil"
+      src="https://res.cloudinary.com/riteshp2000/image/upload/v1638948441/portfolio/v2/assets/RiteshPatil_px7ns1.webp"
+      content="Hey! I am Ritesh Patil, a Student Passionate about Computer Science. I enjoy creating web applications that live on the internet and can be accessed by everyone. I have been developing software for the past 2 years and it has been awesome so far! \n Fast Forward to today, I am a undergrad at National Institute of Technology Rourkela, India in the field of Industrial Design. My main focus these days is to write performant and industry standard code mainly using React and Node.js. I pay close attention to details, and have a great understanding of what it takes to build great user-centric experiences"
     />
   </>
 );

@@ -64,7 +64,6 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
       style={{
         marginBottom: isMobile ? '1rem' : '3rem',
         width: '100%',
-        border: '1px solid var(--color-background-primary)',
       }}
     >
       <FB>

@@ -81,7 +81,7 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
           decoding="async"
           sizes={sizes}
           srcSet={getSrcSet(src)}
-          src={fallbackSrc || getSrc(src)}
+          src={fallbackSrc}
           data-main-image=""
           alt={alt}
           {...rest}
