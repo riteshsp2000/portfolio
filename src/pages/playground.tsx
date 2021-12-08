@@ -51,26 +51,6 @@ const Playground: React.FC = () => (
 
     <Button isBgPrimary={true}>Click me</Button>
 
-    <FeaturedProject
-      img="https://res.cloudinary.com/riteshp2000/image/upload/v1638024276/portfolio/v2/Rectangle_39_gtk3ab.webp"
-      title="Boutiqes"
-      excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
-      tech={['react', 'typescript', 'firebase', 'agora', 'razorpay']}
-      github="hello"
-      live="live"
-      type="mobile"
-    />
-    <FeaturedProject
-      img="https://res.cloudinary.com/riteshp2000/image/upload/v1638024273/portfolio/v2/Rectangle_2_l8k9cz.webp"
-      title="Boutiqes"
-      excerpt="Designed and Developed a higly interactive application using React-Native Firebase with cross-platform support (iOS Android). Integrated features such as Livestreams, Audio/VideoCalls, Realtime chats, Payments, Social media features, etc."
-      tech={['react', 'typescript', 'firebase', 'agora', 'razorpay']}
-      github="hello"
-      live="live"
-      type="web"
-      flip={true}
-    />
-
     <ProjectGrid
       projects={[1, 2, 3, 4, 5].map(() => ({
         title: 'Boutiques',
