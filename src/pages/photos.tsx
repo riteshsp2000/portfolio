@@ -26,7 +26,7 @@ const Error: React.FC = () => (
       alt="Error Page not found"
       src="https://res.cloudinary.com/riteshp2000/image/upload/v1638967223/portfolio/v2/assets/animation_500_kwxiqink_va3ghc.gif"
     />
-    <h1>404 page not found</h1>
+    <h1>Coming Soon. Stay tuned!</h1>
   </Container>
 );
 
