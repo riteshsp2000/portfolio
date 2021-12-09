@@ -71,7 +71,7 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
   return (
     <>
       <Helmet>
-        <link rel="preload" as="image" href={getSrc(src)} />
+        <link rel="preload" as="image" href={src} />
       </Helmet>
 
       <picture style={{display: 'contents'}}>
@@ -81,7 +81,7 @@ const ImageFallback: React.FC<ImageFallbackProps> = ({
           decoding="async"
           sizes={sizes}
           srcSet={getSrcSet(src)}
-          src={fallbackSrc}
+          src={fallbackSrc || src}
           data-main-image=""
           alt={alt}
           {...rest}
