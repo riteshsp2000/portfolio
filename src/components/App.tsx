@@ -11,19 +11,10 @@ import WotfardBold from '@fonts/wotfard-medium-webfont.woff2';
 
 // Components/Configuration
 import {ThemeProvider} from '@theme';
-import {MdxProvider} from '@components';
+import {MdxProvider, SEO} from '@components';
 
 // Assets
 import '@theme/globalStyles.css';
-
-// List of Components
-// - H1, H2, H3 =>
-// - P1, P2, P3 =>
-// - Images =>
-// - Code
-// - Quote =>
-// - Ordered and Unordered List =>
-// - Links =>
 
 const App: React.FC = ({children}) => (
   <LocationProvider>
@@ -50,6 +41,8 @@ const App: React.FC = ({children}) => (
         crossOrigin="anonymous"
       />
     </Helmet>
+
+    <SEO />
 
     <ThemeProvider>
       <MdxProvider>{children}</MdxProvider>
