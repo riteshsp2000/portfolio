@@ -56,7 +56,7 @@ const Projects: React.FC = ({
   return (
     <>
       <div style={{margin: '3rem auto 3rem auto'}}>
-        <SectionTitle highlight="Notables" title="Other" />
+        {/* <SectionTitle highlight="Featured" title="Projects" /> */}
       </div>
 
       {/* @ts-ignore */}

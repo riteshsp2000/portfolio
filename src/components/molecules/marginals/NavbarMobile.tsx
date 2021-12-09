@@ -165,7 +165,10 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
                       <animated.div key={tabItem.id} style={tabStyle}>
                         <NavLink
                           to={tabItem.link}
-                          onClick={() => toggleActiveTab(tabItem.id)}
+                          onClick={() => {
+                            toggleActiveTab(tabItem.id);
+                            setShowMenuOpen(false);
+                          }}
                         >
                           <NavItem isActive={activeTab === tabItem.id}>
                             {tabItem.name}
