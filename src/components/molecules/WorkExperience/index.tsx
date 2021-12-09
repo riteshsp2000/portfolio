@@ -15,7 +15,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 
   @media (max-width: 700px) {
     display: block;
