@@ -83,7 +83,7 @@ const About = () => {
         <Banner key={alt} alt={alt} src={src} content={content} />
       ))}
 
-      <H2 style={{marginBottom: '0.5rem', marginTop: '1rem'}}>
+      <H2 style={{marginBottom: '0.2rem', marginTop: '5rem'}}>
         What am I like outside of work? I’m glad you asked
       </H2>
 
@@ -99,7 +99,7 @@ const About = () => {
         />
       ))}
 
-      <H2 style={{marginBottom: '0.5rem', marginTop: '1rem'}}>
+      <H2 style={{marginBottom: '0.2rem', marginTop: '5rem'}}>
         I’m active in the tech community {'&'} love to organise events
       </H2>
 
