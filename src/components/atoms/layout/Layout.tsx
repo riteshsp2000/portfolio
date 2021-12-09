@@ -43,9 +43,9 @@ const Layout: React.FC<PageLayouts> = ({children, pathname}) => {
 
       <PageContainer style={{zIndex: 1}}>
         <Container>{children}</Container>
-
-        <Footer />
       </PageContainer>
+
+      <Footer />
     </PrimaryContainer>
   );
 };
