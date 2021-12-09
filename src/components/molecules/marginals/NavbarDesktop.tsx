@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {Link} from 'gatsby';
 
 // Components
-import {ThemeToggle, P2, H3, InAppLink} from '@components';
+import {ThemeToggle, P2, H3, InAppLink, RedirectLink} from '@components';
 import Container from '../../atoms/layout/Container';
 
 // Assets and Types
@@ -83,6 +83,9 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
                 </NavLink>
               ),
           )}
+          <RedirectLink href="/resume.pdf">
+            <NavItem isActive={false}>Resume</NavItem>
+          </RedirectLink>
         </NavItemsContainer>
         <ThemeToggle />
       </InnerContainer>

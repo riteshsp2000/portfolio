@@ -6,7 +6,14 @@ import {Link} from 'gatsby';
 import {useTransition, animated} from 'react-spring';
 
 // Components
-import {H3, H2, HamburgerMenu, ThemeToggle, InAppLink} from '@components';
+import {
+  H3,
+  H2,
+  HamburgerMenu,
+  ThemeToggle,
+  InAppLink,
+  RedirectLink,
+} from '@components';
 import Container from '../../atoms/layout/Container';
 
 // Assets
