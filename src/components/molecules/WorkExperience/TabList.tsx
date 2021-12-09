@@ -119,7 +119,11 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
   onKeyDown,
   tabs,
 }) => (
-  <NavContainer role="tablist" aria-label="Job tabs" onKeyDown={onKeyDown}>
+  <NavContainer
+    // role="tablist"
+    // aria-label="Job tabs"
+    onKeyDown={onKeyDown}
+  >
     {jobs.map(
       (
         {
@@ -132,14 +136,15 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
       ) => (
         <NavItem
           key={id}
-          ref={element => (tabs.current[index] = element)}
           onClick={() => onClick(index)}
           isActive={index === activeTabId}
-          role="tab"
-          id={`jobs-list-${index}`}
-          tabIndex={activeTabId === index ? 0 : -1}
-          aria-selected={activeTabId === index ? true : false}
-          aria-controls={`jobs-list-${index}`}
+          // ref={element => (tabs.current[index] = element)}
+          // role="tab"
+          // id={`jobs-list-${index}`}
+          // tabIndex={activeTabId === index ? 0 : -1}
+          // tabIndex={0}
+          // aria-selected={activeTabId === index ? true : false}
+          // aria-controls={`jobs-list-${index}`}
         >
           {company}
         </NavItem>
