@@ -2,6 +2,7 @@ import React from 'react';
 
 // Libraries
 import styled from 'styled-components';
+import {graphql} from 'gatsby';
 
 // Components
 import {
@@ -11,6 +12,7 @@ import {
   H3,
   WorkExperience,
   SectionTitle,
+  FeaturedProject,
 } from '@components';
 
 import {BREAKPOINTS} from '@theme';
@@ -59,7 +61,35 @@ const Subtext = styled(H3)`
   }
 `;
 
-const Home: React.FC = () => (
+export const pageQuery = graphql`
+  {
+    featured: allMdx(
+      filter: {fileAbsolutePath: {regex: "/content/projects/featured/"}}
+      sort: {fields: frontmatter___date, order: ASC}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            excerpt
+            github
+            img
+            live
+            tech
+            type
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Home: React.FC = ({
+  // @ts-ignore
+  data: {
+    featured: {edges: featured},
+  },
+}) => (
   <>
     <SectionContainer flexColumn alignCenter justifyCenter>
       <ImgContainer>
@@ -79,7 +109,20 @@ const Home: React.FC = () => (
     </SectionContainer>
 
     <SectionTitle title="Work" highlight="Experience" />
+    <div style={{height: '8rem'}} />
     <WorkExperience />
+    <div style={{height: '8rem'}} />
+
+    <SectionTitle title="Featured" highlight="Projects" />
+    <div style={{marginBottom: '3rem'}} />
+    {/* @ts-ignore */}
+    {featured.slice(0, 3).map(({node: {frontmatter}}, index) => (
+      <FeaturedProject
+        key={frontmatter.title}
+        {...frontmatter}
+        flip={index % 2 !== 0}
+      />
+    ))}
   </>
 );
 
