@@ -1,17 +1,6 @@
 const path = require('path');
 const redirects = require('./redirects.json');
 
-exports.createPages = async ({actions}) => {
-  const {createRedirect} = actions;
-
-  redirects.forEach(({fromPath, toPath}) =>
-    createRedirect({
-      fromPath,
-      toPath,
-    }),
-  );
-};
-
 exports.onCreateWebpackConfig = ({stage, loaders, actions}) => {
   actions.setWebpackConfig({
     resolve: {
@@ -30,6 +19,16 @@ exports.onCreateWebpackConfig = ({stage, loaders, actions}) => {
 };
 
 exports.createPages = async ({actions, graphql, reporter}) => {
+  // Create redirects from the json file
+  const {createRedirect} = actions;
+  redirects.forEach(({fromPath, toPath}) =>
+    createRedirect({
+      fromPath,
+      toPath,
+    }),
+  );
+
+  // Create blog pages
   const {createPage} = actions;
   const postTemplate = path.resolve(`src/components/templates/Post.tsx`);
 
