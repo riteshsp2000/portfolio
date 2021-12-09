@@ -35,13 +35,13 @@ export const navItems = [
     id: 'nav-item-4',
     delay: 300,
   },
-  {
-    name: 'Contact',
-    link: '/playground',
-    active: true,
-    id: 'nav-item-5',
-    delay: 400,
-  },
+  // {
+  //   name: 'Resume',
+  //   link: '/resume.pdf',
+  //   active: true,
+  //   id: 'nav-item-5',
+  //   delay: 400,
+  // },
 ];
 
 export type LinkObject = {
