@@ -114,25 +114,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify',
-      options: {
-        headers: {
-          // Cache fonts forever
-          '/fonts/*': [
-            'Cache-Control: public',
-            'Cache-Control: max-age=31536000',
-            'Cache-Control: immutable',
-          ],
-          // Cache images for a week
-          '/static/*': [
-            'Cache-Control: public',
-            'Cache-Control: max-age=31536000',
-            'Cache-Control: immutable',
-          ],
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [config.googleAnalyticsID],
