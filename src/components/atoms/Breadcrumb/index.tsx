@@ -16,11 +16,11 @@ const Breadcrumb = () => {
     },
     {
       name: 'Blogs',
-      link: '/blogs',
+      link: '/blog',
     },
     {
       name: 'React',
-      link: '/blogs?search=react',
+      link: '/blog?search=react',
     },
   ];
   return (
