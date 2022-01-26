@@ -5,8 +5,8 @@ description:
   You may have noticed your Facebook friend's fancy profile pictures with the
   frame of the sports team they support or a colleague's LinkedIn profile with a
   frame about openness to work. Yes, this is exactly what you'll be building!
-isFeatured: true
-isPublished: true
+isFeatured: false
+isPublished: false
 date: '2021-12-04'
 slug: /post/react-konva-frame-generator
 tags: ['react', 'jsx', 'javascript']
@@ -16,27 +16,30 @@ timeToRead: '4 mins'
 
 ## Introduction
 
-You may have noticed your Facebook friend's fancy profile pictures with the
-frame of the sports team they support or a colleague's LinkedIn profile with a
-frame about openness to work. Yes, this is exactly what you'll be building! With
-a high level of customisation, you can easily build one for your online events
-for all the participants to use. Here's a quick glance to what we'll be
-building.
+If you’ve spent time on social media, you’ve probably seen one of your friends
+change their Facebook profile picture to include a frame supporting their
+favorite sports team, or a colleague's LinkedIn profile with a frame about
+openness to work. In this article, we’ll build our own profile picture frame
+generator in React using React Konva. With a high level of customization, you
+can build a profile picture frame generator for your online event participants
+to use. Our final output will look like the image below:
 
 ![HackNITR Frameboi](https://res.cloudinary.com/riteshp2000/image/upload/v1638812867/portfolio/v2/blogs/blog-1/Frameboi_Cover_Image_zgomns.png)
 
-HTML5 Canvas is a powerful tool for incorporating dynamic, performant visuals in
-web apps. It supports a wide range of browsers and includes built-in APIs for
-drawing shapes, pictures, and text. A variety of utility libraries, such as
-`Konva.js`, `p5.js`, have been created on top of Canvas to assist with event
-handling and animations.
+## What is React Konva
 
-I choose `konva.js` over the many other canvas libraries available. The Canvas
-API is essentially imperative, and it was built to interact with vanilla
-javascript with methods like `ctx.rect(x, y, width, height)`. This syntax is
-completely alien to React Developers and is unsuitable with modern React
-Patterns. `react-konva`, a react wrapper for `konva.js` allows you to use React
-component interfaces to connect with the Konva API
+The HTML5 `<canvas>` element is a powerful tool for incorporating dynamic,
+performant visuals in web apps. `<canvas>` supports a wide range of browsers and
+includes built-in APIs for adding shapes, pictures, and text. A variety of
+utility libraries like Konva.js and p5.js have been created on top of Canvas to
+assist with event handling and animations.
+
+I choose Konva.js over the many other canvas libraries available. The Canvas API
+is essentially imperative, and it was built to interact with vanilla JavaScript
+with methods like `ctx.rect(x, y, width, height)`. This syntax is completely
+alien to React developers and is incompatible with modern React patterns. React
+Konva, a React wrapper for Konva.js, allows you to use React component
+interfaces to connect with the Konva API.
 
 ## Prerequisites
 
@@ -61,6 +64,11 @@ concepts.
 
 ## Project Setup
 
+First, we'll install Yarn to make our development process much smoother. To run
+this command, you'll need to have Node.js installed. You can check whether
+Node.js is installed using the command node --version. Installing Node.js will
+automatically enable the npm and npx commands:
+
 1. Install `yarn`. Yarn is a package manager just like `npm` but faster. Using
    `yarn` would make your development process much smoother.
 
@@ -84,54 +92,56 @@ concepts.
 
    ```
 
-1. Setting up a clean directory structure. Delete all the files that come with
-   CRA and create the required folders and files as shown below.
+- Setting up a clean directory structure. Delete all the files that come with
+  CRA and create the required folders and files as shown below.
 
-   - public - files in this directory will be directly accessible to the users.
-   - src - contains all the files which we add and use.
-   - assets - all the images and frames we'll be using would be here.
-   - components - contains all the various components that we'll be having
-   - pages - all the different screens that we'll be having
-   - store - files handling the global state management of the app.
+  - `public` - files in this directory will be directly accessible to the users.
+  - `src` - contains all the files which we add and use.
+  - `assets` - all the images and frames we'll be using would be here.
+  - `components` - contains all the various components that we'll be having
+  - `pages` - all the different screens that we'll be having
+  - `store` - files handling the global state management of the app.
 
-1. Running your React app. Create an `index.js` and `App.jsx` files in the src
-   directory and add the following code.
+- Running your React app. Create an `index.js` and `App.jsx` files in the src
+  directory and add the following code.
 
-   ```jsx
-   // App.jsx
-   import React from 'react';
+  ```jsx
+  // App.jsx
+  import React from 'react';
 
-   const App = () => {
-     return (
-       <div>
-         <h1>Hello World</h1>
-       </div>
-     );
-   };
+  const App = () => {
+    return (
+      <div>
+        <h1>Hello World</h1>
+      </div>
+    );
+  };
 
-   export default App;
+  export default App;
 
-   // index.js
-   import React from 'react';
-   import ReactDOM from 'react-dom';
+  // index.js
+  import React from 'react';
+  import ReactDOM from 'react-dom';
 
-   import App from './App';
+  import App from './App';
 
-   ReactDOM.render(
-     <React.StrictMode>
-       <App />
-     </React.StrictMode>,
-     document.querySelector('#root'),
-   );
-   ```
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.querySelector('#root'),
+  );
+  ```
 
-1. Installing the required packages and libraries. We will be using
-   `styled-components` for css styling and `react-konva` for canvas
-   manipulations
+- Installing the required packages and libraries. We will be using
+  `styled-components` for css styling and `react-konva` for canvas manipulations
 
-   ```jsx
-   yarn add styled-components react-konva konva
-   ```
+  ```jsx
+  yarn add styled-components react-konva konva
+  ```
+
+_In this article, we won’t focus on CSS styling in great detail. You can find
+the details of specific implementation in the repository linked below._
 
 ## List of Features
 
@@ -308,14 +318,13 @@ export default Canvas;
 
 ### Step 2: Creating a custom Text component.
 
-- The issue with the inbuilt Text component is that it doesn't have a
-  background. Silly, but it is what it is.
-- Instead, what you'll be doing is creating a custom component using a Text
-  component placed on top of a Rect Component (Rectangle). In order to achieve
-  this, react-konva provides a group component so that a single set of props
-  such as dimensions and positions are provided just to one component instead of
+- The inbuilt `text` component doesn’t include a background. Instead, we’ll
+  create a custom component by using a `Text` component placed on top of a
+  `Rect`, Rectangle, component.
+- React Konva provides a `group` component, so a single set of props like
+  dimensions and positions are provided to just one component instead of
   multiple.
-- Create a new file - CustomText.jsx and add the following code.
+- Create a new file - `CustomText.jsx` and add the following code.
 
 ```jsx
 import React from 'react';
@@ -376,11 +385,12 @@ export default CustomText;
 
 ### Step 3: Scale your components with Transformer
 
-- So far you have gotten the majority of the components ready with a key feature
-  missing which would add a new level of customisation to your application.
-  Let's start with Images. Before you create your custom image component, you
-  need to refactor the canvas component to have some states since we are
-  shifting to a more dynamic application with interactions.
+- At this point, we’ve prepared the majority of our components. However, we’re
+  missing a key feature that will bring a whole new level of customization to
+  our application.
+- Let's start with Images. Before we can create our custom `image` component, we
+  need to refactor the ` C``anvas ` component to include states, since we’re
+  shifting to a more dynamic application with interactions:
 
 ```jsx
 import profile from '../assets/frame1';
@@ -423,15 +433,18 @@ const Canvas = () => {
 export default Canvas;
 ```
 
-- Now that you have set up your stage with states, time to build a transformable
-  image component. To reduce the code in a single component and avoid any sort
-  of repetition, create a new file named `CustomImage.jsx`
-- `react-konva` has a Transformer component that creates a box around the shape
-  using which the user can resize or rotate the shape. Add the following code to
-  the above-mentioned file.
+- With `stage` set up with states, let’s build our transformable image
+  component. To reduce the code in a single component and avoid any sort of
+  repetition, create a new file called `CustomImage.jsx`.
+- React Konva has a `Transformer` component that creates a box around the shape
+  using, which the user can use to resize or rotate the shape. Add the following
+  code to `CustomImage.jsx` file:
 
 ```jsx
 import React from 'react';
+
+// Libraries
+import useImage from 'use-image';
 
 // Components
 import {Image, Transformer} from 'react-konva';
@@ -443,6 +456,19 @@ const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
    */
   const shapeRef = React.useRef();
   const transformerRef = React.useRef();
+
+  const {
+    renderDimensions: {width, height},
+    position: {x, y},
+    image: rawImage,
+  } = imageDetails;
+
+  /**
+   * Before we pass the image to react-konva element, we need to
+   * preprocess it as per the requirements. Luckily, you don't have
+   * to worry about it as a handy-package 'use-image' does it for you.
+   */
+  const image = useImage(rawImage);
 
   /**
    * This effect runs whenever the isSelected variable is toggled
@@ -461,12 +487,6 @@ const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
       transformerRef.current?.getLayer().batchDraw();
     }
   }, [isSelected]);
-
-  const {
-    renderDimensions: {width, height},
-    position: {x, y},
-    image,
-  } = imageDetails;
 
   /**
    * The most important handler functions for transformations
@@ -512,10 +532,10 @@ const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
         x={x}
         y={y}
         /**
-        onSelect is a function that toggles the isSelected
-        variable. This function is called when image is
-        clicked or tapped.
-        */
+         onSelect is a function that toggles the isSelected
+         variable. This function is called when image is
+         clicked or tapped.
+         */
         onClick={onSelect}
         onTap={onSelect}
         /** Transformation Handlers Explained above */
@@ -528,12 +548,12 @@ const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
           ref={transformerRef}
           boundBoxFunc={(oldBox, newBox) => {
             /**
-              this function handles the sizing of the box
-              Essentially what it does is adding a check
-              to avoid reduction of size to 0
-              if the newBox dimensions are less than 5 units,
-              it returns the oldBox dimensions
-             */
+               this function handles the sizing of the box
+               Essentially what it does is adding a check
+               to avoid reduction of size to 0
+               if the newBox dimensions are less than 5 units,
+               it returns the oldBox dimensions
+              */
             if (newBox.width < 5 || newBox.height < 5) {
               return oldBox;
             }
@@ -548,12 +568,12 @@ const CustomImage = ({imageDetails, setImageDetails, isSelected, onSelect}) => {
 export default CustomImage;
 ```
 
-- Okay, you have a transformable image component all set up, time to update the
+- Now that you have a transformable image component set up, let’s update the
   canvas stage with the new component. In the `Canvas.jsx` file, replace the
-  Image component with the following code.
+  Image component with the following code:
 
-  NOTE: Replace only the Image component used for the user profile image as you
-  don't want the frame to be transformable.
+  _NOTE_: _Replace only the Image component used for the user profile image as
+  you don't want the frame to be transformable._
 
 ```jsx
 <CustomImage
@@ -569,18 +589,17 @@ export default CustomImage;
 
 ### Step 4: Time to refactor
 
-- As you can see, in the current setup you have quite a lot of state-related
-  items such as image details, text details, stage details etc in the component
-  itself. Additionally, you also have all sorts of handler functions in the same
-  component. Quickly the code will start growing and become unreadable.
-- In addition to this, you can see that with just 3 components, there is a lot
-  of prop drilling going on which is not at all a good practice. There are a few
-  states here that need to be uplifted since components such as the inputs and
-  upload button require them.
-- Time to set up global state management. You will be using the Context API
-  along with the useReducer hook. I believe that at its core React is a state
-  management library and hence any external libraries such as Redux are not
-  necessary.
+- With the current setup, we have a lot of state-related items stored in the
+  component itself, like image details, text details, and stage details. Handler
+  functions are in the same component. At this rate, your code will quickly grow
+  messy and unreadable.
+- Additionally, with just three components in our code, we have a lot of prop
+  drilling occurring, which isn’t good practice. We’ll need to uplift a few
+  states here that are required by components like the inputs and the upload
+  button.
+- Let’s set up global state management. We’ll use the Context API along with the
+  `useReducer` Hook. I believe that at its core, React is a state management
+  library, and therefore any external libraries like Redux aren’t necessary.
 
   > [Kent C. Dodds](https://kentcdodds.com) has a phenomenal article explaining
   > the
@@ -631,9 +650,9 @@ export const CANVAS_ACTIONS = Object.freeze({
 });
 ```
 
-- Now that you have our action types and initial state set up, let's set the
-  reducer for the same as well. Create a file - `frames.reducer.js` under the
-  `store/reducers` directory and add the following code.
+- With our action types and initial state set up, let's do the same for the
+  reducer. Create a file called `frames.reducer.js` under the `store/reducers`
+  directory and add the following code:
 
 ```jsx
 import {CANVAS_ACTIONS} from '../actions/compose.action';
@@ -757,6 +776,39 @@ const Frames = () => {
 export default Frames;
 ```
 
+- Ideally, this is all that you would require to set things up for a well
+  structured state management. But react-konva at the moment doesn’t support
+  Context API and hence we’d have to update our Stage (Canvas) component a bit
+  to get it working. In your Canvas.jsx, update the code:
+
+```jsx
+  /* Previous imports */
+ import { FramesContext, useFrames } from "../store/contexts/frames.context";
+
+ const Canvas = () => {
+   /* remaining code */
+
+   return (
+     <FramesContext.Consumer>
+       {(value) => (
+         <Stage
+           ref={stageRef}
+           width={stageDetails.width}
+           height={stageDetails.height}
+           style={{ position: "relative" }}
+         >
+           <FramesContext.Provider value={value}>
+             <Layer>
+               {/* remaining code */}
+             </Layer>
+           </FramesContext.Provider value={value}>
+         </Stage>
+       )}
+     </FramesContext.Consumer>
+   )
+ }
+```
+
 - You are all set, with a few final things remaining. You need to update your
   reducer function to handle the different updates and call the dispatch
   function with the appropriate action types. Refactor the `frames.reducer.js`
@@ -812,7 +864,6 @@ import {CANVAS_ACTIONS} from '../store/actions/frames.action';
 /* Remove the rest of the destructured props */
 const CustomImage = ({isSelected, onSelect}) => {
   /* Rest of code */
-
   const [state, dispatch] = useFrames();
 
   /* Update the destructured element to use the state */
@@ -986,8 +1037,8 @@ different patterns and technologies that we used in building this application.
 
 - [Guide to canvas manipulations using React Konva](https://blog.logrocket.com/canvas-manipulation-react-konva/)
 - [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
-- [Code repository](https://github.com/dscnitrourkela/project-icecream)
-- [Live working example - Frameboi HackNITR](https://frames.hacknitr.tech)
+- [Code repository](https://github.com/dscnitrourkela/project-icecream/tree/cra-version)
+- [Live working example - Frameboi HackNITR](https://gracious-volhard-22bfe6.netlify.app/)
 
 ## Conclusion.
 

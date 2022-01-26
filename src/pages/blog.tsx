@@ -47,18 +47,29 @@ const Blogs = ({data}) => {
         frontmatter: {isFeatured},
       },
     }) => isFeatured,
-  )[0];
+  );
+
+  const regularArticles = edges.filter(
+    ({
+      node: {
+        // @ts-ignore
+        frontmatter: {isFeatured},
+      },
+    }) => !isFeatured,
+  );
 
   return (
     <div>
-      <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
-        <FeaturedArticle {...featuredArticle.node.frontmatter} />
-      </div>
+      {featuredArticle.length > 0 && (
+        <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
+          <FeaturedArticle {...featuredArticle[0].node.frontmatter} />
+        </div>
+      )}
 
       <div style={{marginTop: '2rem', marginBottom: '2rem'}}>
         <ArticleStack
           // @ts-ignore
-          articles={edges.map(({node: {frontmatter}}) => frontmatter)}
+          articles={regularArticles.map(({node: {frontmatter}}) => frontmatter)}
         />
       </div>
     </div>
