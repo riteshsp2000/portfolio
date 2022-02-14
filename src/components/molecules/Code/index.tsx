@@ -11,26 +11,8 @@ import {Wrapper, Pre, Line, LineContent} from './styles';
 // Utils
 import {useTheme} from '@theme';
 
-const exampleCode = `
-import React from 'react';
-
-// Libraries
-import styled from 'styled-components';
-
-const Div = styled.div;
-
-const Item = () => {
-	return (
-		<Div>
-			<h1>Hello World </h1>
-		</Div>
-	)
-}
-
-export default Item;
-`;
-
-const Code = ({className: cn = 'language-jsx'}) => {
+// @ts-ignore
+const Code = ({className: cn = 'language-jsx', children}) => {
   const [colorMode] = useTheme();
   const language = cn.replace('language-', '');
 
@@ -39,7 +21,7 @@ const Code = ({className: cn = 'language-jsx'}) => {
       <Highlight
         {...defaultProps}
         theme={colorMode === 'dark' ? vsDark : vsLight}
-        code={exampleCode}
+        code={children.trim()}
         // @ts-ignore
         language={language}
       >

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   font-family: var(--font-family-mono) !important;
-  padding: 0rem 1.5rem;
+  padding: 1.5rem;
   background: var(--color-background-secondary);
   transition: var(--transition-bg);
 
