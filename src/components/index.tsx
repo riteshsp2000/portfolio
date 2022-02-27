@@ -56,3 +56,6 @@ export {default as MdxProvider} from './molecules/MdxComponents';
 export {default as Comments} from './molecules/Comments';
 export {default as Banner} from './molecules/Banner';
 export {default as SEO} from './molecules/SEO';
+
+// Articles
+export {default as FrameGenerator} from './articles/FrameGenerator';
