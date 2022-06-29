@@ -87,7 +87,10 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({
             <NavItem isActive={false}>Resume</NavItem>
           </RedirectLink>
         </NavItemsContainer>
-        <ThemeToggle />
+
+        <div style={{width: '24px'}}>
+          <ThemeToggle />
+        </div>
       </InnerContainer>
     </NavContainer>
   );
