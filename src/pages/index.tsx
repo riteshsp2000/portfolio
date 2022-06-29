@@ -8,14 +8,17 @@ import {graphql} from 'gatsby';
 import {
   Flexbox,
   FancyText,
-  P3,
   H3,
   WorkExperience,
   SectionTitle,
   FeaturedProject,
 } from '@components';
 
+import Lottie from 'react-lottie';
+
 import {BREAKPOINTS} from '@theme';
+
+import * as animationData from '../images/landing.json';
 
 const SectionContainer = styled(Flexbox)`
   width: 100%;
@@ -84,6 +87,15 @@ export const pageQuery = graphql`
   }
 `;
 
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
 const Home: React.FC = ({
   // @ts-ignore
   data: {
@@ -93,14 +105,10 @@ const Home: React.FC = ({
   <>
     <SectionContainer flexColumn alignCenter justifyCenter>
       <ImgContainer>
-        <img
-          src="https://res.cloudinary.com/riteshp2000/image/upload/v1639041087/portfolio/v2/assets/animation_500_kwyqqls2_qsxyrf.gif"
-          alt="Ritesh Patil - Software Developer"
-          className="image"
-        />
+        <Lottie options={defaultOptions} height={'auto'} width={'100%'} />
       </ImgContainer>
 
-      <Fancy>Hi, I'm Ritesh Patil</Fancy>
+      <Fancy>{"Hi, I'm Ritesh Patil"}</Fancy>
 
       <Subtext>
         A Software developer specialising in building performant frontend
