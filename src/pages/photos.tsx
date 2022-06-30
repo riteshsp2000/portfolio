@@ -3,6 +3,10 @@ import React from 'react';
 // Libraries
 import styled from 'styled-components';
 
+import Lottie from 'react-lottie';
+
+import * as animationData from '../images/comingsoon.json';
+
 const Container = styled.div`
   width: 100%;
   height: calc(100vh - 300px);
@@ -19,13 +23,18 @@ const Container = styled.div`
   }
 `;
 
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
 const Error: React.FC = () => (
   <Container>
-    <img
-      className="image"
-      alt="Error Page not found"
-      src="https://res.cloudinary.com/riteshp2000/image/upload/v1638967223/portfolio/v2/assets/animation_500_kwxiqink_va3ghc.gif"
-    />
+    <Lottie options={defaultOptions} height={400} width={400} />
     <h1>Coming Soon. Stay tuned!</h1>
   </Container>
 );

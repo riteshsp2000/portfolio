@@ -6,14 +6,7 @@ import {Link} from 'gatsby';
 import {useTransition, animated} from 'react-spring';
 
 // Components
-import {
-  H3,
-  H2,
-  HamburgerMenu,
-  ThemeToggle,
-  InAppLink,
-  RedirectLink,
-} from '@components';
+import {H3, H2, HamburgerMenu, ThemeToggle, InAppLink} from '@components';
 import Container from '../../atoms/layout/Container';
 
 // Assets
@@ -142,6 +135,8 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
     setShowTabs(c => (c.length ? [] : navItems));
   };
 
+  console.log(showTabs);
+
   return (
     <>
       <PrimeContainer bgColor={bgColor}>
@@ -159,24 +154,24 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
           item && (
             <OverlayContainer style={style}>
               <OverlayNavContainer>
-                {tabsTransition(
-                  (tabStyle, tabItem) =>
-                    tabItem && (
-                      <animated.div key={tabItem.id} style={tabStyle}>
-                        <NavLink
-                          to={tabItem.link}
-                          onClick={() => {
-                            toggleActiveTab(tabItem.id);
-                            setShowMenuOpen(false);
-                          }}
-                        >
-                          <NavItem isActive={activeTab === tabItem.id}>
-                            {tabItem.name}
-                          </NavItem>
-                        </NavLink>
-                      </animated.div>
-                    ),
-                )}
+                {tabsTransition((tabStyle, tabItem) => {
+                  return (
+                    <animated.div key={tabItem.id} style={tabStyle}>
+                      <NavLink
+                        to={tabItem.link}
+                        onClick={() => {
+                          toggleActiveTab(tabItem.id);
+                          setShowMenuOpen(c => !c);
+                          setShowTabs(c => (c.length ? [] : navItems));
+                        }}
+                      >
+                        <NavItem isActive={activeTab === tabItem.id}>
+                          {tabItem.name}
+                        </NavItem>
+                      </NavLink>
+                    </animated.div>
+                  );
+                })}
                 <OverlayControlsContainer>
                   <ThemeToggle />
                 </OverlayControlsContainer>
